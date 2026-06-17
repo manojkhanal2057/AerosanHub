@@ -7,6 +7,328 @@
     <title>Aerosan — Smart, Dignified Public Sanitation in Urban Nepal</title>
     <link rel="stylesheet" href="style.css" />
 
+    <style>
+        /* ═══ REMOVE old grid/card styles ═══ */
+/* Delete: .feat-grid, .feat-card, .feat-card-icon, .chip, .chip-blue, .chip-green */
+
+/* ═══ ADD new row-based layout ═══ */
+.feat-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 3.5rem;
+}
+
+.feat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid #e9edf2;
+}
+
+.feat-row:first-child {
+    padding-top: 0;
+}
+
+.feat-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+/* Reverse layout for alternating items */
+.feat-row-reverse .feat-row-image {
+    order: 2;
+}
+
+.feat-row-reverse .feat-row-body {
+    order: 1;
+}
+
+/* Image side */
+.feat-row-image {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.feat-row-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.feat-row:hover .feat-row-image img {
+    transform: scale(1.04);
+}
+
+.feat-number {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px);
+    color: #1a2b3c;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-family: 'Inter', monospace;
+}
+
+/* Text side */
+.feat-row-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.feat-tag {
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 100px;
+    margin-bottom: 0.25rem;
+}
+
+.tag-blue {
+    background: #eef4ff;
+    color: #2563eb;
+}
+
+.tag-pink {
+    background: #fdf2f8;
+    color: #be185d;
+}
+
+.tag-green {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.feat-row-body h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+    color: #0f172a;
+    margin: 0;
+}
+
+.feat-row-body p {
+    font-size: 0.95rem;
+    color: #475569;
+    line-height: 1.65;
+    margin: 0;
+    max-width: 440px;
+}
+
+.feat-meta {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem 1.5rem;
+    margin-top: 0.5rem;
+    padding: 0;
+}
+
+.feat-meta li {
+    font-size: 0.85rem;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.meta-icon {
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* Responsive stacking */
+@media (max-width: 768px) {
+    .feat-row {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2rem 0;
+    }
+
+    .feat-row-reverse .feat-row-image {
+        order: 1;
+    }
+
+    .feat-row-reverse .feat-row-body {
+        order: 2;
+    }
+
+    .feat-row-body h3 {
+        font-size: 1.3rem;
+    }
+
+    .feat-row-image {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* ═══ GALLERY STRIP ═══ */
+.gallery-strip {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 0 28px 20px 28px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.gallery-strip::-webkit-scrollbar {
+    height: 6px;
+}
+
+.gallery-strip::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.gallery-strip::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 100px;
+}
+
+.gallery-item {
+    flex-shrink: 0;
+    width: 300px;
+    height: 240px;
+    border-radius: var(--r-lg, 14px);
+    overflow: hidden;
+    border: 1px solid var(--border-soft, #e9edf2);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(0,0,0,0.12);
+}
+
+.gallery-item-wide {
+    width: 380px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.06);
+}
+
+/* Overlay — hidden by default, slides up on hover */
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0) 30%,
+        rgba(15, 23, 42, 0.82) 70%,
+        rgba(15, 23, 42, 0.94) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px 18px 18px 18px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* Overlay content */
+.gallery-tag {
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-bottom: 6px;
+}
+
+.tag-blue {
+    background: rgba(37, 99, 235, 0.85);
+    color: #ffffff;
+}
+
+.tag-pink {
+    background: rgba(190, 24, 93, 0.85);
+    color: #ffffff;
+}
+
+.tag-green {
+    background: rgba(5, 150, 105, 0.85);
+    color: #ffffff;
+}
+
+.gallery-overlay h4 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 3px 0;
+    line-height: 1.3;
+}
+
+.gallery-overlay p {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    line-height: 1.45;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gallery-item {
+        width: 260px;
+        height: 210px;
+    }
+
+    .gallery-item-wide {
+        width: 320px;
+    }
+
+    .gallery-overlay {
+        opacity: 1;
+        transform: translateY(0);
+        background: linear-gradient(
+            180deg,
+            rgba(15, 23, 42, 0.1) 20%,
+            rgba(15, 23, 42, 0.78) 60%,
+            rgba(15, 23, 42, 0.92) 100%
+        );
+    }
+}
+    </style>
+
 </head>
 
 <body>
@@ -390,77 +712,127 @@
     </section>
 
     <!-- ══ FEATURES ══ -->
-    <section class="section section-alt">
-        <div class="wrap">
-            <div class="sec-head center" data-r>
-                <div class="eyebrow">What We Build</div>
-                <h2 class="display d-lg">Six pillars of the Aerosan system</h2>
-                <p class="body-lg">Each HUB integrates smart technology, human equity, and circular economics into a
-                    single cohesive platform.</p>
-            </div>
-            <div class="feat-grid">
-                <div class="card feat-card" data-r data-d="1">
-                    <div class="feat-card-icon chip chip-blue"><svg width="22" height="22" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                            <polyline points="9 12 11 14 15 10" />
-                        </svg></div>
+    <!-- ══ FEATURES ══ -->
+<section class="section section-alt">
+    <div class="wrap">
+        <div class="sec-head center" data-r>
+            <div class="eyebrow">What We Build</div>
+            <h2 class="display d-lg">Six pillars of the Aerosan system</h2>
+            <p class="body-lg">Each HUB integrates smart technology, human equity, and circular economics into a
+                single cohesive platform.</p>
+        </div>
+
+        <div class="feat-rows">
+            <!-- Item 1 — image left, text right -->
+            <div class="feat-row" data-r data-d="1">
+                <div class="feat-row-image">
+                    <img src="https://www.shutterstock.com/shutterstock/videos/4033077305/thumb/1.jpg?ip=x480" alt="Hygienic Smart Facilities" loading="lazy">
+                    <span class="feat-number">01</span>
+                </div>
+                <div class="feat-row-body">
+                    <span class="feat-tag tag-blue">Infrastructure</span>
                     <h3>Hygienic Smart Facilities</h3>
-                    <p>Automated cleaning alerts, touchless fixtures, air-quality sensors, and odor monitoring ensure
-                        consistently clean conditions every operating hour.</p>
+                    <p>Automated cleaning alerts, touchless fixtures, air-quality sensors, and odor monitoring ensure consistently clean conditions every operating hour.</p>
+                    <ul class="feat-meta">
+                        <li><span class="meta-icon">✓</span> Touchless fixtures</li>
+                        <li><span class="meta-icon">✓</span> Air-quality sensors</li>
+                        <li><span class="meta-icon">✓</span> 24/7 odor monitoring</li>
+                    </ul>
                 </div>
-                <div class="card feat-card" data-r data-d="2">
-                    <div class="feat-card-icon chip chip-blue"><svg width="22" height="22" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01" />
-                        </svg></div>
+            </div>
+
+            <!-- Item 2 — text left, image right -->
+            <div class="feat-row feat-row-reverse" data-r data-d="2">
+                <div class="feat-row-image">
+                    <img src="https://www.orangehealthcare.in/wp-content/uploads/2023/06/Cara-Menghitung-Masa-Subur-1024x576-1.jpg" alt="Menstrual Hygiene Management" loading="lazy">
+                    <span class="feat-number">02</span>
+                </div>
+                <div class="feat-row-body">
+                    <span class="feat-tag tag-pink">Health Equity</span>
                     <h3>Menstrual Hygiene Management</h3>
-                    <p>Sanitary vending machines, hygienic disposal bins, privacy screens, and clean changing facilities
-                        built into every female section — not afterthoughts.</p>
+                    <p>Sanitary vending machines, hygienic disposal bins, privacy screens, and clean changing facilities built into every female section — not afterthoughts.</p>
+                    <ul class="feat-meta">
+                        <li><span class="meta-icon">✓</span> Sanitary vending</li>
+                        <li><span class="meta-icon">✓</span> Private changing areas</li>
+                        <li><span class="meta-icon">✓</span> Hygienic disposal</li>
+                    </ul>
                 </div>
-                <div class="card feat-card" data-r data-d="3">
-                    <div class="feat-card-icon chip chip-blue"><svg width="22" height="22" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                        </svg></div>
+            </div>
+
+            <!-- Item 3 — image left, text right -->
+            <div class="feat-row" data-r data-d="3">
+                <div class="feat-row-image">
+                    <img src="https://images.squarespace-cdn.com/content/v1/6481bdb4217c543c6ce52897/1687273035560-VOAHUI4V4EHDLEAT4T8H/doc+m+disabled+toilet+at+city+of+norwich+school.jpg" alt="Gender & Disability Inclusive" loading="lazy">
+                    <span class="feat-number">03</span>
+                </div>
+                <div class="feat-row-body">
+                    <span class="feat-tag tag-blue">Universal Design</span>
                     <h3>Gender & Disability Inclusive</h3>
-                    <p>Dedicated female sections, full wheelchair access, baby-care stations, and enhanced safety
-                        lighting — equitable design as a standard, not an upgrade.</p>
+                    <p>Dedicated female sections, full wheelchair access, baby-care stations, and enhanced safety lighting — equitable design as a standard, not an upgrade.</p>
+                    <ul class="feat-meta">
+                        <li><span class="meta-icon">✓</span> Full wheelchair access</li>
+                        <li><span class="meta-icon">✓</span> Baby-care stations</li>
+                        <li><span class="meta-icon">✓</span> Enhanced safety lighting</li>
+                    </ul>
                 </div>
-                <div class="card feat-card" data-r data-d="4">
-                    <div class="feat-card-icon chip chip-green"><svg width="22" height="22" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                        </svg></div>
+            </div>
+
+            <!-- Item 4 — text left, image right -->
+            <div class="feat-row feat-row-reverse" data-r data-d="4">
+                <div class="feat-row-image">
+                    <img src="https://greenerideal.com/wp-content/uploads/2020/04/waste-to-energy.jpg" loading="lazy">
+                    <span class="feat-number">04</span>
+                </div>
+                <div class="feat-row-body">
+                    <span class="feat-tag tag-green">Circular Economy</span>
                     <h3>Waste-to-Energy Technology</h3>
-                    <p>Sealed anaerobic bio-digesters convert 100% of organic waste into biogas and certified organic
-                        fertilizer. Zero river discharge — guaranteed by design.</p>
+                    <p>Sealed anaerobic bio-digesters convert 100% of organic waste into biogas and certified organic fertilizer. Zero river discharge — guaranteed by design.</p>
+                    <ul class="feat-meta">
+                        <li><span class="meta-icon">✓</span> 100% organic conversion</li>
+                        <li><span class="meta-icon">✓</span> Biogas + fertilizer output</li>
+                        <li><span class="meta-icon">✓</span> Zero river discharge</li>
+                    </ul>
                 </div>
-                <div class="card feat-card" data-r data-d="5">
-                    <div class="feat-card-icon chip chip-blue"><svg width="22" height="22" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="18" height="18" rx="2" />
-                            <path d="M3 9h18M9 21V9" />
-                        </svg></div>
+            </div>
+
+            <!-- Item 5 — image left, text right -->
+            <div class="feat-row" data-r data-d="5">
+                <div class="feat-row-image">
+                    <img src="https://thumbs.dreamstime.com/b/smart-home-dashboard-manages-iot-system-smart-home-dashboard-controls-temperature-dashboard-tracks-energy-smart-home-handles-426491372.jpg" alt="IoT Monitoring Dashboard" loading="lazy">
+                    <span class="feat-number">05</span>
+                </div>
+                <div class="feat-row-body">
+                    <span class="feat-tag tag-blue">Smart Operations</span>
                     <h3>IoT Monitoring Dashboard</h3>
-                    <p>Real-time data on occupancy, cleanliness scores, energy output, and maintenance tasks —
-                        accessible to operators and municipalities on any device.</p>
+                    <p>Real-time data on occupancy, cleanliness scores, energy output, and maintenance tasks — accessible to operators and municipalities on any device.</p>
+                    <ul class="feat-meta">
+                        <li><span class="meta-icon">✓</span> Real-time occupancy</li>
+                        <li><span class="meta-icon">✓</span> Cleanliness scoring</li>
+                        <li><span class="meta-icon">✓</span> Multi-device access</li>
+                    </ul>
                 </div>
-                <div class="card feat-card" data-r data-d="6">
-                    <div class="feat-card-icon chip chip-blue"><svg width="22" height="22" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                        </svg></div>
+            </div>
+
+            <!-- Item 6 — text left, image right -->
+            <div class="feat-row feat-row-reverse" data-r data-d="6">
+                <div class="feat-row-image">
+                    <img src="https://media.istockphoto.com/id/1700809534/photo/innovation-and-business-technologies-concept.jpg?s=612x612&w=0&k=20&c=d6Mbk4tiiCtL5fGahqX6pslAx5Ns9AhFDlEujSNUZbA=" alt="Revenue-Generating System" loading="lazy">
+                    <span class="feat-number">06</span>
+                </div>
+                <div class="feat-row-body">
+                    <span class="feat-tag tag-blue">Financial Model</span>
                     <h3>Revenue-Generating System</h3>
-                    <p>User fees, biogas sales, organic fertilizer, advertising, and training licences create a
-                        five-stream surplus — no government dependency, ever.</p>
+                    <p>User fees, biogas sales, organic fertilizer, advertising, and training licences create a five-stream surplus — no government dependency, ever.</p>
+                    <ul class="feat-meta">
+                        <li><span class="meta-icon">✓</span> 5 revenue streams</li>
+                        <li><span class="meta-icon">✓</span> Biogas & fertilizer sales</li>
+                        <li><span class="meta-icon">✓</span> Zero govt dependency</li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- ══ HOW IT WORKS ══ -->
     <section class="section section-deep">
@@ -571,39 +943,65 @@
         </div>
     </section>
 
-    <!-- ══ IMAGE GALLERY STRIP ══ -->
-    <section style="padding:60px 0;background:var(--bg-2);overflow:hidden;">
-        <div class="wrap" style="margin-bottom:16px;">
-            <div class="eyebrow" data-r>Our Facilities</div>
-        </div>
-        <div style="display:flex;gap:16px;overflow:hidden;padding:0 28px;" data-r="fade">
-            <div
-                style="flex-shrink:0;width:300px;height:220px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border-soft);">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt=""
-                    style="width:100%;height:100%;object-fit:cover;" />
-            </div>
-            <div
-                style="flex-shrink:0;width:380px;height:220px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border-soft);">
-                <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=760&q=80" alt=""
-                    style="width:100%;height:100%;object-fit:cover;" />
-            </div>
-            <div
-                style="flex-shrink:0;width:300px;height:220px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border-soft);">
-                <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt=""
-                    style="width:100%;height:100%;object-fit:cover;" />
-            </div>
-            <div
-                style="flex-shrink:0;width:340px;height:220px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border-soft);">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=680&q=80" alt=""
-                    style="width:100%;height:100%;object-fit:cover;" />
-            </div>
-            <div
-                style="flex-shrink:0;width:280px;height:220px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border-soft);">
-                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=560&q=80" alt=""
-                    style="width:100%;height:100%;object-fit:cover;" />
+  <!-- ══ IMAGE GALLERY STRIP ══ -->
+<section style="padding:60px 0;background:var(--bg-2);overflow:hidden;">
+    <div class="wrap" style="margin-bottom:24px;">
+        <div class="eyebrow" data-r>Our Facilities</div>
+        <p style="margin-top:4px;color:var(--text-secondary, #64748b);font-size:0.95rem;max-width:600px;" data-r>
+            Explore the infrastructure, technology, and human-centered design inside every Aerosan HUB.
+        </p>
+    </div>
+    <div class="gallery-strip" data-r="fade">
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Hygienic Smart Facilities" loading="lazy" />
+            <div class="gallery-overlay">
+                <span class="gallery-tag tag-blue">Infrastructure</span>
+                <h4>Hygienic Smart Facilities</h4>
+                <p>Touchless fixtures, air-quality sensors &amp; automated cleaning</p>
             </div>
         </div>
-    </section>
+        <div class="gallery-item gallery-item-wide">
+            <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=760&q=80" alt="Menstrual Hygiene Management" loading="lazy" />
+            <div class="gallery-overlay">
+                <span class="gallery-tag tag-pink">Health Equity</span>
+                <h4>Menstrual Hygiene Management</h4>
+                <p>Sanitary vending, private changing areas &amp; hygienic disposal</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt="Gender & Disability Inclusive" loading="lazy" />
+            <div class="gallery-overlay">
+                <span class="gallery-tag tag-blue">Universal Design</span>
+                <h4>Inclusive Access</h4>
+                <p>Wheelchair access, baby-care stations &amp; enhanced safety</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=680&q=80" alt="Waste-to-Energy Technology" loading="lazy" />
+            <div class="gallery-overlay">
+                <span class="gallery-tag tag-green">Circular Economy</span>
+                <h4>Waste-to-Energy</h4>
+                <p>Anaerobic bio-digesters — zero discharge guaranteed</p>
+            </div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=560&q=80" alt="IoT Monitoring Dashboard" loading="lazy" />
+            <div class="gallery-overlay">
+                <span class="gallery-tag tag-blue">Smart Operations</span>
+                <h4>IoT Dashboard</h4>
+                <p>Real-time cleanliness, occupancy &amp; energy metrics</p>
+            </div>
+        </div>
+        <div class="gallery-item gallery-item-wide">
+            <img src="https://images.unsplash.com/photo-1553729459-afe8f208b12c?w=760&q=80" alt="Revenue-Generating System" loading="lazy" />
+            <div class="gallery-overlay">
+                <span class="gallery-tag tag-blue">Financial Model</span>
+                <h4>Revenue System</h4>
+                <p>Five-stream surplus — biogas, fees, ads &amp; training licences</p>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- ══ PROJECTS PREVIEW ══ -->
     <section class="section">
