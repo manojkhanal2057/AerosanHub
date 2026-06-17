@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aerosan — Team</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* TEAM-ONLY */
+        .lead-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+            margin-bottom: 64px;
+        }
+
+        .lead-card {
+            display: grid;
+            grid-template-columns: 130px 1fr;
+            gap: 22px;
+            padding: 26px;
+            border-radius: var(--r-lg);
+            border: 1px solid var(--border-soft);
+            background: #fff;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.28s;
+            align-items: start;
+        }
+
+        .lead-card:hover {
+            border-color: var(--blue-border);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-3px);
+        }
+
+        .lead-avatar {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: var(--r);
+            background: linear-gradient(135deg, var(--bg-3), var(--blue-pale));
+            border: 1px solid var(--border-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            overflow: hidden;
+        }
+
+        .lead-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .lead-name {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.05rem;
+            color: var(--ink);
+            margin-bottom: 3px;
+            letter-spacing: -0.02em;
+        }
+
+        .lead-role {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--blue);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .lead-desc {
+            font-size: 0.82rem;
+            color: var(--muted);
+            line-height: 1.65;
+            margin-bottom: 12px;
+        }
+
+        .lead-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .lead-tag {
+            font-size: 0.68rem;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: var(--blue-pale);
+            border: 1px solid var(--blue-border);
+            color: var(--blue);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .team-card {
+            padding: 22px 18px;
+            text-align: center;
+        }
+
+        .team-av {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--bg-3), var(--blue-pale));
+            border: 2px solid var(--border-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 14px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .team-card:hover .team-av {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 5px var(--blue-dim);
+        }
+
+        .team-name {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 3px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .team-role {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 7px;
+        }
+
+        .team-desc {
+            font-size: 0.76rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .val-card {
+            padding: 24px 22px;
+        }
+
+        .val-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--blue-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--blue);
+            margin-bottom: 13px;
+        }
+
+        .val-title {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .val-desc {
+            font-size: 0.79rem;
+            color: var(--muted);
+            line-height: 1.62;
+        }
+
+        .join-box {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-deep) 100%);
+            border-radius: var(--r-xl);
+            padding: 56px 64px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .join-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            right: -60px;
+            top: -60px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.13) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .join-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 1.7rem;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .join-sub {
+            font-size: 0.88rem;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.75;
+        }
+
+        @media(max-width:900px) {
+            .lead-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lead-card {
+                grid-template-columns: 100px 1fr;
+                gap: 16px;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .join-box {
+                grid-template-columns: 1fr;
+                padding: 36px 28px;
+            }
+        }
+
+        @media(max-width:640px) {
+            .lead-card {
+                grid-template-columns: 1fr;
+            }
+
+            .lead-avatar {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Aero<span>san</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="model.html">Model</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="team.html" class="active">Team</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-right"><a href="contact.html" class="btn btn-primary">Get Started <svg width="13"
+                        height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg></a></div>
+            <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    <div class="mob-menu" id="mob"><a href="index.html">Home</a><a href="model.html">Model</a><a
+            href="services.html">Services</a><a href="projects.html">Projects</a><a href="team.html">Team</a><a
+            href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="contact.html"
+            class="btn btn-primary">Get Started</a></div>
+
+    <section class="page-hero">
+        <div class="orb orb-blue" style="width:420px;height:420px;right:-60px;top:-80px;"></div>
+        <div class="wrap" style="position:relative;z-index:2;">
+            <div class="eyebrow">Our People</div>
+            <h1>Civil engineers,<br />public health experts,<br />and changemakers.</h1>
+            <p class="lead">Aerosan is built by practitioners who believe sanitation is a human right — designed by
+                people who've seen firsthand what bad infrastructure costs communities.</p>
+        </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section class="section">
+        <div class="wrap">
+            <div class="sec-head" data-r>
+                <div class="eyebrow">Leadership</div>
+                <h2 class="display d-md">The founding team</h2>
+            </div>
+            <div class="lead-grid">
+                <div class="lead-card" data-r data-d="1">
+                    <div class="lead-avatar">👤</div>
+                    <div>
+                        <div class="lead-name">Ramesh Shrestha</div>
+                        <div class="lead-role">Founder & CEO</div>
+                        <p class="lead-desc">Civil infrastructure specialist with 14 years in urban sanitation systems
+                            across South Asia. Previously led sanitation projects for ICIMOD and UN-Habitat Nepal.</p>
+                        <div class="lead-tags"><span class="lead-tag">Civil Engineering</span><span
+                                class="lead-tag">Urban Infrastructure</span><span class="lead-tag">Social
+                                Enterprise</span></div>
+                    </div>
+                </div>
+                <div class="lead-card" data-r data-d="2">
+                    <div class="lead-avatar">👤</div>
+                    <div>
+                        <div class="lead-name">Anita Tamang</div>
+                        <div class="lead-role">Head of Gender & MHM</div>
+                        <p class="lead-desc">Public health professional with deep expertise in WASH programming,
+                            menstrual hygiene management, and gender-responsive infrastructure design across Nepal and
+                            Bangladesh.</p>
+                        <div class="lead-tags"><span class="lead-tag">Public Health</span><span class="lead-tag">MHM
+                                Specialist</span><span class="lead-tag">Gender Strategy</span></div>
+                    </div>
+                </div>
+                <div class="lead-card" data-r data-d="3">
+                    <div class="lead-avatar">👤</div>
+                    <div>
+                        <div class="lead-name">Bikash Karki</div>
+                        <div class="lead-role">Chief Technology Officer</div>
+                        <p class="lead-desc">IoT systems engineer specialising in low-power sensor networks for urban
+                            infrastructure. Built smart city monitoring systems for Kathmandu Metropolitan City pilot
+                            programs.</p>
+                        <div class="lead-tags"><span class="lead-tag">IoT Systems</span><span class="lead-tag">Smart
+                                City Tech</span><span class="lead-tag">Embedded Systems</span></div>
+                    </div>
+                </div>
+                <div class="lead-card" data-r data-d="4">
+                    <div class="lead-avatar">👤</div>
+                    <div>
+                        <div class="lead-name">Sunita Gurung</div>
+                        <div class="lead-role">Operations Director</div>
+                        <p class="lead-desc">Cooperative management expert with a decade of experience running
+                            community-owned enterprises in Nepal's informal economy. Leads all HUB operator training and
+                            cooperative governance.</p>
+                        <div class="lead-tags"><span class="lead-tag">Cooperative Governance</span><span
+                                class="lead-tag">Operations</span><span class="lead-tag">Training</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core team -->
+            <div class="sec-head" data-r>
+                <div class="eyebrow">Core Team</div>
+                <h2 class="display d-md">The people behind every HUB</h2>
+            </div>
+            <div class="team-grid">
+                <div class="card team-card" data-r data-d="1">
+                    <div class="team-av">👤</div>
+                    <div class="team-name">Priya Maharjan</div>
+                    <div class="team-role">Biogas Engineer</div>
+                    <div class="team-desc">Designs and commissions anaerobic digestion systems for each HUB deployment.
+                    </div>
+                </div>
+                <div class="card team-card" data-r data-d="2">
+                    <div class="team-av">👤</div>
+                    <div class="team-name">Sanjay Thapa</div>
+                    <div class="team-role">Urban Planner</div>
+                    <div class="team-desc">Leads site selection, municipal negotiations, and city integration for new
+                        HUB locations.</div>
+                </div>
+                <div class="card team-card" data-r data-d="3">
+                    <div class="team-av">👤</div>
+                    <div class="team-name">Mina Rai</div>
+                    <div class="team-role">Community Liaison</div>
+                    <div class="team-desc">Manages operator cooperative relations, feedback loops, and MHM education
+                        programs.</div>
+                </div>
+                <div class="card team-card" data-r data-d="4">
+                    <div class="team-av">👤</div>
+                    <div class="team-name">Dev Pandey</div>
+                    <div class="team-role">Finance & Impact</div>
+                    <div class="team-desc">Oversees revenue tracking, impact reporting, and financial modelling for
+                        expansion.</div>
+                </div>
+                <div class="card team-card" data-r data-d="5">
+                    <div class="team-av">👤</div>
+                    <div class="team-name">Kavita Lama</div>
+                    <div class="team-role">Design Lead</div>
+                    <div class="team-desc">Leads architectural and UX design of each HUB with focus on dignity, MHM, and
+                        accessibility.</div>
+                </div>
+                <div class="card team-card" data-r data-d="6">
+                    <div class="team-av">👤</div>
+                    <div class="team-name">Rohan Joshi</div>
+                    <div class="team-role">Software Engineer</div>
+                    <div class="team-desc">Builds and maintains the IoT dashboard, sensor integrations, and operator
+                        mobile apps.</div>
+                </div>
+                <div class="card team-card" data-r data-d="1">
+                    <div class="team-av">👤</div>
+                    <div class="team-name">Nisha Pradhan</div>
+                    <div class="team-role">Partnerships</div>
+                    <div class="team-desc">Manages donor relationships, government liaison, and international
+                        development partnerships.</div>
+                </div>
+                <div class="card team-card" data-r data-d="2">
+                    <div class="team-av">👤</div>
+                    <div class="team-name">Arun Basnet</div>
+                    <div class="team-role">Field Supervisor</div>
+                    <div class="team-desc">Oversees day-to-day operations across all active HUBs, ensuring standards and
+                        protocols.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUES -->
+    <section class="section section-deep">
+        <div class="wrap">
+            <div class="sec-head center" data-r>
+                <div class="eyebrow">What Drives Us</div>
+                <h2 class="display d-md">Our values</h2>
+            </div>
+            <div class="values-grid">
+                <div class="card val-card" data-r data-d="1">
+                    <div class="val-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg></div>
+                    <div class="val-title">Dignity First</div>
+                    <div class="val-desc">Every design decision starts with one question: does this preserve the dignity
+                        of the person using it?</div>
+                </div>
+                <div class="card val-card" data-r data-d="2">
+                    <div class="val-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                        </svg></div>
+                    <div class="val-title">MHM as Standard</div>
+                    <div class="val-desc">Menstrual hygiene management infrastructure is not optional. It is
+                        foundational to gender-equitable public space.</div>
+                </div>
+                <div class="card val-card" data-r data-d="3">
+                    <div class="val-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg></div>
+                    <div class="val-title">Circular Thinking</div>
+                    <div class="val-desc">Waste is a resource in the wrong place. We engineer systems that recover value
+                        from every material flow.</div>
+                </div>
+                <div class="card val-card" data-r data-d="4">
+                    <div class="val-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                        </svg></div>
+                    <div class="val-title">Gender Equity</div>
+                    <div class="val-desc">Safe sanitation for women is foundational to public life and economic
+                        participation — not an afterthought.</div>
+                </div>
+                <div class="card val-card" data-r data-d="5">
+                    <div class="val-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                        </svg></div>
+                    <div class="val-title">Financial Accountability</div>
+                    <div class="val-desc">We refuse to build systems that collapse without subsidies. Every HUB must
+                        sustain itself financially.</div>
+                </div>
+                <div class="card val-card" data-r data-d="6">
+                    <div class="val-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                        </svg></div>
+                    <div class="val-title">Community Ownership</div>
+                    <div class="val-desc">HUBs succeed when the community around them owns the outcome — our cooperative
+                        model ensures exactly this.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JOIN -->
+    <section class="section section-alt">
+        <div class="wrap">
+            <div class="join-box" data-r>
+                <div class="join-orb"></div>
+                <div style="position:relative;z-index:1;">
+                    <div class="eyebrow" style="color:rgba(255,255,255,0.65);"><span
+                            style="background:rgba(255,255,255,0.35)"></span>Join the Team</div>
+                    <div class="join-title">We're building something that matters.</div>
+                    <p class="join-sub">Aerosan is always looking for civil engineers, public health specialists, MHM
+                        advocates, IoT developers, and social enterprise practitioners who want to work on real urban
+                        infrastructure challenges in Nepal.</p>
+                </div>
+                <div style="position:relative;z-index:1;flex-shrink:0;">
+                    <a href="contact.html" class="btn btn-white">Get in Touch <svg width="13" height="13"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Aero<span>san</span></div>
+                    <p class="footer-tagline">Gender-friendly, MHM-inclusive, environmentally sustainable smart public
+                        toilet service for urban Nepal.</p>
+                    <div class="footer-social"><a href="#"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg></a></div>
+                </div>
+                <div>
+                    <div class="footer-col-title">Company</div>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="model.html">Model</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Explore</div>
+                    <ul class="footer-links">
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Connect</div>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@aerosan.np">hello@aerosan.np</a></li>
+                        <li><a href="#">Kathmandu, Nepal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><span>© 2025 Aerosan. All rights reserved.</span>
+                <div style="display:flex;gap:16px;"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const nav = document.getElementById('nav'); window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 30), { passive: true });
+        const ham = document.getElementById('ham'), mob = document.getElementById('mob'); ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
+        const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); ro.unobserve(x.target); } }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
+    </script>
+</body>
+
+</html>

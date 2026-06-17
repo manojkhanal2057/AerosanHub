@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aerosan — Projects</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* PROJECTS-ONLY */
+        .feat-proj {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-lg);
+            background: #fff;
+            margin-bottom: 72px;
+        }
+
+        .feat-proj-img {
+            min-height: 440px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .feat-proj-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .feat-proj:hover .feat-proj-img img {
+            transform: scale(1.04);
+        }
+
+        .feat-proj-tint {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(26, 43, 60, 0.15) 0%, transparent 60%);
+        }
+
+        .feat-proj-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--blue-pale);
+            border: 1px solid var(--blue-border);
+            border-radius: 100px;
+            padding: 5px 14px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--blue);
+            letter-spacing: 0.08em;
+        }
+
+        .feat-proj-body {
+            padding: 44px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .proj-cat-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .feat-proj-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.3rem, 2vw, 1.75rem);
+            color: var(--ink);
+            line-height: 1.25;
+            margin-bottom: 13px;
+            letter-spacing: -0.02em;
+        }
+
+        .proj-desc-txt {
+            font-size: 0.88rem;
+            color: var(--body);
+            line-height: 1.76;
+            margin-bottom: 20px;
+        }
+
+        .proj-meta {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+
+        .proj-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.78rem;
+            color: var(--muted);
+        }
+
+        .proj-meta-item svg {
+            color: var(--blue);
+        }
+
+        .proj-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .proj-card {
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid var(--border-soft);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.28s;
+        }
+
+        .proj-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--blue-border);
+        }
+
+        .proj-card-img {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .proj-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.45s;
+        }
+
+        .proj-card:hover .proj-card-img img {
+            transform: scale(1.06);
+        }
+
+        .proj-card-tint {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26, 43, 60, 0.4) 0%, transparent 60%);
+        }
+
+        .proj-card-accent {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+        }
+
+        .proj-card-body {
+            padding: 20px 18px;
+        }
+
+        .proj-cat {
+            font-size: 0.67rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .proj-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 6px;
+            line-height: 1.4;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .proj-desc {
+            font-size: 0.78rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 13px;
+        }
+
+        .proj-link {
+            font-size: 0.77rem;
+            font-weight: 700;
+            color: var(--blue);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap 0.18s;
+        }
+
+        .proj-card:hover .proj-link {
+            gap: 8px;
+        }
+
+        .impact-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            background: var(--border-soft);
+            border-radius: var(--r-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .impact-cell {
+            background: #fff;
+            padding: 32px 24px;
+            text-align: center;
+        }
+
+        .impact-num {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 900;
+            font-size: 2.6rem;
+            letter-spacing: -0.04em;
+            color: var(--blue);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .impact-lbl {
+            font-size: 0.8rem;
+            color: var(--body);
+            line-height: 1.5;
+        }
+
+        @media(max-width:900px) {
+            .feat-proj {
+                grid-template-columns: 1fr;
+            }
+
+            .feat-proj-img {
+                min-height: 280px;
+            }
+
+            .feat-proj-body {
+                padding: 28px;
+            }
+
+            .proj-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .impact-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:640px) {
+            .proj-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .impact-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-logo">Aero<span>san</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="model.html">Model</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-right"><a href="contact.html" class="btn btn-primary">Get Started <svg width="13"
+                        height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg></a></div>
+            <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+    <div class="mob-menu" id="mob"><a href="index.html">Home</a><a href="model.html">Model</a><a
+            href="services.html">Services</a><a href="projects.html">Projects</a><a href="team.html">Team</a><a
+            href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="contact.html"
+            class="btn btn-primary">Get Started</a></div>
+
+    <section class="page-hero">
+        <div class="orb orb-blue" style="width:440px;height:440px;right:-80px;top:-100px;"></div>
+        <div class="orb orb-teal" style="width:300px;height:300px;left:10%;bottom:-80px;"></div>
+        <div class="wrap" style="position:relative;z-index:2;">
+            <div class="eyebrow">Programs & Initiatives</div>
+            <h1>Work that changes<br />cities and lives.</h1>
+            <p class="lead">Five strategic programs addressing sanitation dignity, MHM access, gender equity, circular
+                economy, and community health — all interconnected within the Aerosan ecosystem.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap">
+            <!-- Featured -->
+            <div class="sec-head" data-r>
+                <div class="eyebrow">Featured Initiative</div>
+                <h2 class="display d-md">Waste-to-Value Circular Economy</h2>
+            </div>
+            <div class="feat-proj" data-r>
+                <div class="feat-proj-img">
+                    <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=900&q=85"
+                        alt="Circular Economy" />
+                    <div class="feat-proj-tint"></div>
+                    <div class="feat-proj-badge">⚡ Active — 2024 to present</div>
+                </div>
+                <div class="feat-proj-body">
+                    <div class="proj-cat-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>Circular Economy · CleanTech</div>
+                    <div class="feat-proj-title">Connecting HUB outputs to urban food systems and energy markets</div>
+                    <p class="proj-desc-txt">The Waste-to-Value project maps biogas and organic fertilizer output from
+                        all active Aerosan HUBs to verified buyers — restaurants, institutional kitchens, and peri-urban
+                        farms. Every gram of waste becomes a product. Nothing reaches the river.</p>
+                    <div class="proj-meta">
+                        <div class="proj-meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>Kathmandu Valley</div>
+                        <div class="proj-meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                            </svg>48 Partner Farms</div>
+                        <div class="proj-meta-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M12 6v6l4 2" />
+                            </svg>Ongoing</div>
+                    </div>
+                    <a href="contact.html" class="btn btn-primary" style="width:fit-content;">Partner on This Initiative
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg></a>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="sec-head" data-r>
+                <div class="eyebrow">All Programs</div>
+                <h2 class="display d-md">Active initiatives</h2>
+            </div>
+            <div class="proj-grid">
+                <div class="proj-card" data-r data-d="1">
+                    <div class="proj-card-img">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80"
+                            alt="Social Enterprise" />
+                        <div class="proj-card-tint"></div>
+                        <div class="proj-card-accent"
+                            style="background:linear-gradient(90deg,var(--blue),var(--blue-light));"></div>
+                    </div>
+                    <div class="proj-card-body">
+                        <div class="proj-cat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                            </svg>Enterprise · Education</div>
+                        <div class="proj-title">Social Enterprise Nepal Workshops</div>
+                        <div class="proj-desc">Capacity-building workshops equipping local entrepreneurs to co-manage
+                            Aerosan HUBs with business, sanitation, and operations skills.</div>
+                        <a href="contact.html" class="proj-link">Learn more <svg width="11" height="11"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></a>
+                    </div>
+                </div>
+                <div class="proj-card" data-r data-d="2">
+                    <div class="proj-card-img">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80"
+                            alt="Cooperative" />
+                        <div class="proj-card-tint"></div>
+                        <div class="proj-card-accent" style="background:linear-gradient(90deg,#6366F1,#8B5CF6);"></div>
+                    </div>
+                    <div class="proj-card-body">
+                        <div class="proj-cat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
+                                <circle cx="12" cy="12" r="2" />
+                            </svg>Labour · Livelihoods</div>
+                        <div class="proj-title">Sanitation Worker Cooperative</div>
+                        <div class="proj-desc">Formalizing informal sanitation workers into a cooperative with fair
+                            wages, protective equipment, and social security access.</div>
+                        <a href="contact.html" class="proj-link">Learn more <svg width="11" height="11"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></a>
+                    </div>
+                </div>
+                <div class="proj-card" data-r data-d="3">
+                    <div class="proj-card-img">
+                        <img src="https://images.unsplash.com/photo-1573497161079-f3fd25cc6b90?w=600&q=80"
+                            alt="Gender" />
+                        <div class="proj-card-tint"></div>
+                        <div class="proj-card-accent" style="background:linear-gradient(90deg,#EC4899,#F472B6);"></div>
+                    </div>
+                    <div class="proj-card-body">
+                        <div class="proj-cat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                <circle cx="9" cy="7" r="4" />
+                            </svg>Gender · Leadership</div>
+                        <div class="proj-title">Gender Strategy & Leadership Program</div>
+                        <div class="proj-desc">Placing women in leadership, technical, and operations roles — targeting
+                            50% female workforce across all HUBs.</div>
+                        <a href="contact.html" class="proj-link">Learn more <svg width="11" height="11"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></a>
+                    </div>
+                </div>
+                <div class="proj-card" data-r data-d="4">
+                    <div class="proj-card-img">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="MHM" />
+                        <div class="proj-card-tint"></div>
+                        <div class="proj-card-accent" style="background:linear-gradient(90deg,#F59E0B,#FBBF24);"></div>
+                    </div>
+                    <div class="proj-card-body">
+                        <div class="proj-cat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                            </svg>MHM · Women's Health</div>
+                        <div class="proj-title">MHM Access & Awareness Campaign</div>
+                        <div class="proj-desc">Providing menstrual hygiene products, education, and safe disposal
+                            infrastructure to girls and women in partner communities.</div>
+                        <a href="contact.html" class="proj-link">Learn more <svg width="11" height="11"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></a>
+                    </div>
+                </div>
+                <div class="proj-card" data-r data-d="5">
+                    <div class="proj-card-img">
+                        <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&q=80"
+                            alt="Health" />
+                        <div class="proj-card-tint"></div>
+                        <div class="proj-card-accent" style="background:linear-gradient(90deg,var(--green),#34D399);">
+                        </div>
+                    </div>
+                    <div class="proj-card-body">
+                        <div class="proj-cat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2.5">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                            </svg>Health · Community</div>
+                        <div class="proj-title">Community Health & Hygiene Campaign</div>
+                        <div class="proj-desc">School and community education promoting handwashing, sanitation rights,
+                            and responsible hygiene across partner municipalities.</div>
+                        <a href="contact.html" class="proj-link">Learn more <svg width="11" height="11"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT NUMBERS -->
+    <section class="section section-deep">
+        <div class="wrap">
+            <div class="sec-head center" data-r>
+                <div class="eyebrow">Collective Impact</div>
+                <h2 class="display d-md">What these programs achieve</h2>
+            </div>
+            <div class="impact-row" data-r>
+                <div class="impact-cell">
+                    <div class="impact-num">97%</div>
+                    <div class="impact-lbl">Women report higher safety using Aerosan facilities</div>
+                </div>
+                <div class="impact-cell">
+                    <div class="impact-num">Zero</div>
+                    <div class="impact-lbl">Untreated waste discharged to rivers from any HUB</div>
+                </div>
+                <div class="impact-cell">
+                    <div class="impact-num">50%</div>
+                    <div class="impact-lbl">Female workforce target across all HUB programs</div>
+                </div>
+                <div class="impact-cell">
+                    <div class="impact-num">5+</div>
+                    <div class="impact-lbl">Active partner municipalities in Kathmandu valley</div>
+                </div>
+            </div>
+            <div style="margin-top:36px;" data-r>
+                <div class="quote-block" style="max-width:700px;margin:0 auto;">
+                    <p>"Every project Aerosan deploys is designed to outlast any single donor or government cycle —
+                        self-sustaining by architecture, not by aspiration."</p>
+                    <span>— Aerosan Annual Report 2024</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding:0 0 88px;">
+        <div class="wrap">
+            <div class="cta-box" data-r>
+                <div class="cta-box-orb"></div>
+                <div style="position:relative;z-index:1;">
+                    <div class="eyebrow" style="color:rgba(255,255,255,0.6)"><span
+                            style="background:rgba(255,255,255,0.35)"></span>Collaborate</div>
+                    <h2>Want to partner on a project?</h2>
+                    <p>We collaborate with municipalities, donors, UN agencies, and infrastructure partners to scale
+                        proven systems.</p>
+                </div>
+                <div class="btn-group" style="position:relative;z-index:1;"><a href="contact.html"
+                        class="btn btn-white">Start a Conversation <svg width="13" height="13" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg></a></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="wrap">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">Aero<span>san</span></div>
+                    <p class="footer-tagline">Gender-friendly, MHM-inclusive, environmentally sustainable smart public
+                        toilet service for urban Nepal.</p>
+                    <div class="footer-social"><a href="#"><svg width="14" height="14" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg></a></div>
+                </div>
+                <div>
+                    <div class="footer-col-title">Company</div>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="model.html">Model</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Explore</div>
+                    <ul class="footer-links">
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="blog.html">Journal</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <div class="footer-col-title">Connect</div>
+                    <ul class="footer-links">
+                        <li><a href="mailto:hello@aerosan.np">hello@aerosan.np</a></li>
+                        <li><a href="#">Kathmandu, Nepal</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom"><span>© 2025 Aerosan. All rights reserved.</span>
+                <div style="display:flex;gap:16px;"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        const nav = document.getElementById('nav'); window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 30), { passive: true });
+        const ham = document.getElementById('ham'), mob = document.getElementById('mob'); ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
+        const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); ro.unobserve(x.target); } }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
+    </script>
+</body>
+
+</html>

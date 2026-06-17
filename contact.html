@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aerosan — Contact</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+  /* CONTACT-ONLY */
+
+  /* Hero override — richer gradient */
+  .page-hero {
+    background: linear-gradient(150deg, var(--bg-3) 0%, var(--bg-2) 50%, var(--bg) 100%);
+  }
+
+  /* ── Main contact grid ── */
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* ── LEFT: Info panel ── */
+  .info-panel { position: sticky; top: calc(var(--nav-h) + 28px); }
+  .info-intro {
+    font-size: 0.92rem;
+    color: var(--body);
+    line-height: 1.78;
+    margin-bottom: 36px;
+  }
+
+  .info-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
+  .info-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px 20px;
+    border-radius: var(--r);
+    border: 1px solid var(--border-soft);
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .info-card:hover {
+    border-color: var(--blue-border);
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+  }
+  .info-card-icon {
+    width: 42px; height: 42px;
+    border-radius: 11px;
+    background: var(--blue-dim);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue);
+    flex-shrink: 0;
+  }
+  .info-card-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .info-card-value {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .info-card-sub {
+    font-size: 0.76rem;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* Partner box */
+  .partner-box {
+    background: var(--blue-pale);
+    border: 1px solid var(--blue-border);
+    border-radius: var(--r-lg);
+    padding: 22px 24px;
+    margin-bottom: 28px;
+  }
+  .partner-box-title {
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .partner-box-text {
+    font-size: 0.8rem;
+    color: var(--blue-deep);
+    line-height: 1.65;
+    opacity: 0.85;
+  }
+
+  /* Social row */
+  .social-row {
+    display: flex;
+    gap: 10px;
+  }
+  .social-btn {
+    width: 42px; height: 42px;
+    border-radius: 10px;
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--muted);
+    transition: all 0.2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .social-btn:hover {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+    box-shadow: 0 4px 14px var(--blue-glow);
+    transform: translateY(-2px);
+  }
+
+  /* ── RIGHT: Form panel ── */
+  .form-panel {
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-xl);
+    padding: 44px 40px;
+    box-shadow: var(--shadow-md);
+  }
+  .form-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.45rem;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin-bottom: 6px;
+  }
+  .form-sub {
+    font-size: 0.84rem;
+    color: var(--muted);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .field label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .field input,
+  .field textarea,
+  .field select {
+    padding: 12px 16px;
+    border: 1.5px solid var(--border-soft);
+    border-radius: 10px;
+    font-size: 0.88rem;
+    color: var(--ink);
+    font-family: inherit;
+    background: var(--bg);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-color: var(--blue);
+    background: #fff;
+    box-shadow: 0 0 0 4px var(--blue-dim);
+  }
+  .field input::placeholder,
+  .field textarea::placeholder { color: var(--muted); }
+  .field textarea { resize: vertical; min-height: 130px; }
+  .field select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A95AB' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+
+  /* Checkbox group */
+  .check-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .check-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 13px;
+    border-radius: 9px;
+    border: 1.5px solid var(--border-soft);
+    cursor: pointer;
+    transition: all 0.18s;
+    background: var(--bg);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--body);
+    user-select: none;
+  }
+  .check-item:hover { border-color: var(--blue-border); background: var(--blue-pale); color: var(--blue); }
+  .check-item input[type="checkbox"] { display: none; }
+  .check-item.checked { border-color: var(--blue); background: var(--blue-pale); color: var(--blue); }
+  .check-box {
+    width: 18px; height: 18px;
+    border-radius: 5px;
+    border: 1.5px solid var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.18s;
+  }
+  .check-item.checked .check-box { background: var(--blue); border-color: var(--blue); }
+  .check-tick { display: none; }
+  .check-item.checked .check-tick { display: block; color: #fff; }
+
+  /* Submit button states */
+  .submit-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 28px;
+    font-size: 0.92rem;
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .submit-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0);
+    transition: background 0.2s;
+  }
+  .submit-btn:hover::after { background: rgba(255,255,255,0.06); }
+  .submit-btn:active { transform: scale(0.99); }
+  .form-note {
+    font-size: 0.73rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+
+  /* ── Success state ── */
+  .success-msg {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 36px 20px;
+    gap: 14px;
+  }
+  .success-icon {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    background: var(--green-dim);
+    border: 2px solid var(--green-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem;
+  }
+  .success-msg h3 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--ink);
+  }
+  .success-msg p { font-size: 0.86rem; color: var(--muted); max-width: 340px; line-height: 1.65; }
+
+  /* ── Map placeholder ── */
+  .map-block {
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    box-shadow: var(--shadow-md);
+    height: 280px;
+    background: linear-gradient(135deg, var(--bg-3) 0%, var(--blue-pale) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+  }
+  .map-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&q=80') center/cover no-repeat;
+    opacity: 0.18;
+  }
+  .map-pin {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff;
+    box-shadow: 0 0 0 8px var(--blue-dim), 0 0 0 16px rgba(70,151,204,0.06);
+    position: relative; z-index: 1;
+    animation: mapPulse 2.5s infinite;
+  }
+  @keyframes mapPulse {
+    0%,100%{box-shadow:0 0 0 8px var(--blue-dim),0 0 0 16px rgba(70,151,204,0.06);}
+    50%{box-shadow:0 0 0 12px var(--blue-dim),0 0 0 24px rgba(70,151,204,0.04);}
+  }
+  .map-label {
+    position: relative; z-index: 1;
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r);
+    padding: 8px 16px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--ink);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ── FAQ ── */
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .faq-item {
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r);
+    padding: 0;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .faq-q {
+    padding: 16px 20px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    transition: background 0.18s;
+    user-select: none;
+  }
+  .faq-q:hover { background: var(--bg); }
+  .faq-arrow {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--blue-pale);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--blue);
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.25s;
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.68;
+    padding: 0 20px;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding: 0 20px 16px; }
+
+  /* Responsive */
+  @media(max-width:900px){
+    .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .info-panel { position: static; }
+    .form-panel { padding: 32px 24px; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .check-group { grid-template-columns: 1fr; }
+  }
+  @media(max-width:640px){
+    .form-row { grid-template-columns: 1fr; }
+    .form-panel { padding: 24px 18px; }
+  }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Aero<span>san</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="model.html">Model</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="team.html">Team</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#form" class="btn btn-primary">Send a Message <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+<div class="mob-menu" id="mob">
+  <a href="index.html">Home</a><a href="model.html">Model</a><a href="services.html">Services</a>
+  <a href="projects.html">Projects</a><a href="team.html">Team</a><a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="#form" class="btn btn-primary">Send a Message</a>
+</div>
+
+<!-- ══ PAGE HERO ══ -->
+<section class="page-hero">
+  <div class="orb orb-blue" style="width:460px;height:460px;right:-80px;top:-100px;"></div>
+  <div class="orb orb-teal" style="width:300px;height:300px;left:0;bottom:-80px;"></div>
+  <div class="wrap" style="position:relative;z-index:2;">
+    <div class="eyebrow">Get In Touch</div>
+    <h1>Let's build dignified<br/>sanitation together.</h1>
+    <p class="lead">We partner with municipalities, development donors, UN agencies, impact investors, and infrastructure organisations who share our commitment to gender-friendly, environmentally sustainable public sanitation in urban Nepal.</p>
+  </div>
+</section>
+
+<!-- ══ CONTACT MAIN ══ -->
+<section class="section" id="form">
+  <div class="wrap">
+    <div class="contact-wrap">
+
+      <!-- LEFT: Info -->
+      <div class="info-panel" data-r="left">
+        <h2 class="display d-sm" style="margin-bottom:14px;">We'd love to<br/>hear from you.</h2>
+        <p class="info-intro">Whether you're a municipality exploring a HUB deployment, a donor funding sustainable WASH infrastructure, or a researcher studying urban sanitation — reach out. We respond to every inquiry within 48 hours.</p>
+
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="info-card-label">Email</div>
+              <div class="info-card-value">hello@aerosan.np</div>
+              <div class="info-card-sub">We reply within 48 hours</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="info-card-label">Phone</div>
+              <div class="info-card-value">+977 1 000 0000</div>
+              <div class="info-card-sub">Mon–Fri, 9am–5pm NPT</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="info-card-label">Office</div>
+              <div class="info-card-value">Kathmandu, Nepal</div>
+              <div class="info-card-sub">Operational across the Kathmandu Valley</div>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div>
+              <div class="info-card-label">Response Time</div>
+              <div class="info-card-value">Within 48 hours</div>
+              <div class="info-card-sub">All inquiries acknowledged same business day</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Partner box -->
+        <div class="partner-box">
+          <div class="partner-box-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Partnerships & Collaboration
+          </div>
+          <p class="partner-box-text">We collaborate with municipalities, UN agencies, development donors, impact investors, and infrastructure partners. If you're working on urban sanitation, MHM access, or circular economy programmes in South Asia — we want to hear from you.</p>
+        </div>
+
+        <!-- Map -->
+        <div class="map-block" style="margin-bottom:24px;">
+          <div class="map-pin">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="map-label">📍 Kathmandu, Nepal</div>
+        </div>
+
+        <!-- Social -->
+        <div>
+          <div class="body-sm" style="margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;">Follow Us</div>
+          <div class="social-row">
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Twitter / X">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div data-r="right">
+        <div class="form-panel">
+          <!-- Form view -->
+          <div id="form-view">
+            <div class="form-title">Send us a message</div>
+            <p class="form-sub">Fill in the form below and our team will get back to you within 48 hours. All fields marked * are required.</p>
+
+            <div class="form-row">
+              <div class="field">
+                <label>First Name *</label>
+                <input type="text" placeholder="Ramesh" id="f-fname"/>
+              </div>
+              <div class="field">
+                <label>Last Name *</label>
+                <input type="text" placeholder="Shrestha" id="f-lname"/>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Email Address *</label>
+              <input type="email" placeholder="you@organisation.np" id="f-email"/>
+            </div>
+
+            <div class="field">
+              <label>Organisation / Municipality</label>
+              <input type="text" placeholder="Your organisation name" id="f-org"/>
+            </div>
+
+            <div class="form-row">
+              <div class="field">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="+977 98XXXXXXXX" id="f-phone"/>
+              </div>
+              <div class="field">
+                <label>Country / City</label>
+                <input type="text" placeholder="Kathmandu, Nepal" id="f-city"/>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Inquiry Type *</label>
+              <select id="f-type">
+                <option value="">— Select inquiry type —</option>
+                <option>Municipal Partnership / HUB Deployment</option>
+                <option>Impact Investment & Funding</option>
+                <option>UN Agency / Development Organisation</option>
+                <option>Gender & MHM Programme Collaboration</option>
+                <option>Research & Academic Partnership</option>
+                <option>Media & Press</option>
+                <option>Career & Volunteering</option>
+                <option>General Inquiry</option>
+              </select>
+            </div>
+
+            <div class="field" style="margin-bottom:8px;">
+              <label>Areas of Interest</label>
+            </div>
+            <div class="check-group" style="margin-bottom:16px;" id="check-group">
+              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Smart HUB Deployment</label>
+              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Gender & MHM Design</label>
+              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Waste-to-Energy Tech</label>
+              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>IoT Monitoring</label>
+              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Revenue Model</label>
+              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Community Training</label>
+            </div>
+
+            <div class="field">
+              <label>Message *</label>
+              <textarea placeholder="Tell us about your project, organisation, or how you'd like to work with Aerosan…" id="f-msg"></textarea>
+            </div>
+
+            <button class="btn btn-primary submit-btn" id="submit-btn" onclick="submitForm()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z"/></svg>
+              Send Message
+            </button>
+            <p class="form-note">🔒 Your information is kept private and used only to respond to your inquiry. We don't share data with third parties.</p>
+          </div>
+
+          <!-- Success view -->
+          <div class="success-msg" id="success-view">
+            <div class="success-icon">✓</div>
+            <h3>Message sent successfully!</h3>
+            <p>Thank you for reaching out. Our team will review your inquiry and respond within 48 hours.</p>
+            <a href="index.html" class="btn btn-outline" style="margin-top:8px;">Back to Home <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="section section-deep">
+  <div class="wrap">
+    <div class="sec-head center" data-r>
+      <div class="eyebrow">Common Questions</div>
+      <h2 class="display d-md">Frequently asked</h2>
+      <p class="body-md">Quick answers to the questions we hear most often from partners and municipalities.</p>
+    </div>
+    <div class="faq-grid" data-r>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What types of organisations do you partner with?
+          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        </div>
+        <div class="faq-a">We work with city municipalities, development donors, UN agencies, impact investors, research institutions, and NGOs. Any organisation aligned with sustainable sanitation, gender equity, or circular economy in Nepal is a potential partner.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How long does a HUB deployment take?
+          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        </div>
+        <div class="faq-a">From site selection to operational handover, a standard Aerosan HUB deployment takes between 4–7 months. This includes site assessment, civil works, IoT installation, bio-digester commissioning, and operator training.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          What MHM facilities are included in each HUB?
+          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        </div>
+        <div class="faq-a">Every HUB includes sanitary product vending machines, hygienic disposal units, privacy screens, clean changing space, and a dedicated female section with secure entry and enhanced lighting — all MHM-compliant as standard.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Does Aerosan require government funding to operate?
+          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        </div>
+        <div class="faq-a">No. Each HUB generates operational surplus from five revenue streams — user fees, biogas sales, organic fertilizer, advertising, and training licences. Government or donor support may fund initial construction but is not required for ongoing operations.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          Can Aerosan scale beyond Kathmandu?
+          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        </div>
+        <div class="faq-a">Yes. The HUB model is designed to be replicable across Nepal and scalable to other South Asian cities. We are actively seeking municipal and donor partners for expansion into Pokhara, Biratnagar, and Lalitpur in the near term.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          How can researchers or journalists engage with Aerosan?
+          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
+        </div>
+        <div class="faq-a">We welcome research collaborations, site visits, and media inquiries. Select "Research & Academic Partnership" or "Media & Press" in the contact form above, and our partnerships team will connect with you within 48 hours.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ BOTTOM CTA ══ -->
+<section style="padding:0 0 88px;">
+  <div class="wrap">
+    <div class="cta-box" data-r>
+      <div class="cta-box-orb"></div>
+      <div style="position:relative;z-index:1;">
+        <div class="eyebrow" style="color:rgba(255,255,255,0.65);"><span style="background:rgba(255,255,255,0.35)"></span>Ready to move?</div>
+        <h2>Build dignified sanitation in your city.</h2>
+        <p>Every conversation starts with a single message. We make it easy to explore what an Aerosan HUB could look like in your municipality.</p>
+      </div>
+      <div class="btn-group" style="position:relative;z-index:1;">
+        <a href="#form" class="btn btn-white">
+          Write to Us
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="model.html" class="btn" style="background:rgba(255,255,255,0.14);color:#fff;border:1px solid rgba(255,255,255,0.2);">
+          Explore the Model
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Aero<span>san</span></div>
+        <p class="footer-tagline">Gender-friendly, menstrual hygiene-inclusive, environmentally sustainable smart public toilet service — built for every person in urban Nepal.</p>
+        <div class="footer-social">
+          <a href="#" class="footer-social" style="display:contents;" aria-label="LinkedIn">
+            <a href="#" style="width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.2s;" onmouseenter="this.style.background='#4697CC';this.style.color='#fff'" onmouseleave="this.style.background='rgba(255,255,255,0.07)';this.style.color='rgba(255,255,255,0.5)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="#" style="width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.2s;" onmouseenter="this.style.background='#4697CC';this.style.color='#fff'" onmouseleave="this.style.background='rgba(255,255,255,0.07)';this.style.color='rgba(255,255,255,0.5)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li><li><a href="model.html">Model</a></li>
+          <li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Explore</div>
+        <ul class="footer-links">
+          <li><a href="team.html">Team</a></li><li><a href="blog.html">Journal</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Connect</div>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@aerosan.np">hello@aerosan.np</a></li>
+          <li><a href="#">+977 1 000 0000</a></li>
+          <li><a href="#">Kathmandu, Nepal</a></li>
+          <li><a href="#form">Partner Inquiry</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Aerosan. All rights reserved.</span>
+      <div style="display:flex;gap:16px;"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 30), { passive: true });
+
+  // Mobile menu
+  const ham = document.getElementById('ham'), mob = document.getElementById('mob');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
+
+  // Scroll reveal
+  const ro = new IntersectionObserver(e => e.forEach(x => {
+    if (x.isIntersecting) { x.target.classList.add('on'); ro.unobserve(x.target); }
+  }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
+
+  // Checkbox toggle
+  document.querySelectorAll('.check-item').forEach(item => {
+    item.addEventListener('click', () => item.classList.toggle('checked'));
+  });
+
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // Form submit
+  function submitForm() {
+    const fname = document.getElementById('f-fname').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const type  = document.getElementById('f-type').value;
+    const msg   = document.getElementById('f-msg').value.trim();
+
+    if (!fname || !email || !type || !msg) {
+      // Shake empty required fields
+      [['f-fname', fname], ['f-email', email], ['f-type', type], ['f-msg', msg]].forEach(([id, val]) => {
+        if (!val) {
+          const el = document.getElementById(id);
+          el.style.borderColor = 'var(--red)';
+          el.style.boxShadow = '0 0 0 3px rgba(224,85,85,0.12)';
+          setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2000);
+        }
+      });
+      return;
+    }
+
+    const btn = document.getElementById('submit-btn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+
+    setTimeout(() => {
+      document.getElementById('form-view').style.display = 'none';
+      const sv = document.getElementById('success-view');
+      sv.style.display = 'flex';
+    }, 1200);
+  }
+</script>
+</body>
+</html>
