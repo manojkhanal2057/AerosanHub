@@ -179,99 +179,99 @@
                 grid-template-columns: 1fr;
             }
         }
-   
-
-/* ADD mini-image styles */
-.mini-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 14px;
-    overflow: hidden;
-    margin-bottom: 1rem;
-    flex-shrink: 0;
-   /* text-align: center; */
 
 
-}
+        /* ADD mini-image styles */
+        .mini-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            flex-shrink: 0;
+            /* text-align: center; */
 
-.mini-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.4s ease;
-}
 
-.mini-card:hover .mini-image img {
-    transform: scale(1.1);
-}
+        }
 
-/* Subtle colored left border accent on hover */
-.mini-card {
-    position: relative;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    /* text-align: center; */
-}
+        .mini-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
 
-.mini-card::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    border-radius: 3px 0 0 3px;
-    background: #2563eb;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        .mini-card:hover .mini-image img {
+            transform: scale(1.1);
+        }
 
-.mini-card:hover::before {
-    opacity: 1;
-}
+        /* Subtle colored left border accent on hover */
+        .mini-card {
+            position: relative;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            /* text-align: center; */
+        }
 
-.mini-card[data-d="1"]::before,
-.mini-card[data-d="2"]::before,
-.mini-card[data-d="6"]::before {
-    background: #2563eb;
-}
+        .mini-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            border-radius: 3px 0 0 3px;
+            background: #2563eb;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-.mini-card[data-d="3"]::before {
-    background: #7c3aed;
-}
+        .mini-card:hover::before {
+            opacity: 1;
+        }
 
-.mini-card[data-d="4"]::before {
-    background: #16a34a;
-}
+        .mini-card[data-d="1"]::before,
+        .mini-card[data-d="2"]::before,
+        .mini-card[data-d="6"]::before {
+            background: #2563eb;
+        }
 
-.mini-card[data-d="5"]::before {
-    background: #ea580c;
-}
+        .mini-card[data-d="3"]::before {
+            background: #7c3aed;
+        }
 
-/* Ensure card padding accommodates the left border */
-.mini-card {
-    padding: 1.25rem 1.25rem 1.25rem 1.5rem;
-}
+        .mini-card[data-d="4"]::before {
+            background: #16a34a;
+        }
 
-/* Responsive grid */
-.mini-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-top: 2.5rem;
-}
+        .mini-card[data-d="5"]::before {
+            background: #ea580c;
+        }
 
-@media (max-width: 992px) {
-    .mini-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+        /* Ensure card padding accommodates the left border */
+        .mini-card {
+            padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+        }
 
-@media (max-width: 600px) {
-    .mini-grid {
-        grid-template-columns: 1fr;
-    }
-}
+        /* Responsive grid */
+        .mini-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+            margin-top: 2.5rem;
+        }
+
+        @media (max-width: 992px) {
+            .mini-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .mini-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -508,66 +508,72 @@
 
     </div><!-- end wrap -->
 
-<section class="section section-deep">
-    <div class="wrap">
-        <div class="sec-head center" data-r>
-            <div class="eyebrow">Supporting Services</div>
-            <h2 class="display d-md">Beyond the HUB platform</h2>
-            <p class="body-md">Complementary programmes that strengthen every deployment and expand impact across
-                partner communities.</p>
+    <section class="section section-deep">
+        <div class="wrap">
+            <div class="sec-head center" data-r>
+                <div class="eyebrow">Supporting Services</div>
+                <h2 class="display d-md">Beyond the HUB platform</h2>
+                <p class="body-md">Complementary programmes that strengthen every deployment and expand impact across
+                    partner communities.</p>
+            </div>
+            <div class="mini-grid">
+                <div class="card mini-card" data-r data-d="1">
+                    <div class="mini-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
+                            alt="Operator Training Programme" loading="lazy">
+                    </div>
+                    <div class="mini-title">Operator Training Programme</div>
+                    <div class="mini-desc">Structured certification covering hygiene management, IoT tools, cooperative
+                        governance, and customer service for community recruits.</div>
+                </div>
+                <div class="card mini-card" data-r data-d="2">
+                    <div class="mini-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
+                            alt="Municipal Integration" loading="lazy">
+                    </div>
+                    <div class="mini-title">Municipal Integration</div>
+                    <div class="mini-desc">Full handover documentation, data-sharing agreements, and ongoing technical
+                        support for city government partners.</div>
+                </div>
+                <div class="card mini-card" data-r data-d="3">
+                    <div class="mini-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
+                            alt="Community Health Education" loading="lazy">
+                    </div>
+                    <div class="mini-title">Community Health Education</div>
+                    <div class="mini-desc">School and neighbourhood MHM and hygiene programmes promoting sanitation
+                        access rights and responsible use.</div>
+                </div>
+                <div class="card mini-card" data-r data-d="4">
+                    <div class="mini-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
+                            alt="Impact Reporting" loading="lazy">
+                    </div>
+                    <div class="mini-title">Impact Reporting</div>
+                    <div class="mini-desc">Quarterly social, environmental, and financial impact reports for donors,
+                        investors, and government stakeholders.</div>
+                </div>
+                <div class="card mini-card" data-r data-d="5">
+                    <div class="mini-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
+                            alt="Site Design & Planning" loading="lazy">
+                    </div>
+                    <div class="mini-title">Site Design & Planning</div>
+                    <div class="mini-desc">Urban site selection, architectural design, and infrastructure integration
+                        for new HUB deployments.</div>
+                </div>
+                <div class="card mini-card" data-r data-d="6">
+                    <div class="mini-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
+                            alt="Gender Strategy Consulting" loading="lazy">
+                    </div>
+                    <div class="mini-title">Gender Strategy Consulting</div>
+                    <div class="mini-desc">Advisory services embedding gender equity and MHM standards into sanitation
+                        infrastructure design and operations.</div>
+                </div>
+            </div>
         </div>
-        <div class="mini-grid">
-            <div class="card mini-card" data-r data-d="1">
-                <div class="mini-image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s" alt="Operator Training Programme" loading="lazy">
-                </div>
-                <div class="mini-title">Operator Training Programme</div>
-                <div class="mini-desc">Structured certification covering hygiene management, IoT tools, cooperative
-                    governance, and customer service for community recruits.</div>
-            </div>
-            <div class="card mini-card" data-r data-d="2">
-                <div class="mini-image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s" alt="Municipal Integration" loading="lazy">
-                </div>
-                <div class="mini-title">Municipal Integration</div>
-                <div class="mini-desc">Full handover documentation, data-sharing agreements, and ongoing technical
-                    support for city government partners.</div>
-            </div>
-            <div class="card mini-card" data-r data-d="3">
-                <div class="mini-image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s" alt="Community Health Education" loading="lazy">
-                </div>
-                <div class="mini-title">Community Health Education</div>
-                <div class="mini-desc">School and neighbourhood MHM and hygiene programmes promoting sanitation
-                    access rights and responsible use.</div>
-            </div>
-            <div class="card mini-card" data-r data-d="4">
-                <div class="mini-image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s" alt="Impact Reporting" loading="lazy">
-                </div>
-                <div class="mini-title">Impact Reporting</div>
-                <div class="mini-desc">Quarterly social, environmental, and financial impact reports for donors,
-                    investors, and government stakeholders.</div>
-            </div>
-            <div class="card mini-card" data-r data-d="5">
-                <div class="mini-image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s" alt="Site Design & Planning" loading="lazy">
-                </div>
-                <div class="mini-title">Site Design & Planning</div>
-                <div class="mini-desc">Urban site selection, architectural design, and infrastructure integration
-                    for new HUB deployments.</div>
-            </div>
-            <div class="card mini-card" data-r data-d="6">
-                <div class="mini-image">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s" alt="Gender Strategy Consulting" loading="lazy">
-                </div>
-                <div class="mini-title">Gender Strategy Consulting</div>
-                <div class="mini-desc">Advisory services embedding gender equity and MHM standards into sanitation
-                    infrastructure design and operations.</div>
-            </div>
-        </div>
-    </div>
-</section>
+    </section>
 
     <section style="padding:0 0 88px;">
         <div class="wrap">
