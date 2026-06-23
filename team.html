@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aerosan — Team</title>
     <link rel="stylesheet" href="style.css" />
+       <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
     <style>
         /* TEAM-ONLY */
         .lead-grid {
@@ -264,13 +268,628 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+        .nav-logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.nav-logo img {
+    height: clamp(30px, 5vw, 40px);
+    width: auto;
+    display: block;
+}
+    </style>
+        <style>
+      /* ----- Reset & Base ----- */
+
+      /* ----- Container ----- */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ----- Footer Main ----- */
+      .dk-footer {
+        padding: 75px 0 0;
+        /* background-color: #151414; */
+        background-color: #1a2b3c;
+        position: relative;
+        z-index: 2;
+        margin-top: 80px;
+        border-top: 2px solid rgba(59, 130, 246, 0.15);
+      }
+
+      /* Animated glow line on top */
+      .dk-footer::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #3b82f6,
+          #60a5fa,
+          #3b82f6,
+          transparent
+        );
+        background-size: 300% 100%;
+        animation: shimmerLine 5s ease-in-out infinite;
+        opacity: 0.6;
+      }
+
+      @keyframes shimmerLine {
+        0% {
+          background-position: 0% 0%;
+        }
+        50% {
+          background-position: 100% 0%;
+        }
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+
+      /* ----- Grid System (no Bootstrap) ----- */
+      .footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px;
+      }
+
+      .footer-col {
+        padding: 0 15px;
+        position: relative;
+      }
+
+      .footer-col-4 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+      }
+
+      .footer-col-8 {
+        flex: 0 0 66.666%;
+        max-width: 66.666%;
+      }
+
+      .footer-contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+      }
+
+      .footer-contact-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 10px;
+      }
+
+      .footer-links-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+      }
+
+      .footer-links-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 10px;
+      }
+
+      .copyright-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .copyright-col {
+        flex: 0 0 auto;
+      }
+
+      /* ----- Brand Box (absolute) ----- */
+      .dk-footer-box-info {
+        position: absolute;
+        top: -60px;
+        background: #1a2b3c;
+        padding: 35px 30px;
+        z-index: 2;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px #0d1722;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+        margin-bottom: 40px;
+      }
+
+      .dk-footer-box-info:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 30px 80px rgba(59, 130, 246, 0.12);
+      }
+
+      .footer-logo-img {
+        max-height: 50px;
+        filter: brightness(0.9) saturate(1.1);
+        transition: filter 0.3s;
+      }
+
+      .footer-logo-img:hover {
+        filter: brightness(1.1) saturate(1.3);
+      }
+
+      .footer-info-text {
+        margin: 18px 0 24px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      /* ----- Social Icons (brand colored) ----- */
+      .footer-social-link h3 {
+        color: #fff;
+        font-size: 18px;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .footer-social-link ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .footer-social-link li {
+        display: inline-block;
+      }
+
+      .footer-social-link a {
+        display: block;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 42px;
+        background: #1a1a1a;
+        color: #fff;
+        font-size: 18px;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        text-decoration: none;
+      }
+
+      .footer-social-link a:hover {
+        transform: scale(1.15) translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        filter: brightness(1.2);
+      }
+
+      .footer-social-link li:nth-child(1) a {
+        background-color: #3b5998;
+      }
+      .footer-social-link li:nth-child(2) a {
+        background-color: #55acee;
+      }
+      .footer-social-link li:nth-child(3) a {
+        background-color: #dd4b39;
+      }
+      .footer-social-link li:nth-child(4) a {
+        background-color: #0976b4;
+      }
+      .footer-social-link li:nth-child(5) a {
+        background-color: #b7242a;
+      }
+
+      /* ----- Award Badge ----- */
+      .footer-awarad {
+        margin-top: 330px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        width: fit-content;
+        animation: awardPulse 3s ease-in-out infinite;
+      }
+
+      @keyframes awardPulse {
+        0%,
+        100% {
+          opacity: 0.8;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.02);
+        }
+      }
+
+      .footer-awarad img {
+        max-height: 32px;
+      }
+
+      .footer-awarad p {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0;
+        padding-top: 2px;
+      }
+
+      /* ----- Contact Us ----- */
+      .contact-us {
+        position: relative;
+        z-index: 2;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .contact-us:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(59, 130, 246, 0.15);
+        transform: translateX(4px);
+      }
+
+      .contact-us.contact-us-last {
+        margin-left: 0;
+      }
+
+      .contact-icon {
+        margin-right: 18px;
+        flex-shrink: 0;
+      }
+
+      .contact-icon i {
+        font-size: 28px;
+        color: #3b82f6;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-us:hover .contact-icon i {
+        transform: scale(1.15) rotate(-5deg);
+      }
+
+      .contact-info {
+        color: #fff;
+      }
+
+      .contact-info h3 {
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 2px;
+        font-weight: 600;
+      }
+
+      .contact-info p {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.85rem;
+        margin: 0;
+      }
+
+      /* ----- Footer Widget / Links ----- */
+      .footer-widget {
+        margin-top: 20px;
+      }
+
+      .footer-widget .section-heading {
+        margin-bottom: 25px;
+      }
+
+      .footer-widget h3 {
+        font-size: 20px;
+        color: #fff;
+        position: relative;
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+
+      .footer-widget p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .footer-links-list {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-links-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex: 1;
+      }
+
+      .footer-links-list li {
+        margin-bottom: 14px;
+      }
+
+      .footer-links-list a {
+        color: rgba(255, 255, 255, 0.5);
+        transition: all 0.25s ease;
+        text-decoration: none;
+        font-size: 0.88rem;
+        display: inline-block;
+      }
+
+      .footer-links-list a:hover {
+        color: #60a5fa;
+        transform: translateX(6px);
+      }
+
+      .footer-left-widget {
+        padding-left: 0;
+      }
+
+      /* ----- Animated Border ----- */
+      .animate-border {
+        position: relative;
+        display: block;
+        width: 115px;
+        height: 3px;
+        background: #3b82f6;
+        border-radius: 2px;
+      }
+
+      .animate-border::after {
+        position: absolute;
+        content: "";
+        width: 35px;
+        height: 3px;
+        left: 0;
+        bottom: 0;
+        border-left: 10px solid #151414;
+        border-right: 10px solid #151414;
+        animation: animborder 2.5s linear infinite;
+        border-radius: 2px;
+      }
+
+      @keyframes animborder {
+        0% {
+          transform: translateX(0px);
+        }
+        100% {
+          transform: translateX(113px);
+        }
+      }
+
+      /* ----- Subscribe Form ----- */
+      .dk-footer-form {
+        position: relative;
+      }
+
+      .dk-footer-form input[type="email"] {
+        padding: 14px 24px;
+        border-radius: 50px;
+        background: #0b1620;
+        border: 1px solid #333;
+        color: #fff;
+        font-size: 0.9rem;
+        width: 100%;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .dk-footer-form input[type="email"]:focus {
+        border-color: #1b2433;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        background: #172431;
+      }
+
+      .dk-footer-form input::placeholder {
+        color: #777;
+        font-size: 0.85rem;
+      }
+
+      .dk-footer-form button {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        padding: 10px 22px 10px 18px;
+        border-radius: 50px;
+        border: none;
+        background: #3b82f6;
+        color: #fff;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+
+      .dk-footer-form button:hover {
+        background: #60a5fa;
+        transform: scale(1.04);
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+      }
+
+      /* ----- Copyright ----- */
+      .copyright {
+        padding: 24px 0;
+        margin-top: 55px;
+        background-color: #1a2b3c;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .copyright span,
+      .copyright a {
+        color: rgba(255, 255, 255, 0.3);
+        transition: all 0.25s ease;
+        font-size: 0.85rem;
+        text-decoration: none;
+      }
+
+      .copyright a:hover {
+        color: #60a5fa;
+      }
+
+      .copyright-menu ul {
+        text-align: right;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .copyright-menu li {
+        display: inline-block;
+        padding-left: 22px;
+      }
+
+      /* ----- Back to Top ----- */
+      .btn-top {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        padding: 0;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #1a2b3c;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        transition: all 0.3s ease;
+        font-size: 1.4rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+      }
+
+      .btn-top:hover {
+        background: #3b82f6;
+        border-color: #3b82f6;
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 8px 30px rgba(59, 130, 246, 0.25);
+      }
+
+      /* ----- Font Awesome (local fallback) ----- */
+      .fab,
+      .fas {
+        font-style: normal;
+      }
+
+      /* ----- Responsive ----- */
+      @media (max-width: 992px) {
+        .footer-col-4 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .footer-col-8 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .dk-footer-box-info {
+          position: relative;
+          top: 0;
+          margin-bottom: 30px;
+        }
+
+        .footer-awarad {
+          margin-top: 20px;
+        }
+
+        .footer-left-widget {
+          padding-left: 0;
+        }
+
+        .contact-us.contact-us-last {
+          margin-left: 0;
+        }
+
+        .copyright-menu ul {
+          text-align: left;
+          margin-top: 10px;
+        }
+
+        .copyright-menu li {
+          padding-left: 0;
+          padding-right: 20px;
+        }
+
+        .footer-links-list {
+          flex-direction: column;
+          gap: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .footer-contact-col {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .footer-links-col {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .copyright-row {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .copyright-menu ul {
+          text-align: center;
+        }
+
+        .dk-footer-box-info {
+          padding: 25px 20px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .footer-social-link ul {
+          gap: 5px;
+        }
+
+        .footer-social-link a {
+          width: 36px;
+          height: 36px;
+          line-height: 36px;
+          font-size: 15px;
+        }
+
+        .contact-us {
+          padding: 12px 16px;
+        }
+
+        .contact-info h3 {
+          font-size: 16px;
+        }
+
+        .dk-footer-form button {
+          padding: 8px 16px;
+          font-size: 0.95rem;
+        }
+      }
     </style>
 </head>
 
 <body>
     <nav id="nav">
         <div class="nav-inner">
-            <a href="index.html" class="nav-logo">Aero<span>san</span></a>
+           <a href="index.html" class="nav-logo">
+                <img src="/logo.avif"  alt="">
+            </a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="model.html">Model</a></li>
@@ -517,48 +1136,153 @@
         </div>
     </section>
 
-    <footer id="footer">
-        <div class="wrap">
-            <div class="footer-grid">
-                <div>
-                    <div class="footer-logo">Aero<span>san</span></div>
-                    <p class="footer-tagline">Gender-friendly, MHM-inclusive, environmentally sustainable smart public
-                        toilet service for urban Nepal.</p>
-                    <div class="footer-social"><a href="#"><svg width="14" height="14" viewBox="0 0 24 24"
-                                fill="currentColor">
-                                <path
-                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                            </svg></a></div>
-                </div>
-                <div>
-                    <div class="footer-col-title">Company</div>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="model.html">Model</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="projects.html">Projects</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-col-title">Explore</div>
-                    <ul class="footer-links">
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="blog.html">Journal</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-col-title">Connect</div>
-                    <ul class="footer-links">
-                        <li><a href="mailto:hello@aerosan.np">hello@aerosan.np</a></li>
-                        <li><a href="#">Kathmandu, Nepal</a></li>
-                    </ul>
-                </div>
+    <footer class="dk-footer">
+      <div class="container">
+        <!-- Row 1: Brand Box (absolute) + Contact Info -->
+        <div class="footer-row">
+          <div class="footer-col footer-col-4">
+            <!-- Brand Box with floating effect -->
+            <div class="dk-footer-box-info">
+              <a href="index.html" class="footer-logo">
+                <img
+                  src="/logo.avif"
+                  alt="Aerosan logo"
+                  class="footer-logo-img"
+                />
+              </a>
+              <p class="footer-info-text">
+                Gender-friendly, menstrual hygiene-inclusive, environmentally
+                sustainable smart public toilet service — built for every person
+                in urban Nepal.
+              </p>
+              <div class="footer-social-link">
+                <h3>Follow us</h3>
+                <ul>
+                  <li>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div class="footer-bottom"><span>© 2025 Aerosan. All rights reserved.</span>
-                <div style="display:flex;gap:16px;"><a href="#">Privacy</a><a href="#">Terms</a></div>
+            <!-- Award Badge (animated) -->
+            <div class="footer-awarad">
+              <img src="/logo.avif" alt="award" />
+              <p>🏆 Best Design 2026</p>
             </div>
+          </div>
+
+          <!-- Right side: Contact + Links + Subscribe -->
+          <div class="footer-col footer-col-8">
+            <!-- Contact Row -->
+            <div class="footer-contact-row">
+              <div class="footer-contact-col">
+                <div class="contact-us">
+                  <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="contact-info">
+                    <h3>Kathmandu, Nepal</h3>
+                    <p>Baneshwor, 44600</p>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-contact-col">
+                <div class="contact-us contact-us-last">
+                  <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                  <div class="contact-info">
+                    <h3>+977 1 5353 711</h3>
+                    <p>Give us a call</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Links & Subscribe Row -->
+            <div class="footer-links-row">
+              <div class="footer-links-col">
+                <div class="footer-widget footer-left-widget">
+                  <div class="section-heading">
+                    <h3>Useful Links</h3>
+                    <span class="animate-border"></span>
+                  </div>
+                  <div class="footer-links-list">
+                    <ul>
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">Services</a></li>
+                      <li><a href="#">Projects</a></li>
+                      <li><a href="#">Our Team</a></li>
+                    </ul>
+                    <ul>
+                      <li><a href="#">Contact us</a></li>
+                      <li><a href="#">Blog</a></li>
+                      <li><a href="#">Testimonials</a></li>
+                      <li><a href="#">FAQ</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-links-col">
+                <div class="footer-widget">
+                  <div class="section-heading">
+                    <h3>Subscribe</h3>
+                    <span class="animate-border"></span>
+                  </div>
+                  <p>
+                    Stay updated with our latest news and innovations in smart
+                    sanitation.
+                  </p>
+                  <form action="#" class="dk-footer-form">
+                    <input type="email" placeholder="Email Address" required />
+                    <button type="submit">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="copyright">
+        <div class="container">
+          <div class="copyright-row">
+            <div class="copyright-col">
+              <span>© 2025 Aerosan. All rights reserved.</span>
+            </div>
+            <div class="copyright-col copyright-menu">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to Top Button -->
+      <div class="back-to-top">
+        <button class="btn-top" title="Back to Top">
+          <i class="fas fa-chevron-up"></i>
+        </button>
+      </div>
     </footer>
     <script>
         const nav = document.getElementById('nav'); window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 30), { passive: true });

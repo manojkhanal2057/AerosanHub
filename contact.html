@@ -1,784 +1,3790 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aerosan — Contact</title>
-  <link rel="stylesheet" href="style.css"/>
-  <style>
-  /* CONTACT-ONLY */
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aerosan — Contact Us</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+      /* ═══════════════════════════════════════════
+     CONTACT PAGE STYLES
+  ═══════════════════════════════════════════ */
 
-  /* Hero override — richer gradient */
-  .page-hero {
-    background: linear-gradient(150deg, var(--bg-3) 0%, var(--bg-2) 50%, var(--bg) 100%);
-  }
+      .contact-hero {
+        min-height: 400px;
+        padding: calc(var(--nav-h) + 40px) 0 50px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(
+          150deg,
+          #deeaf5 0%,
+          #eef4fa 55%,
+          #f5f9fd 100%
+        );
+        border-bottom: 1px solid var(--border-soft);
+        display: flex;
+        align-items: center;
+      }
+      .contact-hero h1 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 900;
+        font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+        color: var(--ink);
+        line-height: 1.08;
+        letter-spacing: -0.035em;
+        margin-bottom: 16px;
+      }
+      .contact-hero h1 span {
+        background: linear-gradient(135deg, var(--blue), var(--blue-deep));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .contact-hero p {
+        font-size: 0.97rem;
+        color: var(--body);
+        line-height: 1.78;
+        max-width: 460px;
+        margin-bottom: 28px;
+      }
+      .hero-badges {
+        display: flex;
+        gap: 9px;
+        flex-wrap: wrap;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #fff;
+        border: 1px solid var(--blue-border);
+        border-radius: 100px;
+        padding: 6px 14px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--blue);
+        box-shadow: var(--shadow-sm);
+      }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .hero-stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+      }
+      .hero-stat {
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--r-lg);
+        padding: 20px 18px;
+        box-shadow: var(--shadow-md);
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        transition: all 0.22s;
+      }
+      .hero-stat:hover {
+        border-color: var(--blue-border);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-3px);
+      }
+      .hs-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 9px;
+        background: var(--blue-dim);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        flex-shrink: 0;
+      }
+      .hs-label {
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 2px;
+      }
+      .hs-val {
+        font-size: 0.86rem;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.3;
+      }
+      .hs-sub {
+        font-size: 0.7rem;
+        color: var(--muted);
+        margin-top: 1px;
+      }
 
-  /* ── Main contact grid ── */
-  .contact-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1.05fr;
-    gap: 64px;
-    align-items: start;
-  }
+      /* ═══ MAIN GRID ═══ */
+      .c-main {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 48px;
+        align-items: start;
+        padding: 68px 0;
+      }
 
-  /* ── LEFT: Info panel ── */
-  .info-panel { position: sticky; top: calc(var(--nav-h) + 28px); }
-  .info-intro {
-    font-size: 0.92rem;
-    color: var(--body);
-    line-height: 1.78;
-    margin-bottom: 36px;
-  }
+      /* FORM */
+      .form-box {
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--r-xl);
+        padding: 42px 38px;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        overflow: hidden;
+      }
+      .form-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--blue), var(--blue-light));
+      }
+      .form-box-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 900;
+        font-size: 1.45rem;
+        color: var(--ink);
+        letter-spacing: -0.03em;
+        margin-bottom: 4px;
+      }
+      .form-box-sub {
+        font-size: 0.81rem;
+        color: var(--muted);
+        margin-bottom: 28px;
+        line-height: 1.6;
+      }
 
-  .info-cards { display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px; }
-  .info-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 18px 20px;
-    border-radius: var(--r);
-    border: 1px solid var(--border-soft);
-    background: #fff;
-    box-shadow: var(--shadow-sm);
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  }
-  .info-card:hover {
-    border-color: var(--blue-border);
-    box-shadow: var(--shadow-md);
-    transform: translateX(4px);
-  }
-  .info-card-icon {
-    width: 42px; height: 42px;
-    border-radius: 11px;
-    background: var(--blue-dim);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--blue);
-    flex-shrink: 0;
-  }
-  .info-card-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 3px;
-  }
-  .info-card-value {
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: var(--ink);
-    line-height: 1.4;
-  }
-  .info-card-sub {
-    font-size: 0.76rem;
-    color: var(--muted);
-    margin-top: 2px;
-  }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin-bottom: 14px;
+      }
+      .field label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--ink-2);
+        letter-spacing: 0.02em;
+      }
+      .field label .req {
+        color: var(--blue);
+        margin-left: 2px;
+      }
+      .field input,
+      .field textarea,
+      .field select {
+        padding: 11px 14px;
+        border: 1.5px solid #dde8f0;
+        border-radius: 10px;
+        font-size: 0.86rem;
+        color: var(--ink);
+        font-family: inherit;
+        background: #fafcfe;
+        outline: none;
+        transition: all 0.2s;
+        width: 100%;
+        appearance: none;
+        -webkit-appearance: none;
+      }
+      .field input:focus,
+      .field textarea:focus,
+      .field select:focus {
+        border-color: var(--blue);
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(70, 151, 204, 0.1);
+      }
+      .field input.err {
+        border-color: var(--red) !important;
+        box-shadow: 0 0 0 3px rgba(224, 85, 85, 0.1) !important;
+      }
+      .field input::placeholder,
+      .field textarea::placeholder {
+        color: #b0c4d4;
+      }
+      .field textarea {
+        resize: vertical;
+        min-height: 115px;
+        line-height: 1.6;
+      }
+      .field select {
+        cursor: pointer;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A95AB' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 13px center;
+        padding-right: 36px;
+      }
+      .f-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+      }
 
-  /* Partner box */
-  .partner-box {
-    background: var(--blue-pale);
-    border: 1px solid var(--blue-border);
-    border-radius: var(--r-lg);
-    padding: 22px 24px;
-    margin-bottom: 28px;
-  }
-  .partner-box-title {
-    font-size: 0.84rem;
-    font-weight: 700;
-    color: var(--blue-deep);
-    margin-bottom: 7px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-  }
-  .partner-box-text {
-    font-size: 0.8rem;
-    color: var(--blue-deep);
-    line-height: 1.65;
-    opacity: 0.85;
-  }
+      /* Interests */
+      .int-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--ink-2);
+        margin-bottom: 8px;
+        display: block;
+      }
+      .int-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 7px;
+        margin-bottom: 16px;
+      }
+      .int-chip {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 11px;
+        border-radius: 9px;
+        border: 1.5px solid #dde8f0;
+        background: #fafcfe;
+        font-size: 0.77rem;
+        font-weight: 600;
+        color: var(--body);
+        cursor: pointer;
+        transition: all 0.18s;
+        user-select: none;
+      }
+      .int-chip:hover {
+        border-color: var(--blue-border);
+        background: var(--blue-pale);
+        color: var(--blue);
+      }
+      .int-chip.on {
+        border-color: var(--blue);
+        background: var(--blue-pale);
+        color: var(--blue);
+      }
+      .int-box {
+        width: 16px;
+        height: 16px;
+        border-radius: 4px;
+        border: 1.5px solid #b0c4d4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        transition: all 0.18s;
+      }
+      .int-chip.on .int-box {
+        background: var(--blue);
+        border-color: var(--blue);
+      }
+      .int-tick {
+        display: none;
+      }
+      .int-chip.on .int-tick {
+        display: block;
+      }
 
-  /* Social row */
-  .social-row {
-    display: flex;
-    gap: 10px;
-  }
-  .social-btn {
-    width: 42px; height: 42px;
-    border-radius: 10px;
-    background: #fff;
-    border: 1px solid var(--border-soft);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--muted);
-    transition: all 0.2s;
-    box-shadow: var(--shadow-sm);
-  }
-  .social-btn:hover {
-    background: var(--blue);
-    border-color: var(--blue);
-    color: #fff;
-    box-shadow: 0 4px 14px var(--blue-glow);
-    transform: translateY(-2px);
-  }
+      .sub-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 28px;
+        font-size: 0.91rem;
+        border-radius: 12px;
+        font-weight: 700;
+      }
+      .form-note {
+        font-size: 0.7rem;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 11px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        justify-content: center;
+        line-height: 1.5;
+      }
+      .form-note svg {
+        color: var(--blue);
+        flex-shrink: 0;
+      }
 
-  /* ── RIGHT: Form panel ── */
-  .form-panel {
-    background: #fff;
-    border: 1px solid var(--border-soft);
-    border-radius: var(--r-xl);
-    padding: 44px 40px;
-    box-shadow: var(--shadow-md);
-  }
-  .form-title {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 800;
-    font-size: 1.45rem;
-    color: var(--ink);
-    letter-spacing: -0.025em;
-    margin-bottom: 6px;
-  }
-  .form-sub {
-    font-size: 0.84rem;
-    color: var(--muted);
-    margin-bottom: 28px;
-    line-height: 1.6;
-  }
+      /* Success */
+      .success-screen {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 40px 20px;
+        gap: 14px;
+        min-height: 280px;
+      }
+      .success-ring {
+        width: 76px;
+        height: 76px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e8f8f2, #d0f2e6);
+        border: 2px solid #3aaa7a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+      @keyframes popIn {
+        from {
+          transform: scale(0.4);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .success-ring svg {
+        color: #3aaa7a;
+      }
+      .success-screen h3 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 900;
+        font-size: 1.25rem;
+        color: var(--ink);
+        letter-spacing: -0.02em;
+      }
+      .success-screen p {
+        font-size: 0.84rem;
+        color: var(--muted);
+        max-width: 310px;
+        line-height: 1.65;
+      }
 
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
-  .field label {
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--ink);
-    letter-spacing: 0.02em;
-  }
-  .field input,
-  .field textarea,
-  .field select {
-    padding: 12px 16px;
-    border: 1.5px solid var(--border-soft);
-    border-radius: 10px;
-    font-size: 0.88rem;
-    color: var(--ink);
-    font-family: inherit;
-    background: var(--bg);
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-  .field input:focus,
-  .field textarea:focus,
-  .field select:focus {
-    border-color: var(--blue);
-    background: #fff;
-    box-shadow: 0 0 0 4px var(--blue-dim);
-  }
-  .field input::placeholder,
-  .field textarea::placeholder { color: var(--muted); }
-  .field textarea { resize: vertical; min-height: 130px; }
-  .field select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A95AB' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+      /* ═══ SIDEBAR ═══ */
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        position: sticky;
+        top: calc(var(--nav-h) + 22px);
+      }
 
-  /* Checkbox group */
-  .check-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    margin-bottom: 20px;
-  }
-  .check-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 13px;
-    border-radius: 9px;
-    border: 1.5px solid var(--border-soft);
-    cursor: pointer;
-    transition: all 0.18s;
-    background: var(--bg);
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--body);
-    user-select: none;
-  }
-  .check-item:hover { border-color: var(--blue-border); background: var(--blue-pale); color: var(--blue); }
-  .check-item input[type="checkbox"] { display: none; }
-  .check-item.checked { border-color: var(--blue); background: var(--blue-pale); color: var(--blue); }
-  .check-box {
-    width: 18px; height: 18px;
-    border-radius: 5px;
-    border: 1.5px solid var(--muted);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.18s;
-  }
-  .check-item.checked .check-box { background: var(--blue); border-color: var(--blue); }
-  .check-tick { display: none; }
-  .check-item.checked .check-tick { display: block; color: #fff; }
+      /* Map */
+      .map-card {
+        border-radius: var(--r-xl);
+        overflow: hidden;
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-md);
+        background: #fff;
+      }
+      .map-embed {
+        width: 100%;
+        height: 240px;
+        position: relative;
+        background: url("https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80")
+          center/cover no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .map-embed::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(238, 244, 250, 0.45);
+      }
+      .map-grid-svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.18;
+      }
+      .map-pin-wrap {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+      }
+      .map-pin-circle {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        box-shadow:
+          0 0 0 10px rgba(70, 151, 204, 0.15),
+          0 0 0 22px rgba(70, 151, 204, 0.07);
+        animation: pinPulse 2.8s ease-in-out infinite;
+      }
+      @keyframes pinPulse {
+        0%,
+        100% {
+          box-shadow:
+            0 0 0 10px rgba(70, 151, 204, 0.15),
+            0 0 0 22px rgba(70, 151, 204, 0.07);
+        }
+        50% {
+          box-shadow:
+            0 0 0 14px rgba(70, 151, 204, 0.1),
+            0 0 0 28px rgba(70, 151, 204, 0.04);
+        }
+      }
+      .map-pin-label {
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: 100px;
+        padding: 6px 15px;
+        font-size: 0.76rem;
+        font-weight: 700;
+        color: var(--ink);
+        box-shadow: var(--shadow-sm);
+      }
+      .map-card-foot {
+        padding: 16px 18px;
+        border-top: 1px solid var(--border-soft);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .map-addr {
+        font-size: 0.8rem;
+        color: var(--body);
+        line-height: 1.45;
+      }
+      .map-addr strong {
+        display: block;
+        font-size: 0.84rem;
+        color: var(--ink);
+        margin-bottom: 1px;
+      }
+      .map-open {
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: var(--blue);
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 6px 12px;
+        border-radius: 100px;
+        background: var(--blue-pale);
+        border: 1px solid var(--blue-border);
+        transition: all 0.18s;
+        white-space: nowrap;
+      }
+      .map-open:hover {
+        background: var(--blue);
+        color: #fff;
+      }
 
-  /* Submit button states */
-  .submit-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 15px 28px;
-    font-size: 0.92rem;
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-  }
-  .submit-btn::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(255,255,255,0);
-    transition: background 0.2s;
-  }
-  .submit-btn:hover::after { background: rgba(255,255,255,0.06); }
-  .submit-btn:active { transform: scale(0.99); }
-  .form-note {
-    font-size: 0.73rem;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 12px;
-    line-height: 1.6;
-  }
+      /* Quick contact */
+      .quick-card {
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--r-xl);
+        padding: 22px 20px;
+        box-shadow: var(--shadow-md);
+      }
+      .quick-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: var(--ink);
+        margin-bottom: 14px;
+      }
+      .q-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border-soft);
+        transition: padding 0.18s;
+      }
+      .q-item:last-child {
+        border-bottom: none;
+      }
+      .q-item:hover {
+        padding-left: 4px;
+      }
+      .qi {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: var(--blue-dim);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        flex-shrink: 0;
+      }
+      .q-lbl {
+        font-size: 0.65rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--muted);
+        margin-bottom: 1px;
+      }
+      .q-val {
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--ink);
+      }
+      .q-val a {
+        color: var(--blue);
+      }
+      .q-val a:hover {
+        text-decoration: underline;
+      }
 
-  /* ── Success state ── */
-  .success-msg {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 36px 20px;
-    gap: 14px;
-  }
-  .success-icon {
-    width: 68px; height: 68px;
-    border-radius: 50%;
-    background: var(--green-dim);
-    border: 2px solid var(--green-border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.8rem;
-  }
-  .success-msg h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 800;
-    font-size: 1.2rem;
-    color: var(--ink);
-  }
-  .success-msg p { font-size: 0.86rem; color: var(--muted); max-width: 340px; line-height: 1.65; }
+      /* Social */
+      .social-card {
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--r-xl);
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+      }
+      .s-title {
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+      .s-row {
+        display: flex;
+        gap: 9px;
+      }
+      .s-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 9px 6px;
+        border-radius: 9px;
+        border: 1px solid var(--border-soft);
+        font-size: 0.73rem;
+        font-weight: 700;
+        color: var(--body);
+        background: #fafcfe;
+        transition: all 0.2s;
+      }
+      .s-btn:hover {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px var(--blue-glow);
+      }
 
-  /* ── Map placeholder ── */
-  .map-block {
-    border-radius: var(--r-xl);
-    overflow: hidden;
-    border: 1px solid var(--border-soft);
-    box-shadow: var(--shadow-md);
-    height: 280px;
-    background: linear-gradient(135deg, var(--bg-3) 0%, var(--blue-pale) 100%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    position: relative;
-  }
-  .map-block::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&q=80') center/cover no-repeat;
-    opacity: 0.18;
-  }
-  .map-pin {
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    background: var(--blue);
-    display: flex; align-items: center; justify-content: center;
-    color: #fff;
-    box-shadow: 0 0 0 8px var(--blue-dim), 0 0 0 16px rgba(70,151,204,0.06);
-    position: relative; z-index: 1;
-    animation: mapPulse 2.5s infinite;
-  }
-  @keyframes mapPulse {
-    0%,100%{box-shadow:0 0 0 8px var(--blue-dim),0 0 0 16px rgba(70,151,204,0.06);}
-    50%{box-shadow:0 0 0 12px var(--blue-dim),0 0 0 24px rgba(70,151,204,0.04);}
-  }
-  .map-label {
-    position: relative; z-index: 1;
-    background: #fff;
-    border: 1px solid var(--border-soft);
-    border-radius: var(--r);
-    padding: 8px 16px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--ink);
-    box-shadow: var(--shadow-sm);
-  }
+      /* Partner CTA */
+      .partner-cta {
+        background: linear-gradient(
+          135deg,
+          var(--blue) 0%,
+          var(--blue-deep) 100%
+        );
+        border-radius: var(--r-xl);
+        padding: 26px 22px;
+        position: relative;
+        overflow: hidden;
+      }
+      .partner-cta::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 170px;
+        height: 170px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.14) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .partner-cta h4 {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 800;
+        font-size: 1rem;
+        color: #fff;
+        margin-bottom: 7px;
+        letter-spacing: -0.02em;
+        position: relative;
+        z-index: 1;
+      }
+      .partner-cta p {
+        font-size: 0.77rem;
+        color: rgba(255, 255, 255, 0.73);
+        line-height: 1.65;
+        margin-bottom: 14px;
+        position: relative;
+        z-index: 1;
+      }
+      .partner-cta a {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #fff;
+        color: var(--blue);
+        padding: 8px 16px;
+        border-radius: 100px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        transition: all 0.2s;
+        position: relative;
+        z-index: 1;
+      }
+      .partner-cta a:hover {
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
+        transform: translateY(-1px);
+      }
 
-  /* ── FAQ ── */
-  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .faq-item {
-    background: #fff;
-    border: 1px solid var(--border-soft);
-    border-radius: var(--r);
-    padding: 0;
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
-  }
-  .faq-q {
-    padding: 16px 20px;
-    font-size: 0.86rem;
-    font-weight: 700;
-    color: var(--ink);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    transition: background 0.18s;
-    user-select: none;
-  }
-  .faq-q:hover { background: var(--bg); }
-  .faq-arrow {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: var(--blue-pale);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--blue);
-    flex-shrink: 0;
-    transition: transform 0.25s;
-  }
-  .faq-item.open .faq-arrow { transform: rotate(180deg); }
-  .faq-a {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.25s;
-    font-size: 0.82rem;
-    color: var(--muted);
-    line-height: 1.68;
-    padding: 0 20px;
-  }
-  .faq-item.open .faq-a { max-height: 200px; padding: 0 20px 16px; }
+      /* ═══ BRANCHES ═══ */
+      .branches-section {
+        padding: 72px 0;
+        background: var(--bg-2);
+        border-top: 1px solid var(--border-soft);
+      }
+      .branch-tabs {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+      .branch-tab {
+        padding: 8px 18px;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        border: 1.5px solid var(--border-soft);
+        background: #fff;
+        color: var(--muted);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .branch-tab:hover {
+        border-color: var(--blue-border);
+        color: var(--blue);
+      }
+      .branch-tab.active {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: #fff;
+        box-shadow: 0 4px 14px var(--blue-glow);
+      }
+      .branch-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .branch-card {
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.28s;
+        display: none;
+      }
+      .branch-card.show {
+        display: block;
+      }
+      .branch-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--blue-border);
+      }
+      .branch-card-top {
+        height: 160px;
+        position: relative;
+        overflow: hidden;
+      }
+      .branch-card-top img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.45s;
+      }
+      .branch-card:hover .branch-card-top img {
+        transform: scale(1.06);
+      }
+      .branch-card-tint {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(26, 43, 60, 0.55) 0%,
+          transparent 60%
+        );
+      }
+      .branch-card-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: var(--blue-pale);
+        border: 1px solid var(--blue-border);
+        border-radius: 100px;
+        padding: 4px 12px;
+        font-size: 0.68rem;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.06em;
+      }
+      .branch-status {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background: #fff;
+        border-radius: 100px;
+        padding: 4px 11px;
+        font-size: 0.67rem;
+        font-weight: 700;
+      }
+      .branch-status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .branch-status-dot.active {
+        background: #22c55e;
+        animation: statusPulse 2s infinite;
+      }
+      .branch-status-dot.upcoming {
+        background: #f59e0b;
+      }
+      .branch-status-dot.planned {
+        background: var(--muted);
+      }
+      @keyframes statusPulse {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 0 5px rgba(34, 197, 94, 0);
+        }
+      }
+      .branch-city {
+        position: absolute;
+        bottom: 12px;
+        left: 12px;
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 800;
+        font-size: 1rem;
+        color: #fff;
+        letter-spacing: -0.02em;
+        z-index: 1;
+      }
+      .branch-body {
+        padding: 18px 18px 20px;
+      }
+      .branch-name {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 800;
+        font-size: 0.92rem;
+        color: var(--ink);
+        margin-bottom: 5px;
+        letter-spacing: -0.015em;
+      }
+      .branch-addr {
+        font-size: 0.78rem;
+        color: var(--muted);
+        line-height: 1.55;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+      }
+      .branch-addr svg {
+        flex-shrink: 0;
+        color: var(--blue);
+        margin-top: 2px;
+      }
+      .branch-details {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .bd-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.74rem;
+        color: var(--body);
+      }
+      .bd-item svg {
+        color: var(--blue);
+        flex-shrink: 0;
+      }
+      .branch-footer {
+        display: flex;
+        gap: 8px;
+        padding-top: 14px;
+        border-top: 1px solid var(--border-soft);
+      }
+      .b-btn {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 8px 10px;
+        border-radius: 9px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        transition: all 0.18s;
+      }
+      .b-btn-primary {
+        background: var(--blue);
+        color: #fff;
+      }
+      .b-btn-primary:hover {
+        background: var(--blue-dark);
+        box-shadow: 0 3px 10px var(--blue-glow);
+      }
+      .b-btn-outline {
+        background: var(--blue-pale);
+        color: var(--blue);
+        border: 1px solid var(--blue-border);
+      }
+      .b-btn-outline:hover {
+        background: var(--blue);
+        color: #fff;
+      }
 
-  /* Responsive */
-  @media(max-width:900px){
-    .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
-    .info-panel { position: static; }
-    .form-panel { padding: 32px 24px; }
-    .faq-grid { grid-template-columns: 1fr; }
-    .check-group { grid-template-columns: 1fr; }
-  }
-  @media(max-width:640px){
-    .form-row { grid-template-columns: 1fr; }
-    .form-panel { padding: 24px 18px; }
-  }
-  </style>
-</head>
-<body>
+      /* Branch map strip (all branches visual) */
+      .branches-map-strip {
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--r-xl);
+        padding: 28px 32px;
+        margin-bottom: 36px;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+        position: relative;
+      }
+      .bms-left {
+        flex-shrink: 0;
+      }
+      .bms-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: var(--ink);
+        margin-bottom: 5px;
+        letter-spacing: -0.02em;
+      }
+      .bms-sub {
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.55;
+        max-width: 280px;
+      }
+      .bms-pills {
+        display: flex;
+        gap: 7px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .bms-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 4px 11px;
+        border-radius: 100px;
+        font-size: 0.71rem;
+        font-weight: 700;
+      }
+      .bms-pill.green {
+        background: rgba(34, 197, 94, 0.1);
+        color: #16a34a;
+        border: 1px solid rgba(34, 197, 94, 0.25);
+      }
+      .bms-pill.yellow {
+        background: rgba(245, 158, 11, 0.1);
+        color: #b45309;
+        border: 1px solid rgba(245, 158, 11, 0.25);
+      }
+      .bms-pill.gray {
+        background: var(--bg);
+        color: var(--muted);
+        border: 1px solid var(--border-soft);
+      }
+      .bms-right {
+        flex: 1;
+        position: relative;
+        height: 120px;
+      }
+      /* Nepal map approximate SVG path */
+      .nepal-svg {
+        width: 100%;
+        height: 100%;
+      }
 
-<!-- ══ NAV ══ -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo">Aero<span>san</span></a>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="model.html">Model</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="team.html">Team</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-    </ul>
-    <div class="nav-right">
-      <a href="#form" class="btn btn-primary">Send a Message <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-    </div>
-    <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
-  </div>
-</nav>
-<div class="mob-menu" id="mob">
-  <a href="index.html">Home</a><a href="model.html">Model</a><a href="services.html">Services</a>
-  <a href="projects.html">Projects</a><a href="team.html">Team</a><a href="blog.html">Blog</a>
-  <a href="contact.html">Contact</a>
-  <a href="#form" class="btn btn-primary">Send a Message</a>
-</div>
+      /* ═══ FAQ ═══ */
+      .faq-section {
+        padding: 72px 0;
+        background: var(--bg);
+      }
+      .faq-wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 13px;
+      }
+      .faq-item {
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--r);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: border-color 0.2s;
+      }
+      .faq-item.open {
+        border-color: var(--blue-border);
+      }
+      .faq-q {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 15px 17px;
+        font-size: 0.84rem;
+        font-weight: 700;
+        color: var(--ink);
+        cursor: pointer;
+        user-select: none;
+        transition: background 0.18s;
+      }
+      .faq-q:hover {
+        background: var(--bg);
+      }
+      .faq-icon {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--blue-pale);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        flex-shrink: 0;
+        transition:
+          transform 0.28s,
+          background 0.2s;
+      }
+      .faq-item.open .faq-icon {
+        transform: rotate(45deg);
+        background: var(--blue);
+        color: #fff;
+      }
+      .faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.38s ease,
+          padding 0.28s;
+        font-size: 0.8rem;
+        color: var(--muted);
+        line-height: 1.7;
+        padding: 0 17px;
+      }
+      .faq-item.open .faq-body {
+        max-height: 220px;
+        padding: 0 17px 15px;
+      }
 
-<!-- ══ PAGE HERO ══ -->
-<section class="page-hero">
-  <div class="orb orb-blue" style="width:460px;height:460px;right:-80px;top:-100px;"></div>
-  <div class="orb orb-teal" style="width:300px;height:300px;left:0;bottom:-80px;"></div>
-  <div class="wrap" style="position:relative;z-index:2;">
-    <div class="eyebrow">Get In Touch</div>
-    <h1>Let's build dignified<br/>sanitation together.</h1>
-    <p class="lead">We partner with municipalities, development donors, UN agencies, impact investors, and infrastructure organisations who share our commitment to gender-friendly, environmentally sustainable public sanitation in urban Nepal.</p>
-  </div>
-</section>
+      /* ═══ RESPONSIVE ═══ */
+      @media (max-width: 1000px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+        .c-main {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+        }
+        .branch-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .faq-wrap {
+          grid-template-columns: 1fr;
+        }
+        .branches-map-strip {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .bms-right {
+          width: 100%;
+          height: 100px;
+        }
+      }
+      @media (max-width: 640px) {
+        .hero-stat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .f-row {
+          grid-template-columns: 1fr;
+        }
+        .int-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-box {
+          padding: 26px 18px;
+        }
+        .branch-grid {
+          grid-template-columns: 1fr;
+        }
+        .s-row {
+          flex-wrap: wrap;
+        }
+      }
+      .nav-logo img {
+        height: 40px;
+        width: auto;
+        display: block;
+      }
 
-<!-- ══ CONTACT MAIN ══ -->
-<section class="section" id="form">
-  <div class="wrap">
-    <div class="contact-wrap">
+      .nav-logo img {
+        height: clamp(30px, 5vw, 40px);
+        width: auto;
+        display: block;
+      }
+    </style>
+    <style>
+      /* ----- Reset & Base ----- */
 
-      <!-- LEFT: Info -->
-      <div class="info-panel" data-r="left">
-        <h2 class="display d-sm" style="margin-bottom:14px;">We'd love to<br/>hear from you.</h2>
-        <p class="info-intro">Whether you're a municipality exploring a HUB deployment, a donor funding sustainable WASH infrastructure, or a researcher studying urban sanitation — reach out. We respond to every inquiry within 48 hours.</p>
+      /* ----- Container ----- */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
 
-        <div class="info-cards">
-          <div class="info-card">
-            <div class="info-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            </div>
-            <div>
-              <div class="info-card-label">Email</div>
-              <div class="info-card-value">hello@aerosan.np</div>
-              <div class="info-card-sub">We reply within 48 hours</div>
-            </div>
-          </div>
-          <div class="info-card">
-            <div class="info-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            </div>
-            <div>
-              <div class="info-card-label">Phone</div>
-              <div class="info-card-value">+977 1 000 0000</div>
-              <div class="info-card-sub">Mon–Fri, 9am–5pm NPT</div>
-            </div>
-          </div>
-          <div class="info-card">
-            <div class="info-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </div>
-            <div>
-              <div class="info-card-label">Office</div>
-              <div class="info-card-value">Kathmandu, Nepal</div>
-              <div class="info-card-sub">Operational across the Kathmandu Valley</div>
-            </div>
-          </div>
-          <div class="info-card">
-            <div class="info-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <div>
-              <div class="info-card-label">Response Time</div>
-              <div class="info-card-value">Within 48 hours</div>
-              <div class="info-card-sub">All inquiries acknowledged same business day</div>
-            </div>
-          </div>
-        </div>
+      /* ----- Footer Main ----- */
+      .dk-footer {
+        padding: 75px 0 0;
+        /* background-color: #151414; */
+        background-color: #1a2b3c;
+        position: relative;
+        z-index: 2;
+        margin-top: 80px;
+        border-top: 2px solid rgba(59, 130, 246, 0.15);
+      }
 
-        <!-- Partner box -->
-        <div class="partner-box">
-          <div class="partner-box-title">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            Partnerships & Collaboration
-          </div>
-          <p class="partner-box-text">We collaborate with municipalities, UN agencies, development donors, impact investors, and infrastructure partners. If you're working on urban sanitation, MHM access, or circular economy programmes in South Asia — we want to hear from you.</p>
-        </div>
+      /* Animated glow line on top */
+      .dk-footer::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #3b82f6,
+          #60a5fa,
+          #3b82f6,
+          transparent
+        );
+        background-size: 300% 100%;
+        animation: shimmerLine 5s ease-in-out infinite;
+        opacity: 0.6;
+      }
 
-        <!-- Map -->
-        <div class="map-block" style="margin-bottom:24px;">
-          <div class="map-pin">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div class="map-label">📍 Kathmandu, Nepal</div>
-        </div>
+      @keyframes shimmerLine {
+        0% {
+          background-position: 0% 0%;
+        }
+        50% {
+          background-position: 100% 0%;
+        }
+        100% {
+          background-position: 0% 0%;
+        }
+      }
 
-        <!-- Social -->
-        <div>
-          <div class="body-sm" style="margin-bottom:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;">Follow Us</div>
-          <div class="social-row">
-            <a href="#" class="social-btn" aria-label="LinkedIn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="#" class="social-btn" aria-label="Twitter / X">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="#" class="social-btn" aria-label="Facebook">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="#" class="social-btn" aria-label="Instagram">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
+      /* ----- Grid System (no Bootstrap) ----- */
+      .footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px;
+      }
 
-      <!-- RIGHT: Form -->
-      <div data-r="right">
-        <div class="form-panel">
-          <!-- Form view -->
-          <div id="form-view">
-            <div class="form-title">Send us a message</div>
-            <p class="form-sub">Fill in the form below and our team will get back to you within 48 hours. All fields marked * are required.</p>
+      .footer-col {
+        padding: 0 15px;
+        position: relative;
+      }
 
-            <div class="form-row">
-              <div class="field">
-                <label>First Name *</label>
-                <input type="text" placeholder="Ramesh" id="f-fname"/>
-              </div>
-              <div class="field">
-                <label>Last Name *</label>
-                <input type="text" placeholder="Shrestha" id="f-lname"/>
-              </div>
-            </div>
+      .footer-col-4 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+      }
 
-            <div class="field">
-              <label>Email Address *</label>
-              <input type="email" placeholder="you@organisation.np" id="f-email"/>
-            </div>
+      .footer-col-8 {
+        flex: 0 0 66.666%;
+        max-width: 66.666%;
+      }
 
-            <div class="field">
-              <label>Organisation / Municipality</label>
-              <input type="text" placeholder="Your organisation name" id="f-org"/>
-            </div>
+      .footer-contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+      }
 
-            <div class="form-row">
-              <div class="field">
-                <label>Phone Number</label>
-                <input type="tel" placeholder="+977 98XXXXXXXX" id="f-phone"/>
-              </div>
-              <div class="field">
-                <label>Country / City</label>
-                <input type="text" placeholder="Kathmandu, Nepal" id="f-city"/>
-              </div>
-            </div>
+      .footer-contact-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 10px;
+      }
 
-            <div class="field">
-              <label>Inquiry Type *</label>
-              <select id="f-type">
-                <option value="">— Select inquiry type —</option>
-                <option>Municipal Partnership / HUB Deployment</option>
-                <option>Impact Investment & Funding</option>
-                <option>UN Agency / Development Organisation</option>
-                <option>Gender & MHM Programme Collaboration</option>
-                <option>Research & Academic Partnership</option>
-                <option>Media & Press</option>
-                <option>Career & Volunteering</option>
-                <option>General Inquiry</option>
-              </select>
-            </div>
+      .footer-links-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+      }
 
-            <div class="field" style="margin-bottom:8px;">
-              <label>Areas of Interest</label>
-            </div>
-            <div class="check-group" style="margin-bottom:16px;" id="check-group">
-              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Smart HUB Deployment</label>
-              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Gender & MHM Design</label>
-              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Waste-to-Energy Tech</label>
-              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>IoT Monitoring</label>
-              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Revenue Model</label>
-              <label class="check-item"><input type="checkbox"><div class="check-box"><svg class="check-tick" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Community Training</label>
-            </div>
+      .footer-links-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 10px;
+      }
 
-            <div class="field">
-              <label>Message *</label>
-              <textarea placeholder="Tell us about your project, organisation, or how you'd like to work with Aerosan…" id="f-msg"></textarea>
-            </div>
+      .copyright-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-            <button class="btn btn-primary submit-btn" id="submit-btn" onclick="submitForm()">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z"/></svg>
-              Send Message
-            </button>
-            <p class="form-note">🔒 Your information is kept private and used only to respond to your inquiry. We don't share data with third parties.</p>
-          </div>
+      .copyright-col {
+        flex: 0 0 auto;
+      }
 
-          <!-- Success view -->
-          <div class="success-msg" id="success-view">
-            <div class="success-icon">✓</div>
-            <h3>Message sent successfully!</h3>
-            <p>Thank you for reaching out. Our team will review your inquiry and respond within 48 hours.</p>
-            <a href="index.html" class="btn btn-outline" style="margin-top:8px;">Back to Home <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-        </div>
-      </div>
+      /* ----- Brand Box (absolute) ----- */
+      .dk-footer-box-info {
+        position: absolute;
+        top: -60px;
+        background: #1a2b3c;
+        padding: 35px 30px;
+        z-index: 2;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px #0d1722;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+        margin-bottom: 40px;
+      }
 
-    </div>
-  </div>
-</section>
+      .dk-footer-box-info:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 30px 80px rgba(59, 130, 246, 0.12);
+      }
 
-<!-- ══ FAQ ══ -->
-<section class="section section-deep">
-  <div class="wrap">
-    <div class="sec-head center" data-r>
-      <div class="eyebrow">Common Questions</div>
-      <h2 class="display d-md">Frequently asked</h2>
-      <p class="body-md">Quick answers to the questions we hear most often from partners and municipalities.</p>
-    </div>
-    <div class="faq-grid" data-r>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          What types of organisations do you partner with?
-          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
-        </div>
-        <div class="faq-a">We work with city municipalities, development donors, UN agencies, impact investors, research institutions, and NGOs. Any organisation aligned with sustainable sanitation, gender equity, or circular economy in Nepal is a potential partner.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How long does a HUB deployment take?
-          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
-        </div>
-        <div class="faq-a">From site selection to operational handover, a standard Aerosan HUB deployment takes between 4–7 months. This includes site assessment, civil works, IoT installation, bio-digester commissioning, and operator training.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          What MHM facilities are included in each HUB?
-          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
-        </div>
-        <div class="faq-a">Every HUB includes sanitary product vending machines, hygienic disposal units, privacy screens, clean changing space, and a dedicated female section with secure entry and enhanced lighting — all MHM-compliant as standard.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Does Aerosan require government funding to operate?
-          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
-        </div>
-        <div class="faq-a">No. Each HUB generates operational surplus from five revenue streams — user fees, biogas sales, organic fertilizer, advertising, and training licences. Government or donor support may fund initial construction but is not required for ongoing operations.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          Can Aerosan scale beyond Kathmandu?
-          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
-        </div>
-        <div class="faq-a">Yes. The HUB model is designed to be replicable across Nepal and scalable to other South Asian cities. We are actively seeking municipal and donor partners for expansion into Pokhara, Biratnagar, and Lalitpur in the near term.</div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" onclick="toggleFaq(this)">
-          How can researchers or journalists engage with Aerosan?
-          <div class="faq-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></div>
-        </div>
-        <div class="faq-a">We welcome research collaborations, site visits, and media inquiries. Select "Research & Academic Partnership" or "Media & Press" in the contact form above, and our partnerships team will connect with you within 48 hours.</div>
-      </div>
-    </div>
-  </div>
-</section>
+      .footer-logo-img {
+        max-height: 50px;
+        filter: brightness(0.9) saturate(1.1);
+        transition: filter 0.3s;
+      }
 
-<!-- ══ BOTTOM CTA ══ -->
-<section style="padding:0 0 88px;">
-  <div class="wrap">
-    <div class="cta-box" data-r>
-      <div class="cta-box-orb"></div>
-      <div style="position:relative;z-index:1;">
-        <div class="eyebrow" style="color:rgba(255,255,255,0.65);"><span style="background:rgba(255,255,255,0.35)"></span>Ready to move?</div>
-        <h2>Build dignified sanitation in your city.</h2>
-        <p>Every conversation starts with a single message. We make it easy to explore what an Aerosan HUB could look like in your municipality.</p>
-      </div>
-      <div class="btn-group" style="position:relative;z-index:1;">
-        <a href="#form" class="btn btn-white">
-          Write to Us
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      .footer-logo-img:hover {
+        filter: brightness(1.1) saturate(1.3);
+      }
+
+      .footer-info-text {
+        margin: 18px 0 24px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      /* ----- Social Icons (brand colored) ----- */
+      .footer-social-link h3 {
+        color: #fff;
+        font-size: 18px;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .footer-social-link ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .footer-social-link li {
+        display: inline-block;
+      }
+
+      .footer-social-link a {
+        display: block;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 42px;
+        background: #1a1a1a;
+        color: #fff;
+        font-size: 18px;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        text-decoration: none;
+      }
+
+      .footer-social-link a:hover {
+        transform: scale(1.15) translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        filter: brightness(1.2);
+      }
+
+      .footer-social-link li:nth-child(1) a {
+        background-color: #3b5998;
+      }
+      .footer-social-link li:nth-child(2) a {
+        background-color: #55acee;
+      }
+      .footer-social-link li:nth-child(3) a {
+        background-color: #dd4b39;
+      }
+      .footer-social-link li:nth-child(4) a {
+        background-color: #0976b4;
+      }
+      .footer-social-link li:nth-child(5) a {
+        background-color: #b7242a;
+      }
+
+      /* ----- Award Badge ----- */
+      .footer-awarad {
+        margin-top: 330px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        width: fit-content;
+        animation: awardPulse 3s ease-in-out infinite;
+      }
+
+      @keyframes awardPulse {
+        0%,
+        100% {
+          opacity: 0.8;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.02);
+        }
+      }
+
+      .footer-awarad img {
+        max-height: 32px;
+      }
+
+      .footer-awarad p {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0;
+        padding-top: 2px;
+      }
+
+      /* ----- Contact Us ----- */
+      .contact-us {
+        position: relative;
+        z-index: 2;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .contact-us:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(59, 130, 246, 0.15);
+        transform: translateX(4px);
+      }
+
+      .contact-us.contact-us-last {
+        margin-left: 0;
+      }
+
+      .contact-icon {
+        margin-right: 18px;
+        flex-shrink: 0;
+      }
+
+      .contact-icon i {
+        font-size: 28px;
+        color: #3b82f6;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-us:hover .contact-icon i {
+        transform: scale(1.15) rotate(-5deg);
+      }
+
+      .contact-info {
+        color: #fff;
+      }
+
+      .contact-info h3 {
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 2px;
+        font-weight: 600;
+      }
+
+      .contact-info p {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.85rem;
+        margin: 0;
+      }
+
+      /* ----- Footer Widget / Links ----- */
+      .footer-widget {
+        margin-top: 20px;
+      }
+
+      .footer-widget .section-heading {
+        margin-bottom: 25px;
+      }
+
+      .footer-widget h3 {
+        font-size: 20px;
+        color: #fff;
+        position: relative;
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+
+      .footer-widget p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .footer-links-list {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-links-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex: 1;
+      }
+
+      .footer-links-list li {
+        margin-bottom: 14px;
+      }
+
+      .footer-links-list a {
+        color: rgba(255, 255, 255, 0.5);
+        transition: all 0.25s ease;
+        text-decoration: none;
+        font-size: 0.88rem;
+        display: inline-block;
+      }
+
+      .footer-links-list a:hover {
+        color: #60a5fa;
+        transform: translateX(6px);
+      }
+
+      .footer-left-widget {
+        padding-left: 0;
+      }
+
+      /* ----- Animated Border ----- */
+      .animate-border {
+        position: relative;
+        display: block;
+        width: 115px;
+        height: 3px;
+        background: #3b82f6;
+        border-radius: 2px;
+      }
+
+      .animate-border::after {
+        position: absolute;
+        content: "";
+        width: 35px;
+        height: 3px;
+        left: 0;
+        bottom: 0;
+        border-left: 10px solid #151414;
+        border-right: 10px solid #151414;
+        animation: animborder 2.5s linear infinite;
+        border-radius: 2px;
+      }
+
+      @keyframes animborder {
+        0% {
+          transform: translateX(0px);
+        }
+        100% {
+          transform: translateX(113px);
+        }
+      }
+
+      /* ----- Subscribe Form ----- */
+      .dk-footer-form {
+        position: relative;
+      }
+
+      .dk-footer-form input[type="email"] {
+        padding: 14px 24px;
+        border-radius: 50px;
+        background: #0b1620;
+        border: 1px solid #333;
+        color: #fff;
+        font-size: 0.9rem;
+        width: 100%;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .dk-footer-form input[type="email"]:focus {
+        border-color: #1b2433;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        background: #172431;
+      }
+
+      .dk-footer-form input::placeholder {
+        color: #777;
+        font-size: 0.85rem;
+      }
+
+      .dk-footer-form button {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        padding: 10px 22px 10px 18px;
+        border-radius: 50px;
+        border: none;
+        background: #3b82f6;
+        color: #fff;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+
+      .dk-footer-form button:hover {
+        background: #60a5fa;
+        transform: scale(1.04);
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+      }
+
+      /* ----- Copyright ----- */
+      .copyright {
+        padding: 24px 0;
+        margin-top: 55px;
+        background-color: #1a2b3c;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .copyright span,
+      .copyright a {
+        color: rgba(255, 255, 255, 0.3);
+        transition: all 0.25s ease;
+        font-size: 0.85rem;
+        text-decoration: none;
+      }
+
+      .copyright a:hover {
+        color: #60a5fa;
+      }
+
+      .copyright-menu ul {
+        text-align: right;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .copyright-menu li {
+        display: inline-block;
+        padding-left: 22px;
+      }
+
+      /* ----- Back to Top ----- */
+      .btn-top {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        padding: 0;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #1a2b3c;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        transition: all 0.3s ease;
+        font-size: 1.4rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+      }
+
+      .btn-top:hover {
+        background: #3b82f6;
+        border-color: #3b82f6;
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 8px 30px rgba(59, 130, 246, 0.25);
+      }
+
+      /* ----- Font Awesome (local fallback) ----- */
+      .fab,
+      .fas {
+        font-style: normal;
+      }
+
+      /* ----- Responsive ----- */
+      @media (max-width: 992px) {
+        .footer-col-4 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .footer-col-8 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .dk-footer-box-info {
+          position: relative;
+          top: 0;
+          margin-bottom: 30px;
+        }
+
+        .footer-awarad {
+          margin-top: 20px;
+        }
+
+        .footer-left-widget {
+          padding-left: 0;
+        }
+
+        .contact-us.contact-us-last {
+          margin-left: 0;
+        }
+
+        .copyright-menu ul {
+          text-align: left;
+          margin-top: 10px;
+        }
+
+        .copyright-menu li {
+          padding-left: 0;
+          padding-right: 20px;
+        }
+
+        .footer-links-list {
+          flex-direction: column;
+          gap: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .footer-contact-col {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .footer-links-col {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .copyright-row {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .copyright-menu ul {
+          text-align: center;
+        }
+
+        .dk-footer-box-info {
+          padding: 25px 20px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .footer-social-link ul {
+          gap: 5px;
+        }
+
+        .footer-social-link a {
+          width: 36px;
+          height: 36px;
+          line-height: 36px;
+          font-size: 15px;
+        }
+
+        .contact-us {
+          padding: 12px 16px;
+        }
+
+        .contact-info h3 {
+          font-size: 16px;
+        }
+
+        .dk-footer-form button {
+          padding: 8px 16px;
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══ NAV ═══ -->
+    <nav id="nav">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="/logo.avif" alt="" />
         </a>
-        <a href="model.html" class="btn" style="background:rgba(255,255,255,0.14);color:#fff;border:1px solid rgba(255,255,255,0.2);">
-          Explore the Model
-        </a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ FOOTER ══ -->
-<footer id="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">Aero<span>san</span></div>
-        <p class="footer-tagline">Gender-friendly, menstrual hygiene-inclusive, environmentally sustainable smart public toilet service — built for every person in urban Nepal.</p>
-        <div class="footer-social">
-          <a href="#" class="footer-social" style="display:contents;" aria-label="LinkedIn">
-            <a href="#" style="width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.2s;" onmouseenter="this.style.background='#4697CC';this.style.color='#fff'" onmouseleave="this.style.background='rgba(255,255,255,0.07)';this.style.color='rgba(255,255,255,0.5)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-            <a href="#" style="width:38px;height:38px;border-radius:9px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);transition:all 0.2s;" onmouseenter="this.style.background='#4697CC';this.style.color='#fff'" onmouseleave="this.style.background='rgba(255,255,255,0.07)';this.style.color='rgba(255,255,255,0.5)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="model.html">Model</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="#form-section" class="btn btn-primary">
+            Send Message
+            <svg
+              width="13"
+              height="13"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z" />
+            </svg>
           </a>
         </div>
+        <div class="hamburger" id="ham">
+          <span></span><span></span><span></span>
+        </div>
       </div>
-      <div>
-        <div class="footer-col-title">Company</div>
-        <ul class="footer-links">
-          <li><a href="index.html">Home</a></li><li><a href="model.html">Model</a></li>
-          <li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Explore</div>
-        <ul class="footer-links">
-          <li><a href="team.html">Team</a></li><li><a href="blog.html">Journal</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Connect</div>
-        <ul class="footer-links">
-          <li><a href="mailto:hello@aerosan.np">hello@aerosan.np</a></li>
-          <li><a href="#">+977 1 000 0000</a></li>
-          <li><a href="#">Kathmandu, Nepal</a></li>
-          <li><a href="#form">Partner Inquiry</a></li>
-        </ul>
-      </div>
+    </nav>
+    <div class="mob-menu" id="mob">
+      <a href="index.html">Home</a><a href="model.html">Model</a
+      ><a href="services.html">Services</a> <a href="projects.html">Projects</a
+      ><a href="team.html">Team</a><a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="#form-section" class="btn btn-primary">Send Message</a>
     </div>
-    <div class="footer-bottom">
-      <span>© 2025 Aerosan. All rights reserved.</span>
-      <div style="display:flex;gap:16px;"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></div>
-    </div>
-  </div>
-</footer>
 
-<script>
-  // Nav
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 30), { passive: true });
+    <!-- ═══ HERO ═══ -->
+    <section class="contact-hero">
+      <div
+        class="orb orb-blue"
+        style="width: 480px; height: 480px; right: -100px; top: -140px"
+      ></div>
+      <div
+        class="orb orb-teal"
+        style="width: 280px; height: 280px; left: -60px; bottom: -80px"
+      ></div>
+      <div class="wrap" style="width: 100%; position: relative; z-index: 2">
+        <div class="hero-inner">
+          <div data-r="left">
+            <div class="eyebrow">Get In Touch</div>
+            <h1>
+              Let's build<br /><span>dignified sanitation</span><br />together.
+            </h1>
+            <p>
+              We collaborate with municipalities, development donors, UN
+              agencies, and impact investors who share our commitment to
+              gender-friendly, MHM-inclusive, and environmentally sustainable
+              public sanitation.
+            </p>
+            <div class="hero-badges">
+              <span class="hero-badge"
+                ><svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" /></svg
+                >48hr Response</span
+              >
+              <span class="hero-badge"
+                ><svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" /></svg
+                >Municipal Partners</span
+              >
+              <span class="hero-badge"
+                ><svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg
+                >4 Active Branches</span
+              >
+            </div>
+          </div>
+          <div class="hero-stat-grid" data-r="right">
+            <div class="hero-stat">
+              <div class="hs-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <div>
+                <div class="hs-label">Email</div>
+                <div class="hs-val">hello@aerosan.np</div>
+                <div class="hs-sub">General inquiries</div>
+              </div>
+            </div>
+            <div class="hero-stat">
+              <div class="hs-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                  />
+                </svg>
+              </div>
+              <div>
+                <div class="hs-label">Phone</div>
+                <div class="hs-val">+977 1 000 0000</div>
+                <div class="hs-sub">Mon–Fri 9–5 NPT</div>
+              </div>
+            </div>
+            <div class="hero-stat">
+              <div class="hs-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </div>
+              <div>
+                <div class="hs-label">Headquarters</div>
+                <div class="hs-val">Kathmandu, Nepal</div>
+                <div class="hs-sub">+ 3 Regional Branches</div>
+              </div>
+            </div>
+            <div class="hero-stat">
+              <div class="hs-icon">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              <div>
+                <div class="hs-label">Response Time</div>
+                <div class="hs-val">Within 48 Hours</div>
+                <div class="hs-sub">All messages acknowledged</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  // Mobile menu
-  const ham = document.getElementById('ham'), mob = document.getElementById('mob');
-  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
+    <!-- ═══ FORM + SIDEBAR ═══ -->
+    <section style="background: var(--bg-2); padding: 0" id="form-section">
+      <div class="wrap">
+        <div class="c-main">
+          <!-- FORM -->
+          <div data-r="left">
+            <div class="form-box">
+              <div id="form-view">
+                <div class="form-box-title">Send us a message</div>
+                <p class="form-box-sub">
+                  Fields marked
+                  <span style="color: var(--blue); font-weight: 700">*</span>
+                  are required. We reply within 48 hours.
+                </p>
 
-  // Scroll reveal
-  const ro = new IntersectionObserver(e => e.forEach(x => {
-    if (x.isIntersecting) { x.target.classList.add('on'); ro.unobserve(x.target); }
-  }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
+                <div class="f-row">
+                  <div class="field">
+                    <label>First Name <span class="req">*</span></label
+                    ><input type="text" id="f1" placeholder="Ramesh" />
+                  </div>
+                  <div class="field">
+                    <label>Last Name <span class="req">*</span></label
+                    ><input type="text" id="f2" placeholder="Shrestha" />
+                  </div>
+                </div>
+                <div class="field">
+                  <label>Email Address <span class="req">*</span></label
+                  ><input
+                    type="email"
+                    id="f3"
+                    placeholder="you@organisation.np"
+                  />
+                </div>
+                <div class="f-row">
+                  <div class="field">
+                    <label>Phone Number</label
+                    ><input type="tel" id="f4" placeholder="+977 98XXXXXXXX" />
+                  </div>
+                  <div class="field">
+                    <label>Organisation</label
+                    ><input
+                      type="text"
+                      id="f5"
+                      placeholder="Your organisation"
+                    />
+                  </div>
+                </div>
+                <div class="f-row">
+                  <div class="field">
+                    <label>Branch / Location</label>
+                    <select id="f6">
+                      <option value="">— Select nearest branch —</option>
+                      <option>Kathmandu HQ (Headquarters)</option>
+                      <option>Pokhara Branch</option>
+                      <option>Biratnagar Branch</option>
+                      <option>Bharatpur Branch</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label>Inquiry Type <span class="req">*</span></label>
+                    <select id="f7">
+                      <option value="">— Select type —</option>
+                      <option>Municipal HUB Deployment</option>
+                      <option>Impact Investment & Funding</option>
+                      <option>UN / Development Organisation</option>
+                      <option>Gender & MHM Collaboration</option>
+                      <option>Research Partnership</option>
+                      <option>Media & Press</option>
+                      <option>Career & Volunteering</option>
+                      <option>General Inquiry</option>
+                    </select>
+                  </div>
+                </div>
 
-  // Checkbox toggle
-  document.querySelectorAll('.check-item').forEach(item => {
-    item.addEventListener('click', () => item.classList.toggle('checked'));
-  });
+                <span class="int-label">Areas of Interest</span>
+                <div class="int-grid">
+                  <label class="int-chip" onclick="this.classList.toggle('on')"
+                    ><div class="int-box">
+                      <svg
+                        class="int-tick"
+                        width="9"
+                        height="9"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#fff"
+                        stroke-width="3.5"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    Smart HUB Deployment</label
+                  >
+                  <label class="int-chip" onclick="this.classList.toggle('on')"
+                    ><div class="int-box">
+                      <svg
+                        class="int-tick"
+                        width="9"
+                        height="9"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#fff"
+                        stroke-width="3.5"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    Gender & MHM Design</label
+                  >
+                  <label class="int-chip" onclick="this.classList.toggle('on')"
+                    ><div class="int-box">
+                      <svg
+                        class="int-tick"
+                        width="9"
+                        height="9"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#fff"
+                        stroke-width="3.5"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    Waste-to-Energy Tech</label
+                  >
+                  <label class="int-chip" onclick="this.classList.toggle('on')"
+                    ><div class="int-box">
+                      <svg
+                        class="int-tick"
+                        width="9"
+                        height="9"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#fff"
+                        stroke-width="3.5"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    IoT Monitoring</label
+                  >
+                  <label class="int-chip" onclick="this.classList.toggle('on')"
+                    ><div class="int-box">
+                      <svg
+                        class="int-tick"
+                        width="9"
+                        height="9"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#fff"
+                        stroke-width="3.5"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    Revenue Model</label
+                  >
+                  <label class="int-chip" onclick="this.classList.toggle('on')"
+                    ><div class="int-box">
+                      <svg
+                        class="int-tick"
+                        width="9"
+                        height="9"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#fff"
+                        stroke-width="3.5"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    Community Training</label
+                  >
+                </div>
 
-  // FAQ toggle
-  function toggleFaq(btn) {
-    const item = btn.parentElement;
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  }
+                <div class="field">
+                  <label>Your Message <span class="req">*</span></label
+                  ><textarea
+                    id="f8"
+                    placeholder="Tell us about your project, organisation, or how you'd like to collaborate with Aerosan…"
+                  ></textarea>
+                </div>
 
-  // Form submit
-  function submitForm() {
-    const fname = document.getElementById('f-fname').value.trim();
-    const email = document.getElementById('f-email').value.trim();
-    const type  = document.getElementById('f-type').value;
-    const msg   = document.getElementById('f-msg').value.trim();
+                <button
+                  class="btn btn-primary sub-btn"
+                  id="sub-btn"
+                  onclick="doSubmit()"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z" />
+                  </svg>
+                  Send Message
+                </button>
+                <div class="form-note">
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                  Your information is private and used only to respond to your
+                  inquiry. We never share data with third parties.
+                </div>
+              </div>
+              <div class="success-screen" id="success-view">
+                <div class="success-ring">
+                  <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <h3>Message sent! 🎉</h3>
+                <p>
+                  Thank you for reaching out to Aerosan. Our team will review
+                  your message and get back to you within 48 hours.
+                </p>
+                <div
+                  style="
+                    display: flex;
+                    gap: 10px;
+                    margin-top: 8px;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                  "
+                >
+                  <a
+                    href="index.html"
+                    class="btn btn-primary"
+                    style="font-size: 0.82rem; padding: 9px 18px"
+                    >Back to Home
+                    <svg
+                      width="11"
+                      height="11"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                  ></a>
+                  <a
+                    href="model.html"
+                    class="btn btn-outline"
+                    style="font-size: 0.82rem; padding: 9px 18px"
+                    >Explore the Model</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
 
-    if (!fname || !email || !type || !msg) {
-      // Shake empty required fields
-      [['f-fname', fname], ['f-email', email], ['f-type', type], ['f-msg', msg]].forEach(([id, val]) => {
-        if (!val) {
-          const el = document.getElementById(id);
-          el.style.borderColor = 'var(--red)';
-          el.style.boxShadow = '0 0 0 3px rgba(224,85,85,0.12)';
-          setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2000);
-        }
+          <!-- SIDEBAR -->
+          <div class="sidebar" data-r="right">
+            <!-- MAP -->
+            <div class="map-card">
+              <div class="map-embed">
+                <svg
+                  class="map-grid-svg"
+                  viewBox="0 0 400 240"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M0 60 Q100 30 200 60 Q300 90 400 60"
+                    stroke="#4697CC"
+                    stroke-width="1.2"
+                    fill="none"
+                  />
+                  <path
+                    d="M0 120 Q100 90 200 120 Q300 150 400 120"
+                    stroke="#4697CC"
+                    stroke-width="1.2"
+                    fill="none"
+                  />
+                  <path
+                    d="M0 180 Q100 150 200 180 Q300 210 400 180"
+                    stroke="#4697CC"
+                    stroke-width="1.2"
+                    fill="none"
+                  />
+                  <circle
+                    cx="200"
+                    cy="120"
+                    r="55"
+                    stroke="#4697CC"
+                    stroke-width="1"
+                    fill="rgba(70,151,204,0.06)"
+                  />
+                  <circle
+                    cx="200"
+                    cy="120"
+                    r="30"
+                    stroke="#4697CC"
+                    stroke-width="0.8"
+                    fill="rgba(70,151,204,0.04)"
+                  />
+                  <!-- Branch dots -->
+                  <circle cx="200" cy="120" r="6" fill="#4697CC" />
+                  <circle cx="140" cy="85" r="4" fill="#4697CC" opacity="0.7" />
+                  <circle
+                    cx="270"
+                    cy="100"
+                    r="4"
+                    fill="#4697CC"
+                    opacity="0.7"
+                  />
+                  <circle
+                    cx="215"
+                    cy="155"
+                    r="4"
+                    fill="#4697CC"
+                    opacity="0.7"
+                  />
+                </svg>
+                <div class="map-pin-wrap">
+                  <div class="map-pin-circle">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                    >
+                      <path
+                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                      />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div class="map-pin-label">📍 Aerosan HQ — Kathmandu</div>
+                </div>
+              </div>
+              <div class="map-card-foot">
+                <div class="map-addr">
+                  <strong>Aerosan Nepal Pvt. Ltd.</strong>Kathmandu Metropolitan
+                  City, Nepal
+                </div>
+                <a
+                  href="https://maps.google.com/?q=Kathmandu,Nepal"
+                  target="_blank"
+                  class="map-open"
+                >
+                  Open Map
+                  <svg
+                    width="10"
+                    height="10"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- QUICK CONTACT -->
+            <div class="quick-card">
+              <div class="quick-title">Direct Contact</div>
+              <div class="q-item">
+                <div class="qi">
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="q-lbl">General</div>
+                  <div class="q-val">
+                    <a href="mailto:hello@aerosan.np">hello@aerosan.np</a>
+                  </div>
+                </div>
+              </div>
+              <div class="q-item">
+                <div class="qi">
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="q-lbl">Partnerships</div>
+                  <div class="q-val">
+                    <a href="mailto:partners@aerosan.np">partners@aerosan.np</a>
+                  </div>
+                </div>
+              </div>
+              <div class="q-item">
+                <div class="qi">
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13 19.79 19.79 0 0 1 1.61 4.41a2 2 0 0 1 1.99-2.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <div class="q-lbl">Phone</div>
+                  <div class="q-val">+977 1 000 0000</div>
+                </div>
+              </div>
+              <div class="q-item">
+                <div class="qi">
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="q-lbl">Headquarters</div>
+                  <div class="q-val">Kathmandu, Nepal</div>
+                </div>
+              </div>
+              <div class="q-item">
+                <div class="qi">
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg>
+                </div>
+                <div>
+                  <div class="q-lbl">Hours</div>
+                  <div class="q-val">Mon–Fri, 9am–5pm NPT</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SOCIAL -->
+            <div class="social-card">
+              <div class="s-title">Follow Aerosan</div>
+              <div class="s-row">
+                <a href="#" class="s-btn"
+                  ><svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                    /></svg
+                  >LinkedIn</a
+                >
+                <a href="#" class="s-btn"
+                  ><svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                    /></svg
+                  >Twitter</a
+                >
+                <a href="#" class="s-btn"
+                  ><svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path
+                      d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                    /></svg
+                  >Facebook</a
+                >
+              </div>
+            </div>
+
+            <!-- PARTNER CTA -->
+            <div class="partner-cta">
+              <h4>Looking to deploy a HUB?</h4>
+              <p>
+                We work with city municipalities and development organisations
+                to plan, fund, and operate Aerosan HUBs across Nepal.
+              </p>
+              <a href="#form-section"
+                >Start the Conversation
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" /></svg
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ BRANCHES ═══ -->
+    <section class="branches-section">
+      <div class="wrap">
+        <div class="sec-head" data-r>
+          <div class="eyebrow">Our Branches</div>
+          <h2 class="display d-md">Find us across Nepal</h2>
+          <p class="body-md">
+            Aerosan operates from four locations across Nepal — our Kathmandu
+            headquarters and three regional branches serving municipalities in
+            each province.
+          </p>
+        </div>
+
+        <!-- Branch overview strip -->
+        <div class="branches-map-strip" data-r>
+          <div class="bms-left">
+            <div class="bms-title">🗺️ Aerosan Branch Network</div>
+            <p class="bms-sub">
+              Active operations across Bagmati, Gandaki, Koshi, and Narayani
+              provinces with planned expansion into all 7 provinces by 2027.
+            </p>
+            <div class="bms-pills">
+              <span class="bms-pill green"
+                ><span
+                  style="
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: #22c55e;
+                    display: inline-block;
+                  "
+                ></span
+                >4 Active Branches</span
+              >
+              <span class="bms-pill yellow"
+                ><span
+                  style="
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: #f59e0b;
+                    display: inline-block;
+                  "
+                ></span
+                >2 Upcoming</span
+              >
+              <span class="bms-pill gray"
+                ><span
+                  style="
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 50%;
+                    background: var(--muted);
+                    display: inline-block;
+                  "
+                ></span
+                >3 Planned</span
+              >
+            </div>
+          </div>
+          <div class="bms-right">
+            <svg
+              class="nepal-svg"
+              viewBox="0 0 400 120"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Approximate Nepal shape -->
+              <path
+                d="M20 60 L40 40 L80 35 L120 30 L160 25 L200 28 L240 32 L280 38 L320 42 L360 48 L380 55 L370 75 L340 82 L300 80 L260 78 L220 75 L180 72 L140 68 L100 65 L60 68 L30 72 Z"
+                fill="rgba(70,151,204,0.08)"
+                stroke="var(--blue-border)"
+                stroke-width="1.5"
+              />
+              <!-- HQ Kathmandu -->
+              <circle cx="200" cy="52" r="7" fill="var(--blue)" />
+              <text
+                x="200"
+                y="40"
+                text-anchor="middle"
+                font-size="9"
+                fill="var(--blue-deep)"
+                font-weight="700"
+                font-family="Inter,sans-serif"
+              >
+                Kathmandu HQ
+              </text>
+              <!-- Pokhara -->
+              <circle cx="145" cy="55" r="5" fill="var(--blue-light)" />
+              <text
+                x="145"
+                y="44"
+                text-anchor="middle"
+                font-size="8"
+                fill="var(--body)"
+                font-family="Inter,sans-serif"
+              >
+                Pokhara
+              </text>
+              <!-- Biratnagar -->
+              <circle cx="310" cy="50" r="5" fill="var(--blue-light)" />
+              <text
+                x="310"
+                y="39"
+                text-anchor="middle"
+                font-size="8"
+                fill="var(--body)"
+                font-family="Inter,sans-serif"
+              >
+                Biratnagar
+              </text>
+              <!-- Bharatpur -->
+              <circle cx="225" cy="68" r="5" fill="var(--blue-light)" />
+              <text
+                x="225"
+                y="84"
+                text-anchor="middle"
+                font-size="8"
+                fill="var(--body)"
+                font-family="Inter,sans-serif"
+              >
+                Bharatpur
+              </text>
+              <!-- Connection lines -->
+              <line
+                x1="200"
+                y1="52"
+                x2="145"
+                y2="55"
+                stroke="var(--blue-border)"
+                stroke-width="1"
+                stroke-dasharray="4,3"
+              />
+              <line
+                x1="200"
+                y1="52"
+                x2="310"
+                y2="50"
+                stroke="var(--blue-border)"
+                stroke-width="1"
+                stroke-dasharray="4,3"
+              />
+              <line
+                x1="200"
+                y1="52"
+                x2="225"
+                y2="68"
+                stroke="var(--blue-border)"
+                stroke-width="1"
+                stroke-dasharray="4,3"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="branch-tabs" id="branch-tabs" data-r>
+          <button class="branch-tab active" onclick="filterBranch('all', this)">
+            All Branches
+          </button>
+          <button class="branch-tab" onclick="filterBranch('active', this)">
+            🟢 Active
+          </button>
+          <button class="branch-tab" onclick="filterBranch('upcoming', this)">
+            🟡 Upcoming
+          </button>
+          <button class="branch-tab" onclick="filterBranch('planned', this)">
+            ⚪ Planned
+          </button>
+        </div>
+
+        <!-- Branch cards -->
+        <div class="branch-grid">
+          <!-- 1: Kathmandu HQ -->
+          <div class="branch-card show" data-status="active">
+            <div class="branch-card-top">
+              <img src="/ktmbranch.jpeg" />
+              <div class="branch-card-tint"></div>
+              <div class="branch-card-badge">🏢 Headquarters</div>
+              <div class="branch-status">
+                <span class="branch-status-dot active"></span
+                ><span
+                  style="font-size: 0.67rem; font-weight: 700; color: #16a34a"
+                  >Active</span
+                >
+              </div>
+              <div class="branch-city">Kathmandu</div>
+            </div>
+            <div class="branch-body">
+              <div class="branch-name">Kathmandu Headquarters</div>
+              <div class="branch-addr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                New Baneshwor, Kathmandu Metropolitan City, Bagmati Province
+              </div>
+              <div class="branch-details">
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"
+                    /></svg
+                  >+977 1 000 0000
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12" />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >hello@aerosan.np
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" /></svg
+                  >Sun–Fri 9am–5pm
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" /></svg
+                  >12 Staff Members
+                </div>
+              </div>
+              <div class="branch-footer">
+                <a
+                  href="https://maps.google.com/?q=Kathmandu"
+                  target="_blank"
+                  class="b-btn b-btn-outline"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" /></svg
+                  >View Map</a
+                >
+                <a
+                  href="mailto:kathmandu@aerosan.np"
+                  class="b-btn b-btn-primary"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >Email Branch</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 2: Pokhara -->
+          <div class="branch-card show" data-status="active">
+            <div class="branch-card-top">
+              <img src="/pokharabranch.png" alt="Pokhara" />
+              <div class="branch-card-tint"></div>
+              <div class="branch-card-badge">🏙️ Regional Branch</div>
+              <div class="branch-status">
+                <span class="branch-status-dot active"></span
+                ><span
+                  style="font-size: 0.67rem; font-weight: 700; color: #16a34a"
+                  >Active</span
+                >
+              </div>
+              <div class="branch-city">Pokhara</div>
+            </div>
+            <div class="branch-body">
+              <div class="branch-name">Pokhara Regional Branch</div>
+              <div class="branch-addr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Prithvi Chowk, Pokhara Metropolitan City, Gandaki Province
+              </div>
+              <div class="branch-details">
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"
+                    /></svg
+                  >+977 61 000 000
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12" />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >pokhara@aerosan.np
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" /></svg
+                  >Sun–Fri 9am–5pm
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" /></svg
+                  >6 Staff Members
+                </div>
+              </div>
+              <div class="branch-footer">
+                <a
+                  href="https://maps.google.com/?q=Pokhara,Nepal"
+                  target="_blank"
+                  class="b-btn b-btn-outline"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" /></svg
+                  >View Map</a
+                >
+                <a href="mailto:pokhara@aerosan.np" class="b-btn b-btn-primary"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >Email Branch</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 3: Biratnagar -->
+          <div class="branch-card show" data-status="active">
+            <div class="branch-card-top">
+              <img src="/chitwan.jpeg" alt="Biratnagar" />
+              <div class="branch-card-tint"></div>
+              <div class="branch-card-badge">🏙️ Regional Branch</div>
+              <div class="branch-status">
+                <span class="branch-status-dot active"></span
+                ><span
+                  style="font-size: 0.67rem; font-weight: 700; color: #16a34a"
+                  >Active</span
+                >
+              </div>
+              <div class="branch-city">Biratnagar</div>
+            </div>
+            <div class="branch-body">
+              <div class="branch-name">Biratnagar Regional Branch</div>
+              <div class="branch-addr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Traffic Chowk, Biratnagar Metropolitan City, Koshi Province
+              </div>
+              <div class="branch-details">
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"
+                    /></svg
+                  >+977 21 000 000
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12" />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >biratnagar@aerosan.np
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" /></svg
+                  >Sun–Fri 9am–5pm
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" /></svg
+                  >5 Staff Members
+                </div>
+              </div>
+              <div class="branch-footer">
+                <a
+                  href="https://maps.google.com/?q=Biratnagar,Nepal"
+                  target="_blank"
+                  class="b-btn b-btn-outline"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" /></svg
+                  >View Map</a
+                >
+                <a
+                  href="mailto:biratnagar@aerosan.np"
+                  class="b-btn b-btn-primary"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >Email Branch</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 4: Bharatpur -->
+          <div class="branch-card show" data-status="active">
+            <div class="branch-card-top">
+              <img src="/biratnagar.png" alt="Bharatpur" />
+              <div class="branch-card-tint"></div>
+              <div class="branch-card-badge">🏙️ Regional Branch</div>
+              <div class="branch-status">
+                <span class="branch-status-dot active"></span
+                ><span
+                  style="font-size: 0.67rem; font-weight: 700; color: #16a34a"
+                  >Active</span
+                >
+              </div>
+              <div class="branch-city">Bharatpur</div>
+            </div>
+            <div class="branch-body">
+              <div class="branch-name">Bharatpur Regional Branch</div>
+              <div class="branch-addr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Narayangadh, Bharatpur Metropolitan City, Bagmati Province
+              </div>
+              <div class="branch-details">
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"
+                    /></svg
+                  >+977 56 000 000
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12" />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >bharatpur@aerosan.np
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" /></svg
+                  >Sun–Fri 9am–5pm
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" /></svg
+                  >4 Staff Members
+                </div>
+              </div>
+              <div class="branch-footer">
+                <a
+                  href="https://maps.google.com/?q=Bharatpur,Nepal"
+                  target="_blank"
+                  class="b-btn b-btn-outline"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" /></svg
+                  >View Map</a
+                >
+                <a
+                  href="mailto:bharatpur@aerosan.np"
+                  class="b-btn b-btn-primary"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >Email Branch</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 5: Lalitpur (Upcoming) -->
+          <div class="branch-card show" data-status="upcoming">
+            <div class="branch-card-top">
+              <img src="/biratnagar.png" alt="Lalitpur" />
+              <div class="branch-card-tint"></div>
+              <div class="branch-card-badge">📋 Coming Soon</div>
+              <div class="branch-status">
+                <span class="branch-status-dot upcoming"></span
+                ><span
+                  style="font-size: 0.67rem; font-weight: 700; color: #b45309"
+                  >Upcoming</span
+                >
+              </div>
+              <div class="branch-city">Lalitpur</div>
+            </div>
+            <div class="branch-body">
+              <div class="branch-name">Lalitpur Branch (Q3 2025)</div>
+              <div class="branch-addr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Pulchowk, Lalitpur Metropolitan City, Bagmati Province
+              </div>
+              <div class="branch-details">
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" /></svg
+                  >Opening Q3 2025
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12" />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >lalitpur@aerosan.np
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" /></svg
+                  >Hiring — 4 Roles
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg
+                  >3 HUBs Planned
+                </div>
+              </div>
+              <div class="branch-footer">
+                <a href="#form-section" class="b-btn b-btn-outline"
+                  >Register Interest</a
+                >
+                <a href="mailto:lalitpur@aerosan.np" class="b-btn b-btn-primary"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >Get Notified</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- 6: Butwal (Planned) -->
+          <div class="branch-card show" data-status="planned">
+            <div class="branch-card-top">
+              <img src="/biratnagar.png" alt="Butwal" />
+              <div class="branch-card-tint"></div>
+              <div class="branch-card-badge">🗓️ Planned</div>
+              <div class="branch-status">
+                <span class="branch-status-dot planned"></span
+                ><span
+                  style="
+                    font-size: 0.67rem;
+                    font-weight: 700;
+                    color: var(--muted);
+                  "
+                  >Planned</span
+                >
+              </div>
+              <div class="branch-city">Butwal</div>
+            </div>
+            <div class="branch-body">
+              <div class="branch-name">Butwal Branch (2026)</div>
+              <div class="branch-addr">
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                Butwal Sub-Metropolitan City, Lumbini Province
+              </div>
+              <div class="branch-details">
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" /></svg
+                  >Opening 2026
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12" />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >butwal@aerosan.np
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    /></svg
+                  >Seeking Funding
+                </div>
+                <div class="bd-item">
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg
+                  >5 HUBs Planned
+                </div>
+              </div>
+              <div class="branch-footer">
+                <a href="#form-section" class="b-btn b-btn-outline"
+                  >Partner With Us</a
+                >
+                <a href="mailto:butwal@aerosan.np" class="b-btn b-btn-primary"
+                  ><svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path
+                      d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                    />
+                    <polyline points="22,6 12,13 2,6" /></svg
+                  >Express Interest</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end branch-grid -->
+      </div>
+    </section>
+
+    <!-- ═══ FAQ ═══ -->
+    <section class="faq-section">
+      <div class="wrap">
+        <div class="sec-head center" data-r>
+          <div class="eyebrow">FAQ</div>
+          <h2 class="display d-md">Common questions</h2>
+          <p class="body-md">
+            Quick answers to what we're most often asked by partners,
+            municipalities, and investors.
+          </p>
+        </div>
+        <div class="faq-wrap">
+          <div class="faq-item">
+            <div class="faq-q" onclick="faq(this)">
+              What types of organisations do you partner with?
+              <div class="faq-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              We work with city municipalities, development donors, UN agencies,
+              impact investors, research institutions, NGOs, and cooperatives.
+              Any organisation aligned with sustainable sanitation, MHM access,
+              gender equity, or circular economy in Nepal is a potential
+              partner.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="faq(this)">
+              How long does a HUB deployment take?
+              <div class="faq-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              From site selection to operational handover, a standard Aerosan
+              HUB deployment takes 4–7 months including site assessment, civil
+              works, IoT installation, bio-digester commissioning, and full
+              operator training.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="faq(this)">
+              What MHM facilities are included in every HUB?
+              <div class="faq-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              Every HUB includes sanitary product vending machines, hygienic
+              disposal bins, privacy screens, a clean changing space, and a
+              dedicated female section with secure entry and enhanced safety
+              lighting — MHM-compliant as a standard feature.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="faq(this)">
+              Does Aerosan require government funding to operate?
+              <div class="faq-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              No. Each HUB generates operational surplus from five revenue
+              streams — user fees, biogas sales, organic fertilizer, on-site
+              advertising, and training licences. Government support may fund
+              construction but is not required for operations.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="faq(this)">
+              Which branch should I contact for my city?
+              <div class="faq-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              Use the branch filter above to find the office serving your
+              province. For Bagmati Province contact Kathmandu HQ, for Gandaki
+              contact Pokhara, for Koshi contact Biratnagar, and for Narayani
+              contact Bharatpur. For other provinces, reach out to
+              hello@aerosan.np.
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="faq(this)">
+              How can researchers or journalists engage?
+              <div class="faq-icon">
+                <svg
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
+              </div>
+            </div>
+            <div class="faq-body">
+              We welcome research collaborations, site visits, and media
+              inquiries. Select "Research Partnership" or "Media & Press" in the
+              form above and our team will respond within 48 hours to arrange an
+              introductory call.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section style="padding: 0 0 88px; background: var(--bg)">
+      <div class="wrap">
+        <div class="cta-box" data-r>
+          <div class="cta-box-orb"></div>
+          <div style="position: relative; z-index: 1">
+            <div class="eyebrow" style="color: rgba(255, 255, 255, 0.65)">
+              <span style="background: rgba(255, 255, 255, 0.35)"></span>Ready
+              to move forward?
+            </div>
+            <h2>Build dignified sanitation in your city.</h2>
+            <p>
+              Every partnership starts with a single message. Fill in the form
+              above and our team will reach out within 48 hours to explore what
+              an Aerosan HUB could look like in your municipality.
+            </p>
+          </div>
+          <div class="btn-group" style="position: relative; z-index: 1">
+            <a href="#form-section" class="btn btn-white"
+              >Write to Us
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M22 2L11 13M22 2L15 22 11 13 2 9l20-7z" /></svg
+            ></a>
+            <a
+              href="model.html"
+              class="btn"
+              style="
+                background: rgba(255, 255, 255, 0.14);
+                color: #fff;
+                border: 1px solid rgba(255, 255, 255, 0.22);
+              "
+              >Explore the Model</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================= -->
+    <!-- ANIMATED FOOTER · Aerosan · Pure HTML + CSS   -->
+    <!-- ============================================= -->
+    <footer class="dk-footer">
+      <div class="container">
+        <!-- Row 1: Brand Box (absolute) + Contact Info -->
+        <div class="footer-row">
+          <div class="footer-col footer-col-4">
+            <!-- Brand Box with floating effect -->
+            <div class="dk-footer-box-info">
+              <a href="index.html" class="footer-logo">
+                <img
+                  src="/logo.avif"
+                  alt="Aerosan logo"
+                  class="footer-logo-img"
+                />
+              </a>
+              <p class="footer-info-text">
+                Gender-friendly, menstrual hygiene-inclusive, environmentally
+                sustainable smart public toilet service — built for every person
+                in urban Nepal.
+              </p>
+              <div class="footer-social-link">
+                <h3>Follow us</h3>
+                <ul>
+                  <li>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Award Badge (animated) -->
+            <div class="footer-awarad">
+              <img src="/logo.avif" alt="award" />
+              <p>🏆 Best Design 2026</p>
+            </div>
+          </div>
+
+          <!-- Right side: Contact + Links + Subscribe -->
+          <div class="footer-col footer-col-8">
+            <!-- Contact Row -->
+            <div class="footer-contact-row">
+              <div class="footer-contact-col">
+                <div class="contact-us">
+                  <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="contact-info">
+                    <h3>Kathmandu, Nepal</h3>
+                    <p>Baneshwor, 44600</p>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-contact-col">
+                <div class="contact-us contact-us-last">
+                  <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                  <div class="contact-info">
+                    <h3>+977 1 5353 711</h3>
+                    <p>Give us a call</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Links & Subscribe Row -->
+            <div class="footer-links-row">
+              <div class="footer-links-col">
+                <div class="footer-widget footer-left-widget">
+                  <div class="section-heading">
+                    <h3>Useful Links</h3>
+                    <span class="animate-border"></span>
+                  </div>
+                  <div class="footer-links-list">
+                    <ul>
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">Services</a></li>
+                      <li><a href="#">Projects</a></li>
+                      <li><a href="#">Our Team</a></li>
+                    </ul>
+                    <ul>
+                      <li><a href="#">Contact us</a></li>
+                      <li><a href="#">Blog</a></li>
+                      <li><a href="#">Testimonials</a></li>
+                      <li><a href="#">FAQ</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-links-col">
+                <div class="footer-widget">
+                  <div class="section-heading">
+                    <h3>Subscribe</h3>
+                    <span class="animate-border"></span>
+                  </div>
+                  <p>
+                    Stay updated with our latest news and innovations in smart
+                    sanitation.
+                  </p>
+                  <form action="#" class="dk-footer-form">
+                    <input type="email" placeholder="Email Address" required />
+                    <button type="submit">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="copyright">
+        <div class="container">
+          <div class="copyright-row">
+            <div class="copyright-col">
+              <span>© 2025 Aerosan. All rights reserved.</span>
+            </div>
+            <div class="copyright-col copyright-menu">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to Top Button -->
+      <div class="back-to-top">
+        <button class="btn-top" title="Back to Top">
+          <i class="fas fa-chevron-up"></i>
+        </button>
+      </div>
+    </footer>
+
+    <script>
+      // Nav
+      const nav = document.getElementById("nav");
+      window.addEventListener(
+        "scroll",
+        () => nav.classList.toggle("solid", scrollY > 30),
+        { passive: true },
+      );
+
+      // Mobile menu
+      const ham = document.getElementById("ham"),
+        mob = document.getElementById("mob");
+      ham.addEventListener("click", () => {
+        ham.classList.toggle("open");
+        mob.classList.toggle("open");
       });
-      return;
-    }
 
-    const btn = document.getElementById('submit-btn');
-    btn.textContent = 'Sending…';
-    btn.disabled = true;
-    btn.style.opacity = '0.7';
+      // Scroll reveal
+      const ro = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("on");
+              ro.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.07, rootMargin: "0px 0px -40px 0px" },
+      );
+      document.querySelectorAll("[data-r]").forEach((el) => ro.observe(el));
 
-    setTimeout(() => {
-      document.getElementById('form-view').style.display = 'none';
-      const sv = document.getElementById('success-view');
-      sv.style.display = 'flex';
-    }, 1200);
-  }
-</script>
-</body>
+      // Branch filter
+      function filterBranch(status, btn) {
+        document
+          .querySelectorAll(".branch-tab")
+          .forEach((t) => t.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(".branch-card").forEach((card) => {
+          if (status === "all" || card.dataset.status === status) {
+            card.classList.add("show");
+          } else {
+            card.classList.remove("show");
+          }
+        });
+      }
+
+      // FAQ accordion
+      function faq(btn) {
+        const item = btn.parentElement;
+        const isOpen = item.classList.contains("open");
+        document
+          .querySelectorAll(".faq-item.open")
+          .forEach((i) => i.classList.remove("open"));
+        if (!isOpen) item.classList.add("open");
+      }
+
+      // Form submit
+      function doSubmit() {
+        const required = [
+          { id: "f1", val: document.getElementById("f1").value.trim() },
+          { id: "f2", val: document.getElementById("f2").value.trim() },
+          { id: "f3", val: document.getElementById("f3").value.trim() },
+          { id: "f7", val: document.getElementById("f7").value },
+          { id: "f8", val: document.getElementById("f8").value.trim() },
+        ];
+        let ok = true;
+        required.forEach(({ id, val }) => {
+          const el = document.getElementById(id);
+          if (!val) {
+            ok = false;
+            el.classList.add("err");
+            el.style.borderColor = "var(--red)";
+            el.style.boxShadow = "0 0 0 3px rgba(224,85,85,0.1)";
+            el.addEventListener(
+              "input",
+              () => {
+                el.classList.remove("err");
+                el.style.borderColor = "";
+                el.style.boxShadow = "";
+              },
+              { once: true },
+            );
+          }
+        });
+        if (!ok) return;
+
+        const btn = document.getElementById("sub-btn");
+        btn.disabled = true;
+        btn.innerHTML =
+          '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 0.8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Sending…';
+        btn.style.opacity = "0.75";
+
+        setTimeout(() => {
+          document.getElementById("form-view").style.display = "none";
+          const sv = document.getElementById("success-view");
+          sv.style.display = "flex";
+        }, 1400);
+      }
+    </script>
+    <style>
+      @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </body>
 </html>
