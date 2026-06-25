@@ -1,282 +1,520 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aerosan — Services</title>
-    <link rel="stylesheet" href="style.css" />
-       <link
+    <link rel="stylesheet" href="/style.css" />
+          <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
     />
     <style>
-        /* SERVICES-ONLY */
-        .svc-block {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 72px;
-            align-items: center;
-            padding: 72px 0;
-            border-bottom: 1px solid var(--border-soft);
-        }
+      .svc-block {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+        padding: 72px 0;
+        border-bottom: 1px solid var(--border-soft);
+      }
+      .svc-block:last-of-type {
+        border-bottom: none;
+      }
+      .svc-block.flip {
+        direction: rtl;
+      }
+      .svc-block.flip > * {
+        direction: ltr;
+      }
+      .svc-img {
+        border-radius: var(--r-xl);
+        overflow: hidden;
+        height: 420px;
+        border: 1px solid var(--border-soft);
+        box-shadow: var(--shadow-md);
+        position: relative;
+      }
+      .svc-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .svc-block:hover .svc-img img {
+        transform: scale(1.04);
+      }
+      .svc-num {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-size: 4rem;
+        font-weight: 900;
+        color: var(--blue-pale);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .svc-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--blue-pale);
+        border: 1px solid var(--blue-border);
+        border-radius: 100px;
+        padding: 4px 13px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        color: var(--blue);
+        margin-bottom: 14px;
+      }
+      .svc-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 800;
+        font-size: clamp(1.3rem, 2.2vw, 1.85rem);
+        color: var(--ink);
+        line-height: 1.2;
+        margin-bottom: 13px;
+        letter-spacing: -0.025em;
+      }
+      .svc-desc {
+        font-size: 0.88rem;
+        color: var(--body);
+        line-height: 1.76;
+        margin-bottom: 22px;
+      }
+      .svc-pts {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+      .svc-pt {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 0.82rem;
+        color: var(--body);
+      }
+      .svc-pt-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--blue-dim);
+        border: 1px solid var(--blue-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--blue);
+        font-size: 0.62rem;
+        font-weight: 800;
+      }
 
-        .svc-block:last-of-type {
-            border-bottom: none;
-        }
+      /* CAROUSEL */
+      .carousel-section {
+        padding: 80px 0;
+        background: var(--bg-3);
+        border-top: 1px solid var(--border-soft);
+        overflow: hidden;
+      }
+      .carousel-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        margin-bottom: 40px;
+      }
+      .carousel-header .sec-head {
+        margin-bottom: 0;
+      }
+      .carousel-controls {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0;
+      }
+      .carousel-btn {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1.5px solid var(--border-soft);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--body);
+        cursor: pointer;
+        transition: all 0.22s;
+        box-shadow: var(--shadow-sm);
+        flex-shrink: 0;
+      }
+      .carousel-btn:hover {
+        background: var(--blue);
+        border-color: var(--blue);
+        color: #fff;
+        box-shadow: 0 4px 14px var(--blue-glow);
+      }
+      .carousel-btn:disabled {
+        opacity: 0.35;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .carousel-outer {
+        overflow: hidden;
+        position: relative;
+      }
+      .carousel-outer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 40px;
+        background: linear-gradient(to right, var(--bg-3), transparent);
+        z-index: 2;
+        pointer-events: none;
+      }
+      .carousel-outer::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 40px;
+        background: linear-gradient(to left, var(--bg-3), transparent);
+        z-index: 2;
+        pointer-events: none;
+      }
+      .carousel-track {
+        display: flex;
+        gap: 20px;
+        transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+        padding: 8px 4px 16px;
+      }
+      .c-card {
+        min-width: 300px;
+        max-width: 300px;
+        background: #fff;
+        border: 1px solid var(--border-soft);
+        border-radius: var(--r-xl);
+        box-shadow: var(--shadow-sm);
+        overflow: hidden;
+        transition:
+          transform 0.28s,
+          box-shadow 0.28s,
+          border-color 0.28s;
+        flex-shrink: 0;
+      }
+      .c-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--blue-border);
+      }
+      .c-card-img {
+        height: 170px;
+        overflow: hidden;
+        position: relative;
+      }
+      .c-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.44s;
+      }
+      .c-card:hover .c-card-img img {
+        transform: scale(1.07);
+      }
+      .c-card-img-tint {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(26, 43, 60, 0.35) 0%,
+          transparent 60%
+        );
+      }
+      .c-card-tag {
+        position: absolute;
+        bottom: 12px;
+        left: 14px;
+        background: var(--blue-pale);
+        border: 1px solid var(--blue-border);
+        border-radius: 100px;
+        padding: 3px 11px;
+        font-size: 0.67rem;
+        font-weight: 700;
+        color: var(--blue);
+        letter-spacing: 0.07em;
+      }
+      .c-card-body {
+        padding: 20px 20px 22px;
+      }
+      .c-card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: var(--blue-dim);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blue);
+        margin-bottom: 12px;
+      }
+      .c-card-title {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        font-weight: 800;
+        font-size: 0.95rem;
+        color: var(--ink);
+        margin-bottom: 7px;
+        letter-spacing: -0.015em;
+        line-height: 1.3;
+      }
+      .c-card-desc {
+        font-size: 0.79rem;
+        color: var(--muted);
+        line-height: 1.62;
+        margin-bottom: 14px;
+      }
+      .c-card-link {
+        font-size: 0.77rem;
+        font-weight: 700;
+        color: var(--blue);
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: gap 0.18s;
+      }
+      .c-card:hover .c-card-link {
+        gap: 8px;
+      }
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        gap: 7px;
+        margin-top: 28px;
+      }
+      .c-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--blue-border);
+        border: none;
+        cursor: pointer;
+        transition: all 0.22s;
+        padding: 0;
+      }
+      .c-dot.active {
+        background: var(--blue);
+        width: 24px;
+        border-radius: 4px;
+      }
 
+      @media (max-width: 860px) {
+        .svc-block,
         .svc-block.flip {
-            direction: rtl;
+          grid-template-columns: 1fr;
+          direction: ltr;
+          gap: 32px;
         }
-
-        .svc-block.flip>* {
-            direction: ltr;
-        }
-
         .svc-img {
-            border-radius: var(--r-xl);
-            overflow: hidden;
-            height: 420px;
-            border: 1px solid var(--border-soft);
-            box-shadow: var(--shadow-md);
-            position: relative;
+          height: 280px;
         }
-
-        .svc-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
+        .carousel-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 16px;
         }
-
-        .svc-block:hover .svc-img img {
-            transform: scale(1.04);
+        .c-card {
+          min-width: 260px;
+          max-width: 260px;
         }
-
-        .svc-num {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--blue-pale);
-            letter-spacing: -0.04em;
-            line-height: 1;
-            margin-bottom: 6px;
+      }
+      @media (max-width: 640px) {
+        .c-card {
+          min-width: 240px;
+          max-width: 240px;
         }
+      }
+    </style>
+    <style>
+  /* ===== PILLARS - CONTINUOUS SCROLL ===== */
+  .pillars-scroll-container {
+    position: relative;
+    padding: 8px 0 10px;
+    overflow: hidden;
+  }
 
-        .svc-tag {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--blue-pale);
-            border: 1px solid var(--blue-border);
-            border-radius: 100px;
-            padding: 4px 13px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            color: var(--blue);
-            margin-bottom: 14px;
-        }
+  .pillars-scroll-wrap {
+    overflow: hidden;
+    position: relative;
+    border-radius: var(--r-xl);
+  }
 
-        .svc-title {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-weight: 800;
-            font-size: clamp(1.3rem, 2.2vw, 1.85rem);
-            color: var(--ink);
-            line-height: 1.2;
-            margin-bottom: 13px;
-            letter-spacing: -0.025em;
-        }
+  .pillars-scroll-track {
+    display: flex;
+    gap: 24px;
+    animation: scrollPillars 30s linear infinite;
+    will-change: transform;
+    width: max-content;
+  }
 
-        .svc-desc {
-            font-size: 0.88rem;
-            color: var(--body);
-            line-height: 1.76;
-            margin-bottom: 22px;
-        }
+  .pillars-scroll-track:hover {
+    animation-play-state: paused;
+  }
 
-        .svc-pts {
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-        }
+  @keyframes scrollPillars {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
 
-        .svc-pt {
-            display: flex;
-            align-items: center;
-            gap: 9px;
-            font-size: 0.82rem;
-            color: var(--body);
-        }
+  .pillar-card {
+    flex: 0 0 calc(33.333% - 16px);
+    min-width: 300px;
+    max-width: 360px;
+    background: #fff;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--r-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
 
-        .svc-pt-dot {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--blue-dim);
-            border: 1px solid var(--blue-border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            color: var(--blue);
-            font-size: 0.62rem;
-            font-weight: 800;
-        }
+  .pillar-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--blue-border);
+  }
 
-        .mini-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
+  .pillar-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
 
-        .mini-card {
-            padding: 22px 20px;
-        }
+  .pillar-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
 
-        .mini-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 11px;
-            background: var(--blue-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--blue);
-            margin-bottom: 13px;
-        }
+  .pillar-card:hover .pillar-image img {
+    transform: scale(1.05);
+  }
 
-        .mini-title {
-            font-size: 0.88rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin-bottom: 6px;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+  .pillar-image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(26, 43, 60, 0.4) 0%, transparent 60%);
+  }
 
-        .mini-desc {
-            font-size: 0.79rem;
-            color: var(--muted);
-            line-height: 1.62;
-        }
+  .pillar-content {
+    padding: 24px 24px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 
-        @media(max-width:860px) {
+  .pillar-num {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: -0.04em;
+    color: var(--blue-pale);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
 
-            .svc-block,
-            .svc-block.flip {
-                grid-template-columns: 1fr;
-                direction: ltr;
-                gap: 32px;
-            }
+  .pillar-title {
+    font-family: "Plus Jakarta Sans", sans-serif;
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 10px;
+    letter-spacing: -0.015em;
+  }
 
-            .svc-img {
-                height: 280px;
-            }
+  .pillar-desc {
+    font-size: 0.82rem;
+    color: var(--body);
+    line-height: 1.65;
+    margin-bottom: 14px;
+    flex: 1;
+  }
 
-            .mini-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
+  .pillar-pts {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: auto;
+  }
 
-        @media(max-width:640px) {
-            .mini-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+  .pillar-pts li {
+    font-size: 0.76rem;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1.4;
+  }
 
+  .pillar-pts li span {
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 0.7rem;
+  }
 
-        /* ADD mini-image styles */
-        .mini-image {
-            width: 60px;
-            height: 60px;
-            border-radius: 14px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            flex-shrink: 0;
-            /* text-align: center; */
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 1024px) {
+    .pillar-card {
+      flex: 0 0 calc(50% - 12px);
+      min-width: 260px;
+    }
+    @keyframes scrollPillars {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  }
 
+  @media (max-width: 768px) {
+    .pillar-card {
+      flex: 0 0 calc(85% - 8px);
+      min-width: 240px;
+      max-width: 320px;
+    }
+    .pillars-scroll-track {
+      gap: 16px;
+      animation-duration: 25s;
+    }
+    .pillar-image {
+      height: 170px;
+    }
+    .pillar-content {
+      padding: 20px 18px 22px;
+    }
+  }
 
-        }
-
-        .mini-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .mini-card:hover .mini-image img {
-            transform: scale(1.1);
-        }
-
-        /* Subtle colored left border accent on hover */
-        .mini-card {
-            position: relative;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            /* text-align: center; */
-        }
-
-        .mini-card::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            border-radius: 3px 0 0 3px;
-            background: #2563eb;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .mini-card:hover::before {
-            opacity: 1;
-        }
-
-        .mini-card[data-d="1"]::before,
-        .mini-card[data-d="2"]::before,
-        .mini-card[data-d="6"]::before {
-            background: #2563eb;
-        }
-
-        .mini-card[data-d="3"]::before {
-            background: #7c3aed;
-        }
-
-        .mini-card[data-d="4"]::before {
-            background: #16a34a;
-        }
-
-        .mini-card[data-d="5"]::before {
-            background: #ea580c;
-        }
-
-        /* Ensure card padding accommodates the left border */
-        .mini-card {
-            padding: 1.25rem 1.25rem 1.25rem 1.5rem;
-        }
-
-        /* Responsive grid */
-        .mini-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-            margin-top: 2.5rem;
-        }
-
-        @media (max-width: 992px) {
-            .mini-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .mini-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .nav-logo img {
+  @media (max-width: 480px) {
+    .pillar-card {
+      flex: 0 0 calc(88% - 6px);
+      min-width: 200px;
+    }
+    .pillar-image {
+      height: 150px;
+    }
+    .pillar-title {
+      font-size: 0.95rem;
+    }
+  }
+  .nav-logo img {
     height: 40px;
     width: auto;
     display: block;
@@ -287,7 +525,262 @@
     width: auto;
     display: block;
 }
+ 
+</style>
+       <style>
+      /* Add to your existing styles */
+.btn-top {
+    display: none; /* Hidden by default */
+    /* ... rest of your styles ... */
+}
     </style>
+
+<style>
+  /* ===== BEYOND THE CORE HUB - CONTINUOUS SCROLL ===== */
+.carousel-section {
+  padding: 80px 0;
+  background: var(--bg-3);
+  border-top: 1px solid var(--border-soft);
+  overflow: hidden;
+}
+
+.carousel-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.carousel-header .sec-head {
+  margin-bottom: 0;
+}
+
+.carousel-controls {
+  display: none; /* Hide buttons since we're auto-scrolling */
+}
+
+.carousel-outer {
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--r-xl);
+}
+
+.carousel-outer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(to right, var(--bg-3), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.carousel-outer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  background: linear-gradient(to left, var(--bg-3), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  animation: scrollCarousel 40s linear infinite;
+  will-change: transform;
+  padding: 8px 4px 16px;
+}
+
+.carousel-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scrollCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.c-card {
+  min-width: 300px;
+  max-width: 300px;
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: transform 0.28s, box-shadow 0.28s, border-color 0.28s;
+  flex-shrink: 0;
+}
+
+.c-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--blue-border);
+}
+
+.c-card-img {
+  height: 170px;
+  overflow: hidden;
+  position: relative;
+}
+
+.c-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.44s;
+}
+
+.c-card:hover .c-card-img img {
+  transform: scale(1.07);
+}
+
+.c-card-img-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(26, 43, 60, 0.35) 0%,
+    transparent 60%
+  );
+}
+
+.c-card-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  background: var(--blue-pale);
+  border: 1px solid var(--blue-border);
+  border-radius: 100px;
+  padding: 3px 11px;
+  font-size: 0.67rem;
+  font-weight: 700;
+  color: var(--blue);
+  letter-spacing: 0.07em;
+}
+
+.c-card-body {
+  padding: 20px 20px 22px;
+}
+
+.c-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--blue-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.c-card-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin-bottom: 7px;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.c-card-desc {
+  font-size: 0.79rem;
+  color: var(--muted);
+  line-height: 1.62;
+  margin-bottom: 14px;
+}
+
+.c-card-link {
+  font-size: 0.77rem;
+  font-weight: 700;
+  color: var(--blue);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: gap 0.18s;
+  text-decoration: none;
+}
+
+.c-card:hover .c-card-link {
+  gap: 8px;
+}
+
+/* Hide dots */
+.carousel-dots {
+  display: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .c-card {
+    min-width: 260px;
+    max-width: 260px;
+  }
+  @keyframes scrollCarousel {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-section {
+    padding: 60px 0;
+  }
+  
+  .carousel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .c-card {
+    min-width: 240px;
+    max-width: 240px;
+  }
+  
+  .carousel-track {
+    gap: 16px;
+    animation-duration: 30s;
+  }
+  
+  .c-card-img {
+    height: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .c-card {
+    min-width: 220px;
+    max-width: 220px;
+  }
+  
+  .carousel-track {
+    animation-duration: 25s;
+  }
+  
+  .c-card-img {
+    height: 130px;
+  }
+  
+  .c-card-body {
+    padding: 16px 16px 18px;
+  }
+}
+</style>
         <style>
       /* ----- Reset & Base ----- */
 
@@ -890,339 +1383,706 @@
         }
       }
     </style>
-        <style>
-      /* Add to your existing styles */
-.btn-top {
-    display: none; /* Hidden by default */
-    /* ... rest of your styles ... */
-}
-    </style>
-</head>
-
-<body>
+  </head>
+  <body>
+      <!-- NAV -->
     <nav id="nav">
-        <div class="nav-inner">
-         <a href="index.html" class="nav-logo">
-                <img src="/logo.avif"  alt="">
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="model.html">Model</a></li>
-                <li><a href="services.html" class="active">Services</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="nav-right"><a href="contact.html" class="btn btn-primary">Get Started <svg width="13"
-                        height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg></a></div>
-            <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="/logo.avif" alt="">
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li><li><a
+              href="model.html">Model</a></li>
+          <li><a href="services.html">Services</a></li><li><a
+              href="projects.html">Projects</a></li>
+          <li><a href="team.html">Team</a></li><li><a
+              href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="donate.html" class="btn btn-primary"
+            style="background:linear-gradient(135deg,#E05555,var(--blue));">
+            <svg width="13" height="13" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+            Donate Now
+          </a>
         </div>
+        <div class="hamburger"
+          id="ham"><span></span><span></span><span></span></div>
+      </div>
     </nav>
-    <div class="mob-menu" id="mob"><a href="index.html">Home</a><a href="model.html">Model</a><a
-            href="services.html">Services</a><a href="projects.html">Projects</a><a href="team.html">Team</a><a
-            href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="contact.html"
-            class="btn btn-primary">Get Started</a></div>
+    <div class="mob-menu" id="mob">
+      <a href="index.html">Home</a><a href="model.html">Model</a><a
+        href="services.html">Services</a>
+      <a href="projects.html">Projects</a><a href="team.html">Team</a><a
+        href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="btn btn-primary"
+        style="justify-content:center;background:linear-gradient(135deg,#E05555,var(--blue));">&#10084;
+        Donate Now</a>
+    </div>
 
-    <!-- PAGE HERO -->
     <section class="page-hero">
-        <div class="orb orb-blue" style="width:480px;height:480px;right:-80px;top:-100px;"></div>
-        <div class="orb orb-teal" style="width:320px;height:320px;left:-60px;bottom:-60px;"></div>
-        <div class="wrap" style="position:relative;z-index:2;">
-            <div class="eyebrow">What We Deliver</div>
-            <h1>Six pillars of the<br />Aerosan system.</h1>
-            <p class="lead">From smart IoT monitoring to menstrual hygiene management and waste-to-energy technology —
-                every Aerosan service integrates into a single self-sustaining urban sanitation platform.</p>
-        </div>
+      <div
+        class="orb orb-blue"
+        style="width: 480px; height: 480px; right: -80px; top: -100px"
+      ></div>
+      <div
+        class="orb orb-teal"
+        style="width: 320px; height: 320px; left: -60px; bottom: -60px"
+      ></div>
+      <div class="wrap" style="position: relative; z-index: 2">
+        <div class="eyebrow">What We Deliver</div>
+        <h1>Six pillars of the<br />Aerosan system.</h1>
+        <p class="lead">
+          From smart IoT monitoring to menstrual hygiene management and
+          waste-to-energy — every service integrates into one self-sustaining
+          urban sanitation platform.
+        </p>
+      </div>
     </section>
 
-    <!-- SERVICE BLOCKS -->
-    <div class="wrap">
+<!-- ===== SIX PILLARS - CONTINUOUS SCROLLING ===== -->
+<section class="section section-alt" id="pillars-scroll">
+  <div class="wrap">
+    <div class="sec-head" data-r>
+      <div class="eyebrow">What We Deliver</div>
+      <h2 class="display d-lg">Six pillars of the<br />Aerosan system.</h2>
+      <p class="body-md" style="max-width:520px;">
+        From smart IoT monitoring to menstrual hygiene management and
+        waste‑to‑energy — every service integrates into one self‑sustaining
+        urban sanitation platform.
+      </p>
+    </div>
 
-        <!-- 01 -->
-        <div class="svc-block" data-r>
-            <div class="svc-img">
-                <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=900&q=85"
-                    alt="Smart Facilities" />
-                <div
-                    style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,43,60,0.2) 0%,transparent 55%);">
-                </div>
-                <div class="float-badge" style="position:absolute;bottom:20px;left:20px;">
-                    <div class="chip chip-blue"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                            <polyline points="9 12 11 14 15 10" />
-                        </svg></div>
-                    <div>
-                        <div class="float-badge-num">24/7</div>
-                        <div class="float-badge-label">Automated<br />monitoring</div>
-                    </div>
-                </div>
+    <!-- CONTINUOUS SCROLL WRAPPER -->
+    <div class="pillars-scroll-container" data-r>
+      <div class="pillars-scroll-wrap" id="pillarsWrap">
+        <div class="pillars-scroll-track" id="pillarsTrack">
+          
+          <!-- Card 1 -->
+          <div class="pillar-card">
+            <div class="pillar-image">
+              <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80" alt="Hygienic Smart Facilities">
+              <div class="pillar-image-overlay"></div>
             </div>
-            <div>
-                <div class="svc-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                    </svg> Core Service</div>
-                <div class="svc-num">01</div>
-                <div class="svc-title">Hygienic Smart Facilities</div>
-                <p class="svc-desc">Aerosan HUBs maintain consistently clean, safe conditions through touchless
-                    fixtures, automated cleaning alerts, and real-time sensor data — eliminating the reactive
-                    maintenance cycle that causes most public toilet failures in Nepal.</p>
-                <ul class="svc-pts">
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Automated occupancy-based cleaning triggers
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Touchless taps, dispensers, and flush systems
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Air quality and odor monitoring sensors
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Operator alert push notifications via mobile
-                    </li>
-                </ul>
+            <div class="pillar-content">
+              <div class="pillar-num">01</div>
+              <h3 class="pillar-title">Hygienic Smart Facilities</h3>
+              <p class="pillar-desc">Touchless fixtures, automated cleaning alerts, and real‑time sensor data — eliminating the reactive maintenance cycle.</p>
+              <ul class="pillar-pts">
+                <li><span>✓</span> Automated occupancy‑based cleaning</li>
+                <li><span>✓</span> Touchless taps &amp; flush systems</li>
+                <li><span>✓</span> Air quality monitoring</li>
+              </ul>
             </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="pillar-card">
+            <div class="pillar-image">
+              <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&q=80" alt="Gender Friendly">
+              <div class="pillar-image-overlay"></div>
+            </div>
+            <div class="pillar-content">
+              <div class="pillar-num">02</div>
+              <h3 class="pillar-title">Gender‑Friendly &amp; MHM</h3>
+              <p class="pillar-desc">Dedicated female sections, sanitary vending, and safety features that make a real difference to daily dignity.</p>
+              <ul class="pillar-pts">
+                <li><span>✓</span> Women‑only secure entry</li>
+                <li><span>✓</span> Sanitary vending &amp; disposal</li>
+                <li><span>✓</span> Full wheelchair access</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="pillar-card">
+            <div class="pillar-image">
+              <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80" alt="Waste to Energy">
+              <div class="pillar-image-overlay"></div>
+            </div>
+            <div class="pillar-content">
+              <div class="pillar-num">03</div>
+              <h3 class="pillar-title">Waste‑to‑Energy Tech</h3>
+              <p class="pillar-desc">Sealed bio‑digesters convert 100% of waste into biogas for energy and certified organic fertilizer.</p>
+              <ul class="pillar-pts">
+                <li><span>✓</span> Zero river discharge</li>
+                <li><span>✓</span> Biogas for on‑site use</li>
+                <li><span>✓</span> Fertilizer for local farms</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="pillar-card">
+            <div class="pillar-image">
+              <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" alt="IoT Dashboard">
+              <div class="pillar-image-overlay"></div>
+            </div>
+            <div class="pillar-content">
+              <div class="pillar-num">04</div>
+              <h3 class="pillar-title">IoT Monitoring Dashboard</h3>
+              <p class="pillar-desc">Real‑time web dashboard tracking occupancy, cleanliness scores, energy production, and maintenance.</p>
+              <ul class="pillar-pts">
+                <li><span>✓</span> Live occupancy analytics</li>
+                <li><span>✓</span> Biogas output metering</li>
+                <li><span>✓</span> Municipal reporting</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="pillar-card">
+            <div class="pillar-image">
+              <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80" alt="Site Design">
+              <div class="pillar-image-overlay"></div>
+            </div>
+            <div class="pillar-content">
+              <div class="pillar-num">05</div>
+              <h3 class="pillar-title">Site Design &amp; Planning</h3>
+              <p class="pillar-desc">Urban site selection, architectural design, and infrastructure integration for new HUB deployments.</p>
+              <ul class="pillar-pts">
+                <li><span>✓</span> Site feasibility studies</li>
+                <li><span>✓</span> Architectural blueprints</li>
+                <li><span>✓</span> Utility integration</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="pillar-card">
+            <div class="pillar-image">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Impact Reporting">
+              <div class="pillar-image-overlay"></div>
+            </div>
+            <div class="pillar-content">
+              <div class="pillar-num">06</div>
+              <h3 class="pillar-title">Impact Reporting</h3>
+              <p class="pillar-desc">Quarterly social, environmental, and financial impact reports for donors, investors, and government.</p>
+              <ul class="pillar-pts">
+                <li><span>✓</span> Social impact metrics</li>
+                <li><span>✓</span> Environmental savings</li>
+                <li><span>✓</span> Financial transparency</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- DUPLICATE CARDS FOR SEAMLESS LOOP -->
+          <!-- Card 1 Duplicate -->
+          <div class="pillar-card">
+            <div class="pillar-image">
+              <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80" alt="Hygienic Smart Facilities">
+              <div class="pillar-image-overlay"></div>
+            </div>
+            <div class="pillar-content">
+              <div class="pillar-num">01</div>
+              <h3 class="pillar-title">Hygienic Smart Facilities</h3>
+              <p class="pillar-desc">Touchless fixtures, automated cleaning alerts, and real‑time sensor data.</p>
+              <ul class="pillar-pts">
+                <li><span>✓</span> Automated occupancy‑based cleaning</li>
+                <li><span>✓</span> Touchless taps &amp; flush systems</li>
+                <li><span>✓</span> Air quality monitoring</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2 Duplicate -->
+          <div class="pillar-card">
+            <div class="pillar-image">
+              <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=600&q=80" alt="Gender Friendly">
+              <div class="pillar-image-overlay"></div>
+            </div>
+            <div class="pillar-content">
+              <div class="pillar-num">02</div>
+              <h3 class="pillar-title">Gender‑Friendly &amp; MHM</h3>
+              <p class="pillar-desc">Dedicated female sections, sanitary vending, and safety features.</p>
+              <ul class="pillar-pts">
+                <li><span>✓</span> Women‑only secure entry</li>
+                <li><span>✓</span> Sanitary vending &amp; disposal</li>
+                <li><span>✓</span> Full wheelchair access</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3 Duplicate -->
+          <div class="pillar-card">
+            <div class="pillar-image">
+              <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80" alt="Waste to Energy">
+              <div class="pillar-image-overlay"></div>
+            </div>
+            <div class="pillar-content">
+              <div class="pillar-num">03</div>
+              <h3 class="pillar-title">Waste‑to‑Energy Tech</h3>
+              <p class="pillar-desc">Sealed bio‑digesters convert 100% of waste into biogas.</p>
+              <ul class="pillar-pts">
+                <li><span>✓</span> Zero river discharge</li>
+                <li><span>✓</span> Biogas for on‑site use</li>
+                <li><span>✓</span> Fertilizer for local farms</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+    <!-- CAROUSEL -->
+    <section class="carousel-section">
+      <div class="wrap">
+        <div class="carousel-header">
+          <div class="sec-head" style="margin-bottom: 0" data-r>
+            <div class="eyebrow">Supporting Services</div>
+            <h2 class="display d-md">Beyond the core HUB</h2>
+            <p class="body-md" style="max-width: 460px">
+              Complementary programmes that strengthen every deployment and
+              expand impact across partner communities. Swipe or use arrows to
+              explore.
+            </p>
+          </div>
+          <div class="carousel-controls" data-r>
+            <button
+              class="carousel-btn"
+              id="prev-btn"
+              onclick="moveCarousel(-1)"
+              aria-label="Previous"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+            <button
+              class="carousel-btn"
+              id="next-btn"
+              onclick="moveCarousel(1)"
+              aria-label="Next"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <!-- 02 -->
-        <div class="svc-block flip" data-r>
-            <div class="svc-img">
-                <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=900&q=85" alt="MHM & Gender" />
-                <div
-                    style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,43,60,0.2) 0%,transparent 55%);">
+        <div class="carousel-outer" id="carousel-outer">
+          <div class="carousel-track" id="carousel-track">
+            <div class="c-card">
+              <div class="c-card-img">
+                <img
+                  src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80"
+                  alt="Training"
+                />
+                <div class="c-card-img-tint"></div>
+                <span class="c-card-tag">Training</span>
+              </div>
+              <div class="c-card-body">
+                <div class="c-card-icon">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
+                    />
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
                 </div>
-                <div class="float-badge" style="position:absolute;top:20px;right:20px;">
-                    <div class="chip chip-blue"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                        </svg></div>
-                    <div>
-                        <div class="float-badge-num">97%</div>
-                        <div class="float-badge-label">Women feel<br />safer</div>
-                    </div>
+                <div class="c-card-title">Operator Training Programme</div>
+                <div class="c-card-desc">
+                  Structured certification covering hygiene, IoT tools, MHM
+                  protocols, and cooperative governance for community recruits.
                 </div>
+                <a href="contact.html" class="c-card-link"
+                  >Learn more
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                ></a>
+              </div>
             </div>
-            <div>
-                <div class="svc-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <circle cx="12" cy="12" r="10" />
-                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                    </svg> Gender & MHM</div>
-                <div class="svc-num">02</div>
-                <div class="svc-title">Gender-Friendly & MHM Inclusive Design</div>
-                <p class="svc-desc">Every Aerosan HUB is designed with women and girls at the centre — dedicated female
-                    sections, menstrual hygiene management (MHM) infrastructure, and safety features that make a real
-                    difference to daily life and dignity.</p>
-                <ul class="svc-pts">
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Dedicated women-only section with secure entry
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Sanitary vending machines and hygienic disposal bins
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Privacy screens, clean changing facilities
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Full wheelchair access, baby-care stations, safety lighting
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Emergency call buttons and well-lit pathways
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- 03 -->
-        <div class="svc-block" data-r>
-            <div class="svc-img">
-                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=900&q=85"
-                    alt="Waste to Energy" />
-                <div
-                    style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,43,60,0.2) 0%,transparent 55%);">
+            <div class="c-card">
+              <div class="c-card-img">
+                <img
+                  src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80"
+                  alt="Municipal"
+                />
+                <div class="c-card-img-tint"></div>
+                <span class="c-card-tag">Government</span>
+              </div>
+              <div class="c-card-body">
+                <div class="c-card-icon">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                  </svg>
                 </div>
-                <div class="float-badge" style="position:absolute;bottom:20px;left:20px;">
-                    <div class="chip chip-green"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                        </svg></div>
-                    <div>
-                        <div class="float-badge-num">Zero</div>
-                        <div class="float-badge-label">River<br />discharge</div>
-                    </div>
+                <div class="c-card-title">Municipal Integration</div>
+                <div class="c-card-desc">
+                  Full handover documentation, data-sharing agreements, and
+                  ongoing technical support for city government partners.
                 </div>
+                <a href="contact.html" class="c-card-link"
+                  >Learn more
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                ></a>
+              </div>
             </div>
-            <div>
-                <div class="svc-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                    </svg> CleanTech</div>
-                <div class="svc-num">03</div>
-                <div class="svc-title">Waste-to-Energy Technology</div>
-                <p class="svc-desc">Sealed anaerobic bio-digesters convert 100% of organic waste into biogas for on-site
-                    energy and certified organic fertilizer sold to local agricultural markets — protecting the Bagmati
-                    and Bishnumati rivers from ever receiving another drop of sewage.</p>
-                <ul class="svc-pts">
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Sealed bio-digester — zero open drainage
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Biogas used for on-site lighting and cooking
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Certified organic fertilizer for partner farms
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Full Bagmati river pollution elimination per HUB
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-        <!-- 04 -->
-        <div class="svc-block flip" data-r>
-            <div class="svc-img">
-                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=85"
-                    alt="IoT Dashboard" />
-                <div
-                    style="position:absolute;inset:0;background:linear-gradient(to top,rgba(26,43,60,0.2) 0%,transparent 55%);">
+            <div class="c-card">
+              <div class="c-card-img">
+                <img
+                  src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80"
+                  alt="Health"
+                />
+                <div class="c-card-img-tint"></div>
+                <span class="c-card-tag">Community Health</span>
+              </div>
+              <div class="c-card-body">
+                <div class="c-card-icon">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
                 </div>
-                <div class="float-badge" style="position:absolute;top:20px;right:20px;">
-                    <div class="chip chip-blue"><svg width="17" height="17" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="3" />
-                            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4" />
-                        </svg></div>
-                    <div>
-                        <div class="float-badge-num">Live</div>
-                        <div class="float-badge-label">Real-time<br />data feed</div>
-                    </div>
+                <div class="c-card-title">Community Health Education</div>
+                <div class="c-card-desc">
+                  School and neighbourhood MHM and hygiene programmes promoting
+                  sanitation access rights across partner communities.
                 </div>
+                <a href="contact.html" class="c-card-link"
+                  >Learn more
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                ></a>
+              </div>
             </div>
-            <div>
-                <div class="svc-tag"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2.5">
-                        <circle cx="12" cy="12" r="3" />
-                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M2 12h4M18 12h4" />
-                    </svg> Technology</div>
-                <div class="svc-num">04</div>
-                <div class="svc-title">IoT Monitoring Dashboard</div>
-                <p class="svc-desc">Municipal partners and facility operators access a unified real-time web dashboard
-                    tracking all critical HUB metrics — from occupancy and cleanliness scores to energy production and
-                    maintenance completion. Predictive, not reactive.</p>
-                <ul class="svc-pts">
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Live occupancy and usage pattern analytics
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Biogas production and energy output metering
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Maintenance scheduling and completion tracking
-                    </li>
-                    <li class="svc-pt">
-                        <div class="svc-pt-dot">✓</div>Municipal reporting and CSV data export
-                    </li>
-                </ul>
-            </div>
-        </div>
 
-    </div><!-- end wrap -->
+            <div class="c-card">
+              <div class="c-card-img">
+                <img
+                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+                  alt="Impact"
+                />
+                <div class="c-card-img-tint"></div>
+                <span class="c-card-tag">Reporting</span>
+              </div>
+              <div class="c-card-body">
+                <div class="c-card-icon">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                    />
+                  </svg>
+                </div>
+                <div class="c-card-title">Impact Reporting</div>
+                <div class="c-card-desc">
+                  Quarterly social, environmental, and financial impact reports
+                  for donors, investors, and government stakeholders.
+                </div>
+                <a href="contact.html" class="c-card-link"
+                  >Learn more
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                ></a>
+              </div>
+            </div>
 
-    <section class="section section-deep">
-        <div class="wrap">
-            <div class="sec-head center" data-r>
-                <div class="eyebrow">Supporting Services</div>
-                <h2 class="display d-md">Beyond the HUB platform</h2>
-                <p class="body-md">Complementary programmes that strengthen every deployment and expand impact across
-                    partner communities.</p>
+            <div class="c-card">
+              <div class="c-card-img">
+                <img
+                  src="https://images.unsplash.com/photo-1573497161079-f3fd25cc6b90?w=600&q=80"
+                  alt="Gender"
+                />
+                <div class="c-card-img-tint"></div>
+                <span class="c-card-tag">Gender Strategy</span>
+              </div>
+              <div class="c-card-body">
+                <div class="c-card-icon">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                  </svg>
+                </div>
+                <div class="c-card-title">Gender Strategy Consulting</div>
+                <div class="c-card-desc">
+                  Advisory services embedding gender equity and MHM standards
+                  into sanitation infrastructure design and operations.
+                </div>
+                <a href="contact.html" class="c-card-link"
+                  >Learn more
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                ></a>
+              </div>
             </div>
-            <div class="mini-grid">
-                <div class="card mini-card" data-r data-d="1">
-                    <div class="mini-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
-                            alt="Operator Training Programme" loading="lazy">
-                    </div>
-                    <div class="mini-title">Operator Training Programme</div>
-                    <div class="mini-desc">Structured certification covering hygiene management, IoT tools, cooperative
-                        governance, and customer service for community recruits.</div>
+
+            <div class="c-card">
+              <div class="c-card-img">
+                <img
+                  src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&q=80"
+                  alt="Design"
+                />
+                <div class="c-card-img-tint"></div>
+                <span class="c-card-tag">Design</span>
+              </div>
+              <div class="c-card-body">
+                <div class="c-card-icon">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="2" />
+                    <path d="M3 9h18M9 21V9" />
+                  </svg>
                 </div>
-                <div class="card mini-card" data-r data-d="2">
-                    <div class="mini-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
-                            alt="Municipal Integration" loading="lazy">
-                    </div>
-                    <div class="mini-title">Municipal Integration</div>
-                    <div class="mini-desc">Full handover documentation, data-sharing agreements, and ongoing technical
-                        support for city government partners.</div>
+                <div class="c-card-title">Site Design &amp; Planning</div>
+                <div class="c-card-desc">
+                  Urban site selection, architectural design, and infrastructure
+                  integration planning for new HUB deployments.
                 </div>
-                <div class="card mini-card" data-r data-d="3">
-                    <div class="mini-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
-                            alt="Community Health Education" loading="lazy">
-                    </div>
-                    <div class="mini-title">Community Health Education</div>
-                    <div class="mini-desc">School and neighbourhood MHM and hygiene programmes promoting sanitation
-                        access rights and responsible use.</div>
-                </div>
-                <div class="card mini-card" data-r data-d="4">
-                    <div class="mini-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
-                            alt="Impact Reporting" loading="lazy">
-                    </div>
-                    <div class="mini-title">Impact Reporting</div>
-                    <div class="mini-desc">Quarterly social, environmental, and financial impact reports for donors,
-                        investors, and government stakeholders.</div>
-                </div>
-                <div class="card mini-card" data-r data-d="5">
-                    <div class="mini-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
-                            alt="Site Design & Planning" loading="lazy">
-                    </div>
-                    <div class="mini-title">Site Design & Planning</div>
-                    <div class="mini-desc">Urban site selection, architectural design, and infrastructure integration
-                        for new HUB deployments.</div>
-                </div>
-                <div class="card mini-card" data-r data-d="6">
-                    <div class="mini-image">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR5KVHeqAHzcKY7TSICXYGBnCc04YUlQPDeg&s"
-                            alt="Gender Strategy Consulting" loading="lazy">
-                    </div>
-                    <div class="mini-title">Gender Strategy Consulting</div>
-                    <div class="mini-desc">Advisory services embedding gender equity and MHM standards into sanitation
-                        infrastructure design and operations.</div>
-                </div>
+                <a href="contact.html" class="c-card-link"
+                  >Learn more
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                ></a>
+              </div>
             </div>
+
+            <div class="c-card">
+              <div class="c-card-img">
+                <img
+                  src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80"
+                  alt="Data"
+                />
+                <div class="c-card-img-tint"></div>
+                <span class="c-card-tag">Data &amp; Analytics</span>
+              </div>
+              <div class="c-card-body">
+                <div class="c-card-icon">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                      d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M2 12h4M18 12h4"
+                    />
+                  </svg>
+                </div>
+                <div class="c-card-title">WASH Data &amp; Analytics</div>
+                <div class="c-card-desc">
+                  Data collection, WASH sector analytics, and custom dashboards
+                  to help municipalities prioritise sanitation investment.
+                </div>
+                <a href="contact.html" class="c-card-link"
+                  >Learn more
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                ></a>
+              </div>
+            </div>
+
+            <div class="c-card">
+              <div class="c-card-img">
+                <img
+                  src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80"
+                  alt="Circular"
+                />
+                <div class="c-card-img-tint"></div>
+                <span class="c-card-tag">Circular Economy</span>
+              </div>
+              <div class="c-card-body">
+                <div class="c-card-icon">
+                  <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg>
+                </div>
+                <div class="c-card-title">Fertilizer Market Linkage</div>
+                <div class="c-card-desc">
+                  Connecting HUB organic fertilizer output to certified buyers —
+                  farms, cooperatives, and distributors across the Kathmandu
+                  Valley.
+                </div>
+                <a href="contact.html" class="c-card-link"
+                  >Learn more
+                  <svg
+                    width="11"
+                    height="11"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path d="M5 12h14M12 5l7 7-7 7" /></svg
+                ></a>
+              </div>
+            </div>
+          </div>
         </div>
+        <div class="carousel-dots" id="carousel-dots"></div>
+      </div>
     </section>
 
-    <section style="padding:0 0 88px;">
-        <div class="wrap">
-            <div class="cta-box" data-r>
-                <div class="cta-box-orb"></div>
-                <div style="position:relative;z-index:1;">
-                    <div class="eyebrow" style="color:rgba(255,255,255,0.6)"><span
-                            style="background:rgba(255,255,255,0.35)"></span>Work With Us</div>
-                    <h2>Ready to deploy a HUB in your city?</h2>
-                    <p>We partner with municipalities, development organisations, and infrastructure investors.</p>
-                </div>
-                <div class="btn-group" style="position:relative;z-index:1;"><a href="contact.html"
-                        class="btn btn-white">Get in Touch <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2.5">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg></a><a href="model.html" class="btn"
-                        style="background:rgba(255,255,255,0.15);color:#fff;border:1px solid rgba(255,255,255,0.2);">See
-                        the Model</a></div>
+    <section style="padding: 72px 0 88px; background: var(--bg-2)">
+      <div class="wrap">
+        <div class="cta-box" data-r>
+          <div class="cta-box-orb"></div>
+          <div style="position: relative; z-index: 1">
+            <div class="eyebrow" style="color: rgba(255, 255, 255, 0.6)">
+              <span style="background: rgba(255, 255, 255, 0.35)"></span>Work
+              With Us
             </div>
+            <h2>Ready to deploy a HUB in your city?</h2>
+            <p>
+              We partner with municipalities, development organisations, and
+              infrastructure investors across Nepal.
+            </p>
+          </div>
+          <div class="btn-group" style="position: relative; z-index: 1">
+            <a href="contact.html" class="btn btn-white"
+              >Get in Touch
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" /></svg
+            ></a>
+            <a
+              href="donate.html"
+              class="btn"
+              style="
+                background: rgba(255, 255, 255, 0.15);
+                color: #fff;
+                border: 1px solid rgba(255, 255, 255, 0.22);
+              "
+              >&#10084; Donate Now</a
+            >
+          </div>
         </div>
+      </div>
     </section>
 
-    <footer class="dk-footer">
+   <footer class="dk-footer">
       <div class="container">
         <!-- Row 1: Brand Box (absolute) + Contact Info -->
         <div class="footer-row">
@@ -1370,11 +2230,127 @@
         </button>
       </div>
     </footer>
+
     <script>
-        const nav = document.getElementById('nav'); window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 30), { passive: true });
-        const ham = document.getElementById('ham'), mob = document.getElementById('mob'); ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
-        const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); ro.unobserve(x.target); } }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-        document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
+      const nav = document.getElementById("nav");
+      window.addEventListener(
+        "scroll",
+        () => nav.classList.toggle("solid", scrollY > 30),
+        { passive: true },
+      );
+      const ham = document.getElementById("ham"),
+        mob = document.getElementById("mob");
+      ham.addEventListener("click", () => {
+        ham.classList.toggle("open");
+        mob.classList.toggle("open");
+      });
+      const ro = new IntersectionObserver(
+        (e) =>
+          e.forEach((x) => {
+            if (x.isIntersecting) {
+              x.target.classList.add("on");
+              ro.unobserve(x.target);
+            }
+          }),
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+      document.querySelectorAll("[data-r]").forEach((el) => ro.observe(el));
+
+      // CAROUSEL
+      const track = document.getElementById("carousel-track");
+      const dotsWrap = document.getElementById("carousel-dots");
+      const prevBtn = document.getElementById("prev-btn");
+      const nextBtn = document.getElementById("next-btn");
+      let currentIndex = 0;
+      const cards = track.querySelectorAll(".c-card");
+      const cardCount = cards.length;
+
+      function getVisibleCount() {
+        const ow = document.getElementById("carousel-outer").offsetWidth;
+        if (ow >= 960) return 3;
+        if (ow >= 620) return 2;
+        return 1;
+      }
+      function totalSlides() {
+        return Math.max(0, cardCount - getVisibleCount());
+      }
+      function buildDots() {
+        dotsWrap.innerHTML = "";
+        const total = totalSlides() + 1;
+        for (let i = 0; i < Math.min(total, cardCount); i++) {
+          const d = document.createElement("button");
+          d.className = "c-dot" + (i === 0 ? " active" : "");
+          d.onclick = () => goTo(i);
+          dotsWrap.appendChild(d);
+        }
+      }
+      function updateDots() {
+        dotsWrap
+          .querySelectorAll(".c-dot")
+          .forEach((d, i) => d.classList.toggle("active", i === currentIndex));
+      }
+      function getCardWidth() {
+        return cards[0].offsetWidth + 20;
+      }
+      function goTo(index) {
+        const max = totalSlides();
+        currentIndex = Math.max(0, Math.min(index, max));
+        track.style.transform =
+          "translateX(-" + currentIndex * getCardWidth() + "px)";
+        updateDots();
+        prevBtn.disabled = currentIndex === 0;
+        nextBtn.disabled = currentIndex >= totalSlides();
+      }
+      function moveCarousel(dir) {
+        goTo(currentIndex + dir);
+      }
+
+      let startX = 0,
+        isDragging = false,
+        startTranslate = 0;
+      track.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        startX = e.clientX;
+        startTranslate = currentIndex * getCardWidth();
+        track.style.transition = "none";
+      });
+      document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        track.style.transform =
+          "translateX(-" + (startTranslate + startX - e.clientX) + "px)";
+      });
+      document.addEventListener("mouseup", (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        track.style.transition = "";
+        const dx = startX - e.clientX;
+        if (Math.abs(dx) > 60) moveCarousel(dx > 0 ? 1 : -1);
+        else goTo(currentIndex);
+      });
+      track.addEventListener(
+        "touchstart",
+        (e) => {
+          startX = e.touches[0].clientX;
+          startTranslate = currentIndex * getCardWidth();
+          track.style.transition = "";
+        },
+        { passive: true },
+      );
+      track.addEventListener("touchend", (e) => {
+        track.style.transition = "";
+        const dx = startX - e.changedTouches[0].clientX;
+        if (Math.abs(dx) > 50) moveCarousel(dx > 0 ? 1 : -1);
+        else goTo(currentIndex);
+      });
+
+      window.addEventListener("load", () => {
+        buildDots();
+        goTo(0);
+      });
+      window.addEventListener("resize", () => {
+        buildDots();
+        goTo(Math.min(currentIndex, totalSlides()));
+      });
     </script>
         <script>
         // =============================================
@@ -1407,6 +2383,5 @@ backToTopBtn.addEventListener('click', function(e) {
     });
 });
     </script>
-</body>
-
+  </body>
 </html>

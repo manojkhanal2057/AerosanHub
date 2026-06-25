@@ -1,0 +1,1774 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" /><meta name="viewport"
+      content="width=device-width, initial-scale=1.0" />
+    <title>Aerosan — Donate Now</title>
+    <link rel="stylesheet" href="/style.css" />
+           <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <style>
+
+  /* ══════════════════════════════════
+     DONATE PAGE — CLEAN MULTI-STEP
+  ══════════════════════════════════ */
+
+  /* Hero */
+  .donate-hero {
+    padding: calc(var(--nav-h) + 60px) 0 60px;
+    background: linear-gradient(150deg, var(--bg-3) 0%, var(--bg-2) 60%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border-soft);
+    position: relative; overflow: hidden; text-align: center;
+  }
+  .donate-hero h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 900;
+    font-size: clamp(2rem, 4.5vw, 3.2rem); color: var(--ink);
+    letter-spacing: -0.035em; line-height: 1.1; margin-bottom: 14px;
+  }
+  .donate-hero h1 span {
+    background: linear-gradient(135deg, var(--blue) 0%, #E05555 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .donate-hero p { font-size: 1rem; color: var(--body); max-width: 520px; margin: 0 auto 28px; line-height: 1.75; }
+  .hero-trust { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+  .hero-trust-item { display: flex; align-items: center; gap: 7px; font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+  .hero-trust-item svg { color: var(--blue); }
+
+  /* ══ STEP WRAPPER ══ */
+  .donate-wrap {
+    max-width: 780px; margin: 0 auto;
+    padding: 56px 28px 88px;
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0; margin-bottom: 48px; position: relative;
+  }
+  .progress-connector {
+    flex: 1; height: 2px; background: var(--border-soft);
+    max-width: 80px; transition: background 0.4s;
+  }
+  .progress-connector.done { background: var(--blue); }
+  .prog-step {
+    display: flex; flex-direction: column; align-items: center; gap: 7px;
+    position: relative; z-index: 1;
+  }
+  .prog-circle {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: #fff; border: 2px solid var(--border-soft);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800;
+    font-size: 0.85rem; color: var(--muted);
+    transition: all 0.35s; box-shadow: var(--shadow-sm);
+  }
+  .prog-step.active .prog-circle { border-color: var(--blue); color: var(--blue); box-shadow: 0 0 0 5px var(--blue-dim); }
+  .prog-step.done .prog-circle { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .prog-label { font-size: 0.7rem; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; text-align: center; white-space: nowrap; }
+  .prog-step.active .prog-label { color: var(--blue); }
+  .prog-step.done .prog-label { color: var(--ink); }
+
+  /* Step card */
+  .step-card {
+    background: #fff; border: 1px solid var(--border-soft);
+    border-radius: var(--r-xl); padding: 40px 40px;
+    box-shadow: var(--shadow-lg); position: relative; overflow: hidden;
+    animation: stepIn 0.35s ease forwards;
+  }
+  @keyframes stepIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+  .step-card::before { content:''; position:absolute; top:0; left:0; right:0; height:4px; background:linear-gradient(90deg,var(--blue),#E05555); }
+  .step-card-title { font-family:'Plus Jakarta Sans',sans-serif; font-weight:900; font-size:1.3rem; color:var(--ink); letter-spacing:-0.025em; margin-bottom:5px; }
+  .step-card-sub { font-size:0.82rem; color:var(--muted); margin-bottom:28px; line-height:1.6; }
+
+  /* Fields */
+  .field { display:flex; flex-direction:column; gap:5px; margin-bottom:14px; }
+  .field label { font-size:0.74rem; font-weight:700; color:var(--ink); letter-spacing:0.02em; }
+  .req { color:var(--blue); }
+  .field input, .field select, .field textarea {
+    padding:12px 15px; border:1.5px solid #DDE8F0; border-radius:10px;
+    font-size:0.88rem; color:var(--ink); font-family:inherit;
+    background:#FAFCFE; outline:none; transition:all 0.2s; width:100%;
+    appearance:none; -webkit-appearance:none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color:var(--blue); background:#fff; box-shadow:0 0 0 4px rgba(70,151,204,0.1);
+  }
+  .field input::placeholder, .field textarea::placeholder { color:#B0C4D4; }
+  .field input.err { border-color:#E05555!important; box-shadow:0 0 0 3px rgba(224,85,85,0.1)!important; }
+  .field select { cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A95AB' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 13px center; padding-right:36px; }
+  .field textarea { resize:none; min-height:80px; line-height:1.6; }
+  .f-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+
+  /* Amount pills */
+  .amount-pills { display:grid; grid-template-columns:repeat(4,1fr); gap:9px; margin-bottom:12px; }
+  .amt-pill {
+    padding:12px 8px; border-radius:10px; border:1.5px solid #DDE8F0;
+    background:#FAFCFE; font-family:'Plus Jakarta Sans',sans-serif;
+    font-weight:800; font-size:0.88rem; color:var(--muted);
+    cursor:pointer; text-align:center; transition:all 0.18s; line-height:1.2;
+  }
+  .amt-pill:hover { border-color:var(--blue-border); color:var(--blue); background:var(--blue-pale); }
+  .amt-pill.on { border-color:var(--blue); background:var(--blue); color:#fff; box-shadow:0 4px 14px var(--blue-glow); }
+  .amt-pill small { display:block; font-size:0.6rem; font-weight:600; opacity:0.7; margin-top:2px; font-family:'Inter',sans-serif; letter-spacing:0.04em; }
+
+  .custom-wrap { position:relative; margin-bottom:18px; }
+  .custom-prefix { position:absolute; left:14px; top:50%; transform:translateY(-50%); font-size:0.9rem; font-weight:700; color:var(--muted); }
+  .custom-inp {
+    width:100%; padding:12px 14px 12px 32px;
+    border:1.5px solid #DDE8F0; border-radius:10px;
+    font-size:0.9rem; font-weight:700; color:var(--ink);
+    font-family:inherit; background:#FAFCFE; outline:none; transition:all 0.2s;
+  }
+  .custom-inp:focus { border-color:var(--blue); background:#fff; box-shadow:0 0 0 4px rgba(70,151,204,0.1); }
+  .custom-inp::placeholder { color:#B0C4D4; font-weight:400; }
+
+  /* Freq buttons */
+  .freq-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px; }
+  .freq-btn {
+    flex:1; min-width:100px; padding:9px 12px; border-radius:9px;
+    border:1.5px solid #DDE8F0; background:#FAFCFE;
+    font-size:0.79rem; font-weight:700; color:var(--muted);
+    cursor:pointer; text-align:center; transition:all 0.18s; font-family:inherit;
+  }
+  .freq-btn.on { border-color:var(--blue); background:var(--blue-pale); color:var(--blue); }
+  .freq-btn:hover:not(.on) { border-color:var(--blue-border); }
+
+  /* Payment methods */
+  .pay-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-bottom:18px; }
+  .pay-btn {
+    padding:12px 16px; border-radius:10px; border:1.5px solid #DDE8F0;
+    background:#FAFCFE; cursor:pointer; transition:all 0.18s;
+    display:flex; align-items:center; gap:10px; font-family:inherit;
+  }
+  .pay-btn:hover { border-color:var(--blue-border); background:var(--blue-pale); }
+  .pay-btn.on { border-color:var(--blue); background:var(--blue-pale); }
+  .pay-icon { width:32px; height:32px; border-radius:7px; background:var(--blue-dim); display:flex; align-items:center; justify-content:center; color:var(--blue); flex-shrink:0; }
+  .pay-name { font-size:0.82rem; font-weight:700; color:var(--ink); }
+  .pay-sub { font-size:0.68rem; color:var(--muted); }
+
+  /* Bank detail box */
+  .bank-box {
+    background: var(--bg-3); border: 1px solid var(--blue-border);
+    border-radius: var(--r); padding: 16px 18px; margin-bottom: 18px;
+    display: none;
+  }
+  .bank-box.show { display: block; }
+  .bank-box-title { font-size:0.74rem; font-weight:700; color:var(--blue); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:10px; }
+  .bank-row { display:flex; align-items:center; justify-content:space-between; padding:7px 0; border-bottom:1px solid var(--border-soft); }
+  .bank-row:last-child { border-bottom:none; }
+  .bank-key { font-size:0.75rem; color:var(--muted); font-weight:600; }
+  .bank-val { font-size:0.78rem; font-weight:700; color:var(--ink); display:flex; align-items:center; gap:6px; }
+  .copy-btn { font-size:0.65rem; font-weight:700; color:var(--blue); background:var(--blue-pale); border:1px solid var(--blue-border); border-radius:4px; padding:2px 7px; cursor:pointer; transition:all 0.15s; }
+  .copy-btn:hover { background:var(--blue); color:#fff; }
+
+  /* ══ STEP 2: REVIEW ══ */
+  .review-section { margin-bottom:18px; }
+  .review-section-title { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:var(--muted); margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid var(--border-soft); }
+  .review-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .review-item { padding:10px 14px; background:var(--bg); border-radius:9px; border:1px solid var(--border-soft); }
+  .review-lbl { font-size:0.67rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); margin-bottom:2px; }
+  .review-val { font-size:0.86rem; font-weight:700; color:var(--ink); }
+  .review-amount-box {
+    background: linear-gradient(135deg, var(--blue-pale), #fff);
+    border: 1.5px solid var(--blue-border); border-radius: var(--r);
+    padding: 20px 24px; text-align: center; margin-bottom: 18px;
+  }
+  .review-amount-label { font-size:0.73rem; color:var(--muted); font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:5px; }
+  .review-amount-val { font-family:'Plus Jakarta Sans',sans-serif; font-weight:900; font-size:2.2rem; color:var(--blue); letter-spacing:-0.04em; line-height:1; }
+  .review-amount-freq { font-size:0.78rem; color:var(--muted); margin-top:4px; }
+
+  /* ══ STEP 3: UPLOAD RECEIPT ══ */
+  .upload-zone {
+    border: 2px dashed var(--blue-border); border-radius: var(--r-lg);
+    padding: 40px 28px; text-align: center; cursor: pointer;
+    background: var(--blue-pale); transition: all 0.22s; margin-bottom: 18px;
+    position: relative;
+  }
+  .upload-zone:hover { border-color: var(--blue); background: #EAF3FB; }
+  .upload-zone.has-file { border-style: solid; border-color: var(--blue); background: #E8F4FC; }
+  .upload-zone input[type="file"] { position:absolute; inset:0; opacity:0; cursor:pointer; width:100%; height:100%; }
+  .upload-icon { width:52px; height:52px; border-radius:50%; background:var(--blue-dim); display:flex; align-items:center; justify-content:center; color:var(--blue); margin:0 auto 14px; }
+  .upload-title { font-size:0.88rem; font-weight:700; color:var(--ink); margin-bottom:5px; }
+  .upload-sub { font-size:0.76rem; color:var(--muted); line-height:1.5; }
+  .upload-file-name { font-size:0.82rem; font-weight:700; color:var(--blue); margin-top:10px; display:none; }
+  .upload-file-name.show { display:block; }
+
+  /* Confirm checkbox */
+  .confirm-row { display:flex; align-items:flex-start; gap:11px; padding:14px 16px; background:var(--bg); border-radius:10px; border:1.5px solid var(--border-soft); margin-bottom:20px; }
+  .confirm-row input[type="checkbox"] { width:17px; height:17px; accent-color:var(--blue); cursor:pointer; flex-shrink:0; margin-top:2px; }
+  .confirm-row label { font-size:0.79rem; color:var(--body); cursor:pointer; line-height:1.6; }
+  .confirm-row label strong { color:var(--ink); }
+
+  /* Buttons */
+  .btn-row { display:flex; gap:12px; }
+  .btn-back { flex-shrink:0; padding:13px 24px; border-radius:100px; border:1.5px solid var(--border-soft); background:#fff; color:var(--body); font-size:0.86rem; font-weight:700; cursor:pointer; font-family:inherit; transition:all 0.2s; display:flex; align-items:center; gap:7px; }
+  .btn-back:hover { border-color:var(--blue-border); color:var(--blue); }
+  .btn-next { flex:1; padding:14px 28px; border-radius:100px; background:var(--blue); color:#fff; border:none; font-size:0.9rem; font-weight:800; cursor:pointer; font-family:inherit; transition:all 0.22s; display:flex; align-items:center; justify-content:center; gap:9px; letter-spacing:0.01em; }
+  .btn-next:hover { background:var(--blue-dark); box-shadow:0 6px 20px var(--blue-glow); transform:translateY(-1px); }
+  .btn-donate-final { flex:1; padding:14px 28px; border-radius:100px; border:none; font-size:0.9rem; font-weight:800; cursor:pointer; font-family:inherit; background:linear-gradient(135deg, #E05555 0%, var(--blue) 100%); color:#fff; display:flex; align-items:center; justify-content:center; gap:9px; transition:all 0.22s; box-shadow:0 4px 18px rgba(224,85,85,0.2); }
+  .btn-donate-final:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(224,85,85,0.3); }
+  .btn-donate-final:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+
+  .secure-note { display:flex; align-items:center; gap:7px; font-size:0.72rem; color:var(--muted); margin-top:11px; justify-content:center; }
+  .secure-note svg { color:var(--blue); flex-shrink:0; }
+
+  /* ══ SUCCESS ══ */
+  .success-screen { display:none; text-align:center; padding:20px 0; }
+  .success-screen.show { display:block; }
+  .success-ring {
+    width:88px; height:88px; border-radius:50%;
+    background:linear-gradient(135deg,#E8F8F2,#D0F2E6);
+    border:3px solid #3AAA7A;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 20px;
+    animation:popIn 0.6s cubic-bezier(0.175,0.885,0.32,1.275) forwards;
+  }
+  @keyframes popIn { from{transform:scale(0.4);opacity:0}to{transform:scale(1);opacity:1} }
+  .success-ring svg { color:#3AAA7A; }
+  .success-h { font-family:'Plus Jakarta Sans',sans-serif; font-weight:900; font-size:1.5rem; color:var(--ink); letter-spacing:-0.025em; margin-bottom:10px; }
+  .success-p { font-size:0.88rem; color:var(--body); max-width:400px; margin:0 auto 20px; line-height:1.72; }
+  .success-ref { font-size:0.8rem; color:var(--muted); background:var(--bg); border:1px solid var(--border-soft); border-radius:100px; padding:7px 20px; display:inline-block; margin-bottom:24px; font-weight:600; }
+  .success-summary {
+    background:var(--blue-pale); border:1px solid var(--blue-border);
+    border-radius:var(--r-lg); padding:20px 24px; margin-bottom:24px; text-align:left;
+  }
+  .ss-title { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:0.09em; color:var(--blue); margin-bottom:12px; }
+  .ss-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--blue-border); font-size:0.82rem; }
+  .ss-row:last-child { border-bottom:none; }
+  .ss-row span:first-child { color:var(--muted); font-weight:600; }
+  .ss-row span:last-child { color:var(--ink); font-weight:700; }
+
+  @media(max-width:640px){
+    .step-card { padding:28px 20px; }
+    .amount-pills { grid-template-columns:1fr 1fr; }
+    .pay-grid { grid-template-columns:1fr; }
+    .review-grid { grid-template-columns:1fr; }
+    .f-row { grid-template-columns:1fr; }
+    .freq-row { gap:6px; }
+    .freq-btn { min-width:80px; }
+  }
+          .nav-logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.nav-logo img {
+    height: clamp(30px, 5vw, 40px);
+    width: auto;
+    display: block;
+}
+  </style>
+          <style>
+      /* ----- Reset & Base ----- */
+
+      /* ----- Container ----- */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* ----- Footer Main ----- */
+      .dk-footer {
+        padding: 75px 0 0;
+        /* background-color: #151414; */
+        background-color: #1a2b3c;
+        position: relative;
+        z-index: 2;
+        margin-top: 80px;
+        border-top: 2px solid rgba(59, 130, 246, 0.15);
+      }
+
+      /* Animated glow line on top */
+      .dk-footer::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #3b82f6,
+          #60a5fa,
+          #3b82f6,
+          transparent
+        );
+        background-size: 300% 100%;
+        animation: shimmerLine 5s ease-in-out infinite;
+        opacity: 0.6;
+      }
+
+      @keyframes shimmerLine {
+        0% {
+          background-position: 0% 0%;
+        }
+        50% {
+          background-position: 100% 0%;
+        }
+        100% {
+          background-position: 0% 0%;
+        }
+      }
+
+      /* ----- Grid System (no Bootstrap) ----- */
+      .footer-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px;
+      }
+
+      .footer-col {
+        padding: 0 15px;
+        position: relative;
+      }
+
+      .footer-col-4 {
+        flex: 0 0 33.333%;
+        max-width: 33.333%;
+      }
+
+      .footer-col-8 {
+        flex: 0 0 66.666%;
+        max-width: 66.666%;
+      }
+
+      .footer-contact-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+      }
+
+      .footer-contact-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 10px;
+      }
+
+      .footer-links-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+      }
+
+      .footer-links-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 10px;
+      }
+
+      .copyright-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .copyright-col {
+        flex: 0 0 auto;
+      }
+
+      /* ----- Brand Box (absolute) ----- */
+      .dk-footer-box-info {
+        position: absolute;
+        top: -60px;
+        background: #1a2b3c;
+        padding: 35px 30px;
+        z-index: 2;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px #0d1722;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        transition:
+          transform 0.4s ease,
+          box-shadow 0.4s ease;
+        margin-bottom: 40px;
+      }
+
+      .dk-footer-box-info:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 30px 80px rgba(59, 130, 246, 0.12);
+      }
+
+      .footer-logo-img {
+        max-height: 50px;
+        filter: brightness(0.9) saturate(1.1);
+        transition: filter 0.3s;
+      }
+
+      .footer-logo-img:hover {
+        filter: brightness(1.1) saturate(1.3);
+      }
+
+      .footer-info-text {
+        margin: 18px 0 24px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.9rem;
+        line-height: 1.7;
+      }
+
+      /* ----- Social Icons (brand colored) ----- */
+      .footer-social-link h3 {
+        color: #fff;
+        font-size: 18px;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+
+      .footer-social-link ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .footer-social-link li {
+        display: inline-block;
+      }
+
+      .footer-social-link a {
+        display: block;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 42px;
+        background: #1a1a1a;
+        color: #fff;
+        font-size: 18px;
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        text-decoration: none;
+      }
+
+      .footer-social-link a:hover {
+        transform: scale(1.15) translateY(-4px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        filter: brightness(1.2);
+      }
+
+      .footer-social-link li:nth-child(1) a {
+        background-color: #3b5998;
+      }
+      .footer-social-link li:nth-child(2) a {
+        background-color: #55acee;
+      }
+      .footer-social-link li:nth-child(3) a {
+        background-color: #dd4b39;
+      }
+      .footer-social-link li:nth-child(4) a {
+        background-color: #0976b4;
+      }
+      .footer-social-link li:nth-child(5) a {
+        background-color: #b7242a;
+      }
+
+      /* ----- Award Badge ----- */
+      .footer-awarad {
+        margin-top: 330px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.04);
+        width: fit-content;
+        animation: awardPulse 3s ease-in-out infinite;
+      }
+
+      @keyframes awardPulse {
+        0%,
+        100% {
+          opacity: 0.8;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.02);
+        }
+      }
+
+      .footer-awarad img {
+        max-height: 32px;
+      }
+
+      .footer-awarad p {
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0;
+        padding-top: 2px;
+      }
+
+      /* ----- Contact Us ----- */
+      .contact-us {
+        position: relative;
+        z-index: 2;
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        padding: 16px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        transition: all 0.3s ease;
+      }
+
+      .contact-us:hover {
+        background: rgba(255, 255, 255, 0.04);
+        border-color: rgba(59, 130, 246, 0.15);
+        transform: translateX(4px);
+      }
+
+      .contact-us.contact-us-last {
+        margin-left: 0;
+      }
+
+      .contact-icon {
+        margin-right: 18px;
+        flex-shrink: 0;
+      }
+
+      .contact-icon i {
+        font-size: 28px;
+        color: #3b82f6;
+        transition: transform 0.3s ease;
+      }
+
+      .contact-us:hover .contact-icon i {
+        transform: scale(1.15) rotate(-5deg);
+      }
+
+      .contact-info {
+        color: #fff;
+      }
+
+      .contact-info h3 {
+        font-size: 18px;
+        color: #fff;
+        margin-bottom: 2px;
+        font-weight: 600;
+      }
+
+      .contact-info p {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.85rem;
+        margin: 0;
+      }
+
+      /* ----- Footer Widget / Links ----- */
+      .footer-widget {
+        margin-top: 20px;
+      }
+
+      .footer-widget .section-heading {
+        margin-bottom: 25px;
+      }
+
+      .footer-widget h3 {
+        font-size: 20px;
+        color: #fff;
+        position: relative;
+        margin-bottom: 12px;
+        font-weight: 700;
+      }
+
+      .footer-widget p {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .footer-links-list {
+        display: flex;
+        gap: 20px;
+      }
+
+      .footer-links-list ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex: 1;
+      }
+
+      .footer-links-list li {
+        margin-bottom: 14px;
+      }
+
+      .footer-links-list a {
+        color: rgba(255, 255, 255, 0.5);
+        transition: all 0.25s ease;
+        text-decoration: none;
+        font-size: 0.88rem;
+        display: inline-block;
+      }
+
+      .footer-links-list a:hover {
+        color: #60a5fa;
+        transform: translateX(6px);
+      }
+
+      .footer-left-widget {
+        padding-left: 0;
+      }
+
+      /* ----- Animated Border ----- */
+      .animate-border {
+        position: relative;
+        display: block;
+        width: 115px;
+        height: 3px;
+        background: #3b82f6;
+        border-radius: 2px;
+      }
+
+      .animate-border::after {
+        position: absolute;
+        content: "";
+        width: 35px;
+        height: 3px;
+        left: 0;
+        bottom: 0;
+        border-left: 10px solid #151414;
+        border-right: 10px solid #151414;
+        animation: animborder 2.5s linear infinite;
+        border-radius: 2px;
+      }
+
+      @keyframes animborder {
+        0% {
+          transform: translateX(0px);
+        }
+        100% {
+          transform: translateX(113px);
+        }
+      }
+
+      /* ----- Subscribe Form ----- */
+      .dk-footer-form {
+        position: relative;
+      }
+
+      .dk-footer-form input[type="email"] {
+        padding: 14px 24px;
+        border-radius: 50px;
+        background: #0b1620;
+        border: 1px solid #333;
+        color: #fff;
+        font-size: 0.9rem;
+        width: 100%;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .dk-footer-form input[type="email"]:focus {
+        border-color: #1b2433;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        background: #172431;
+      }
+
+      .dk-footer-form input::placeholder {
+        color: #777;
+        font-size: 0.85rem;
+      }
+
+      .dk-footer-form button {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        padding: 10px 22px 10px 18px;
+        border-radius: 50px;
+        border: none;
+        background: #3b82f6;
+        color: #fff;
+        transition: all 0.3s ease;
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+
+      .dk-footer-form button:hover {
+        background: #60a5fa;
+        transform: scale(1.04);
+        box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+      }
+
+      /* ----- Copyright ----- */
+      .copyright {
+        padding: 24px 0;
+        margin-top: 55px;
+        background-color: #1a2b3c;
+        border-top: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .copyright span,
+      .copyright a {
+        color: rgba(255, 255, 255, 0.3);
+        transition: all 0.25s ease;
+        font-size: 0.85rem;
+        text-decoration: none;
+      }
+
+      .copyright a:hover {
+        color: #60a5fa;
+      }
+
+      .copyright-menu ul {
+        text-align: right;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .copyright-menu li {
+        display: inline-block;
+        padding-left: 22px;
+      }
+
+      /* ----- Back to Top ----- */
+      .btn-top {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        padding: 0;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: #1a2b3c;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+        transition: all 0.3s ease;
+        font-size: 1.4rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+      }
+
+      .btn-top:hover {
+        background: #3b82f6;
+        border-color: #3b82f6;
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 8px 30px rgba(59, 130, 246, 0.25);
+      }
+
+      /* ----- Font Awesome (local fallback) ----- */
+      .fab,
+      .fas {
+        font-style: normal;
+      }
+
+      /* ----- Responsive ----- */
+      @media (max-width: 992px) {
+        .footer-col-4 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .footer-col-8 {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .dk-footer-box-info {
+          position: relative;
+          top: 0;
+          margin-bottom: 30px;
+        }
+
+        .footer-awarad {
+          margin-top: 20px;
+        }
+
+        .footer-left-widget {
+          padding-left: 0;
+        }
+
+        .contact-us.contact-us-last {
+          margin-left: 0;
+        }
+
+        .copyright-menu ul {
+          text-align: left;
+          margin-top: 10px;
+        }
+
+        .copyright-menu li {
+          padding-left: 0;
+          padding-right: 20px;
+        }
+
+        .footer-links-list {
+          flex-direction: column;
+          gap: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .footer-contact-col {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .footer-links-col {
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+
+        .copyright-row {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .copyright-menu ul {
+          text-align: center;
+        }
+
+        .dk-footer-box-info {
+          padding: 25px 20px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .footer-social-link ul {
+          gap: 5px;
+        }
+
+        .footer-social-link a {
+          width: 36px;
+          height: 36px;
+          line-height: 36px;
+          font-size: 15px;
+        }
+
+        .contact-us {
+          padding: 12px 16px;
+        }
+
+        .contact-info h3 {
+          font-size: 16px;
+        }
+
+        .dk-footer-form button {
+          padding: 8px 16px;
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+    <style>@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}</style>
+
+  </head>
+  <body>
+
+    <!-- NAV -->
+    <nav id="nav">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="/logo.avif" alt="">
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li><li><a
+              href="model.html">Model</a></li>
+          <li><a href="services.html">Services</a></li><li><a
+              href="projects.html">Projects</a></li>
+          <li><a href="team.html">Team</a></li><li><a
+              href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="donate.html" class="btn btn-primary"
+            style="background:linear-gradient(135deg,#E05555,var(--blue));">
+            <svg width="13" height="13" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+            Donate Now
+          </a>
+        </div>
+        <div class="hamburger"
+          id="ham"><span></span><span></span><span></span></div>
+      </div>
+    </nav>
+    <div class="mob-menu" id="mob">
+      <a href="index.html">Home</a><a href="model.html">Model</a><a
+        href="services.html">Services</a>
+      <a href="projects.html">Projects</a><a href="team.html">Team</a><a
+        href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="btn btn-primary"
+        style="justify-content:center;background:linear-gradient(135deg,#E05555,var(--blue));">&#10084;
+        Donate Now</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="donate-hero">
+      <div class="orb orb-blue"
+        style="width:400px;height:400px;right:-100px;top:-100px;"></div>
+      <div class="orb orb-teal"
+        style="width:300px;height:300px;left:-80px;bottom:-80px;"></div>
+      <div class="wrap" style="position:relative;z-index:2;">
+        <div class="eyebrow" style="justify-content:center;">
+          <span style="color:#E05555;font-size:1rem;">&#10084;</span>
+          Support the Mission
+        </div>
+        <h1>Your donation builds<br /><span>dignity for
+            everyone.</span></h1>
+        <p>Help us build smart, gender-friendly, MHM-inclusive public
+          sanitation infrastructure across urban Nepal. Every rupee
+          creates lasting change.</p>
+        <div class="hero-trust">
+          <div class="hero-trust-item"><svg width="14" height="14"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5"><path
+                d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline
+                points="9 12 11 14 15 10" /></svg>100%
+            Transparent</div>
+          <div class="hero-trust-item"><svg width="14" height="14"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5"><rect x="3"
+                y="11" width="18" height="11" rx="2" /><path
+                d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>Secure &
+            Verified</div>
+          <div class="hero-trust-item"><svg width="14" height="14"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5"><circle
+                cx="12" cy="12" r="10" /><path
+                d="M12 6v6l4 2" /></svg>Receipt Within
+            24hrs</div>
+          <div class="hero-trust-item"><svg width="14" height="14"
+              viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2.5"><path
+                d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>Tax
+            Deductible</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DONATE STEPS -->
+    <div class="donate-wrap">
+
+      <!-- PROGRESS BAR -->
+      <div class="progress-bar">
+        <div class="prog-step active" id="ps-1">
+          <div class="prog-circle">1</div>
+          <div class="prog-label">Donation</div>
+        </div>
+        <div class="progress-connector" id="pc-1"></div>
+        <div class="prog-step" id="ps-2">
+          <div class="prog-circle">2</div>
+          <div class="prog-label">Your Details</div>
+        </div>
+        <div class="progress-connector" id="pc-2"></div>
+        <div class="prog-step" id="ps-3">
+          <div class="prog-circle">3</div>
+          <div class="prog-label">Review</div>
+        </div>
+        <div class="progress-connector" id="pc-3"></div>
+        <div class="prog-step" id="ps-4">
+          <div class="prog-circle">4</div>
+          <div class="prog-label">Confirm</div>
+        </div>
+      </div>
+
+      <!-- ══ STEP 1: DONATION AMOUNT ══ -->
+      <div class="step-card" id="step-1">
+        <div class="step-card-title">Choose your donation</div>
+        <p class="step-card-sub">Select an amount or enter a custom
+          value. Every rupee goes directly to building clean, safe,
+          and dignified public sanitation in Nepal.</p>
+
+        <div class="amount-pills">
+          <button class="amt-pill"
+            onclick="setAmt(500,this)">Rs.500<small>MHM
+              Supplies</small></button>
+          <button class="amt-pill on" id="pill-2000"
+            onclick="setAmt(2000,this)">Rs.2,000<small>Train 1
+              Operator</small></button>
+          <button class="amt-pill"
+            onclick="setAmt(10000,this)">Rs.10,000<small>IoT
+              Sensor</small></button>
+          <button class="amt-pill"
+            onclick="setAmt(50000,this)">Rs.50,000<small>HUB
+              Component</small></button>
+        </div>
+        <div class="custom-wrap">
+          <span class="custom-prefix">Rs.</span>
+          <input class="custom-inp" type="number" id="c-amt"
+            placeholder="Enter custom amount"
+            oninput="onCustomAmt(this)" min="1" />
+        </div>
+
+        <div class="field" style="margin-bottom:8px;"><label>Donation
+            Frequency</label></div>
+        <div class="freq-row">
+          <button class="freq-btn on"
+            onclick="setFreq(this,'One-time')">One-time</button>
+          <button class="freq-btn"
+            onclick="setFreq(this,'Monthly')">Monthly</button>
+          <button class="freq-btn"
+            onclick="setFreq(this,'Quarterly')">Quarterly</button>
+          <button class="freq-btn"
+            onclick="setFreq(this,'Annually')">Annually</button>
+        </div>
+
+        <div class="field">
+          <label>Donation Purpose (optional)</label>
+          <select id="d-purpose">
+            <option value="General Fund">General Fund — Aerosan
+              decides best use</option>
+            <option value="MHM Infrastructure">Menstrual Hygiene
+              Management (MHM)</option>
+            <option value="Smart HUB Infrastructure">Smart HUB
+              Infrastructure</option>
+            <option value="Operator Training">Operator Training
+              Programme</option>
+            <option value="River Protection">River Protection &amp;
+              Waste-to-Energy</option>
+            <option value="Gender Equity">Gender Equity
+              Programme</option>
+          </select>
+        </div>
+
+        <div class="btn-row" style="margin-top:8px;">
+          <button class="btn-next" onclick="goStep(2)">
+            Continue
+            <svg width="15" height="15" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ STEP 2: DONOR DETAILS ══ -->
+      <div class="step-card" id="step-2" style="display:none;">
+        <div class="step-card-title">Your details</div>
+        <p class="step-card-sub">Tell us about yourself so we can send
+          your receipt and keep you updated on the impact of your
+          donation.</p>
+
+        <div class="f-row">
+          <div class="field"><label>First Name <span
+                class="req">*</span></label><input type="text"
+              id="d-first" placeholder="Srijana" /></div>
+          <div class="field"><label>Last Name <span
+                class="req">*</span></label><input type="text"
+              id="d-last" placeholder="Tamang" /></div>
+        </div>
+        <div class="field"><label>Email Address <span
+              class="req">*</span></label><input type="email"
+            id="d-email" placeholder="you@email.com" /></div>
+        <div class="f-row">
+          <div class="field"><label>Phone Number</label><input
+              type="tel" id="d-phone"
+              placeholder="+977 98XXXXXXXX" /></div>
+          <div class="field"><label>City / Location</label><input
+              type="text" id="d-city"
+              placeholder="Kathmandu" /></div>
+        </div>
+        <div class="field"><label>Organisation <span
+              style="color:var(--muted);font-weight:500;">(optional)</span></label><input
+            type="text" id="d-org"
+            placeholder="Your organisation or company" /></div>
+
+        <div
+          style="display:flex;align-items:center;gap:9px;padding:11px 14px;background:var(--bg);border-radius:9px;border:1px solid var(--border-soft);margin-bottom:20px;">
+          <input type="checkbox" id="d-anon"
+            style="width:16px;height:16px;accent-color:var(--blue);cursor:pointer;flex-shrink:0;" />
+          <label for="d-anon"
+            style="font-size:0.78rem;color:var(--body);cursor:pointer;line-height:1.5;">Make
+            my donation <strong
+              style="color:var(--ink);">anonymous</strong> — don't
+            include my name in public impact reports</label>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="field" style="margin-bottom:8px;"><label>Payment
+            Method <span class="req">*</span></label></div>
+        <div class="pay-grid">
+          <button class="pay-btn on"
+            onclick="setPayment(this,'Bank Transfer','Transfer to our designated account')"
+            id="pay-bank">
+            <div class="pay-icon"><svg width="16" height="16"
+                viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2"><rect
+                  x="2" y="5" width="20" height="14"
+                  rx="2" /><line x1="2" y1="10" x2="22"
+                  y2="10" /></svg></div>
+            <div><div class="pay-name">Bank Transfer</div><div
+                class="pay-sub">NABIL · NIC Asia · Global
+                IME</div></div>
+          </button>
+          <button class="pay-btn"
+            onclick="setPayment(this,'eSewa','Digital wallet payment')">
+            <div class="pay-icon"><svg width="16" height="16"
+                viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2"><path
+                  d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg></div>
+            <div><div class="pay-name">eSewa</div><div
+                class="pay-sub">Digital wallet</div></div>
+          </button>
+          <button class="pay-btn"
+            onclick="setPayment(this,'Khalti','Digital wallet payment')">
+            <div class="pay-icon"><svg width="16" height="16"
+                viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2"><path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg></div>
+            <div><div class="pay-name">Khalti</div><div
+                class="pay-sub">Digital wallet</div></div>
+          </button>
+          <button class="pay-btn"
+            onclick="setPayment(this,'International Card','Visa · Mastercard · Amex')">
+            <div class="pay-icon"><svg width="16" height="16"
+                viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2"><rect
+                  x="2" y="5" width="20" height="14"
+                  rx="2" /><line x1="2" y1="10" x2="22"
+                  y2="10" /></svg></div>
+            <div><div class="pay-name">International Card</div><div
+                class="pay-sub">Visa · Mastercard ·
+                Amex</div></div>
+          </button>
+        </div>
+
+        <!-- Bank details (shown when Bank Transfer selected) -->
+        <div class="bank-box show" id="bank-box">
+          <div class="bank-box-title">&#128bank; Bank Transfer
+            Details</div>
+          <div class="bank-row"><span class="bank-key">Bank
+              Name</span><span class="bank-val">NABIL Bank Limited
+              <button class="copy-btn"
+                onclick="copyText('NABIL Bank Limited')">Copy</button></span></div>
+          <div class="bank-row"><span class="bank-key">Account
+              Name</span><span class="bank-val">Aerosan Nepal Pvt.
+              Ltd. <button class="copy-btn"
+                onclick="copyText('Aerosan Nepal Pvt. Ltd.')">Copy</button></span></div>
+          <div class="bank-row"><span class="bank-key">Account
+              Number</span><span class="bank-val">1234567890123456
+              <button class="copy-btn"
+                onclick="copyText('1234567890123456')">Copy</button></span></div>
+          <div class="bank-row"><span
+              class="bank-key">Branch</span><span
+              class="bank-val">Kathmandu Main Branch</span></div>
+          <div class="bank-row"><span class="bank-key">SWIFT
+              Code</span><span class="bank-val">NARBNPKA <button
+                class="copy-btn"
+                onclick="copyText('NARBNPKA')">Copy</button></span></div>
+          <div class="bank-row"><span
+              class="bank-key">Reference</span><span
+              class="bank-val">DONATE-<span
+                id="bank-ref">2025</span> <button
+                class="copy-btn"
+                onclick="copyText('DONATE-2025')">Copy</button></span></div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-back" onclick="goStep(1)">
+            <svg width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M19 12H5M12 19l-7-7 7-7" /></svg>
+            Back
+          </button>
+          <button class="btn-next" onclick="validateStep2()">
+            Review Donation
+            <svg width="15" height="15" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ STEP 3: REVIEW ══ -->
+      <div class="step-card" id="step-3" style="display:none;">
+        <div class="step-card-title">Review your donation</div>
+        <p class="step-card-sub">Please confirm all details are correct
+          before proceeding to the final step.</p>
+
+        <!-- Amount summary -->
+        <div class="review-amount-box">
+          <div class="review-amount-label">Total Donation</div>
+          <div class="review-amount-val">Rs.<span
+              id="rv-amount">2,000</span></div>
+          <div class="review-amount-freq" id="rv-freq">One-time
+            donation</div>
+        </div>
+
+        <!-- Donor details -->
+        <div class="review-section">
+          <div class="review-section-title">Donor Information</div>
+          <div class="review-grid">
+            <div class="review-item"><div class="review-lbl">Full
+                Name</div><div class="review-val"
+                id="rv-name">—</div></div>
+            <div class="review-item"><div
+                class="review-lbl">Email</div><div
+                class="review-val" id="rv-email">—</div></div>
+            <div class="review-item"><div
+                class="review-lbl">Phone</div><div
+                class="review-val" id="rv-phone">—</div></div>
+            <div class="review-item"><div
+                class="review-lbl">Location</div><div
+                class="review-val" id="rv-city">—</div></div>
+            <div class="review-item"><div
+                class="review-lbl">Organisation</div><div
+                class="review-val" id="rv-org">—</div></div>
+            <div class="review-item"><div
+                class="review-lbl">Anonymous</div><div
+                class="review-val" id="rv-anon">—</div></div>
+          </div>
+        </div>
+
+        <!-- Donation details -->
+        <div class="review-section">
+          <div class="review-section-title">Donation Details</div>
+          <div class="review-grid">
+            <div class="review-item"><div
+                class="review-lbl">Purpose</div><div
+                class="review-val" id="rv-purpose">—</div></div>
+            <div class="review-item"><div class="review-lbl">Payment
+                Method</div><div class="review-val"
+                id="rv-payment">—</div></div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-back" onclick="goStep(2)">
+            <svg width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M19 12H5M12 19l-7-7 7-7" /></svg>
+            Edit
+          </button>
+          <button class="btn-next" onclick="goStep(4)">
+            Looks Good — Upload Receipt
+            <svg width="15" height="15" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M5 12h14M12 5l7 7-7 7" /></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ══ STEP 4: UPLOAD + CONFIRM ══ -->
+      <div class="step-card" id="step-4" style="display:none;">
+        <div class="step-card-title">Upload receipt &amp; confirm</div>
+        <p class="step-card-sub">After completing your payment, upload
+          your transaction receipt or screenshot below and confirm
+          your donation.</p>
+
+        <!-- Mini amount reminder -->
+        <div
+          style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:var(--blue-pale);border:1px solid var(--blue-border);border-radius:var(--r);margin-bottom:22px;">
+          <div>
+            <div
+              style="font-size:0.7rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Confirming
+              donation of</div>
+            <div
+              style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:900;font-size:1.2rem;color:var(--blue);letter-spacing:-0.03em;">Rs.<span
+                id="step4-amount">2,000</span> &bull; <span
+                id="step4-freq"
+                style="font-size:0.85rem;font-weight:700;">One-time</span></div>
+          </div>
+          <div style="text-align:right;">
+            <div
+              style="font-size:0.7rem;color:var(--muted);font-weight:600;">Payment
+              via</div>
+            <div
+              style="font-size:0.82rem;font-weight:700;color:var(--ink);"
+              id="step4-payment">Bank Transfer</div>
+          </div>
+        </div>
+
+        <!-- Upload zone -->
+        <label>
+          <div class="upload-zone" id="upload-zone">
+            <input type="file" id="receipt-file"
+              accept="image/*,.pdf"
+              onchange="onFileSelect(this)" />
+            <div class="upload-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                stroke-width="2"><path
+                  d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12" /></svg>
+            </div>
+            <div class="upload-title">Upload Payment Receipt</div>
+            <div class="upload-sub">Drag &amp; drop or click to
+              browse<br />Supports JPG, PNG, PDF — max 10MB</div>
+            <div class="upload-file-name"
+              id="file-name-display"></div>
+          </div>
+        </label>
+
+        <div class="field" style="margin-bottom:8px;">
+          <label>Transaction ID / Reference Number <span
+              class="req">*</span></label>
+          <input type="text" id="d-txid"
+            placeholder="e.g. TXN123456789 or transfer reference" />
+        </div>
+
+        <div class="field">
+          <label>Additional Notes <span
+              style="color:var(--muted);font-weight:500;">(optional)</span></label>
+          <textarea id="d-notes"
+            placeholder="Any special instructions or notes for our team&#8230;"></textarea>
+        </div>
+
+        <!-- Confirm checkbox -->
+        <div class="confirm-row">
+          <input type="checkbox" id="confirm-check" />
+          <label for="confirm-check">I confirm that I have completed
+            the payment of <strong
+              id="conf-amount">Rs.2,000</strong> and that all
+            information provided is accurate. I understand that
+            Aerosan will verify the receipt and send a confirmation
+            email within 24 hours.</label>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn-back" onclick="goStep(3)">
+            <svg width="14" height="14" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M19 12H5M12 19l-7-7 7-7" /></svg>
+            Back
+          </button>
+          <button class="btn-donate-final" id="final-btn"
+            onclick="submitDonation()">
+            <svg width="16" height="16" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+            Confirm &amp; Submit Donation
+          </button>
+        </div>
+        <div class="secure-note">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5"><rect x="3"
+              y="11" width="18" height="11" rx="2" /><path
+              d="M7 11V7a5 5 0 0 1 10 0v4" /></svg>
+          Secured · Your details are encrypted and never shared with
+          third parties
+        </div>
+      </div>
+
+      <!-- ══ SUCCESS ══ -->
+      <div class="step-card success-screen" id="step-success">
+        <div class="success-ring">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2.5"><polyline
+              points="20 6 9 17 4 12" /></svg>
+        </div>
+        <h2 class="success-h">Donation Submitted! &#10084;</h2>
+        <p class="success-p">Thank you for your generous support. Our
+          team will verify your receipt and send a confirmation email
+          with your official tax receipt within 24 hours.</p>
+        <div class="success-ref" id="success-ref">Reference:
+          AERO-2025-XXXXXX</div>
+
+        <div class="success-summary">
+          <div class="ss-title">Donation Summary</div>
+          <div class="ss-row"><span>Donor</span><span
+              id="ss-name">—</span></div>
+          <div class="ss-row"><span>Amount</span><span
+              id="ss-amount">—</span></div>
+          <div class="ss-row"><span>Frequency</span><span
+              id="ss-freq">—</span></div>
+          <div class="ss-row"><span>Purpose</span><span
+              id="ss-purpose">—</span></div>
+          <div class="ss-row"><span>Payment</span><span
+              id="ss-payment">—</span></div>
+          <div class="ss-row"><span>Transaction ID</span><span
+              id="ss-txid">—</span></div>
+        </div>
+
+        <div
+          style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <a href="index.html" class="btn btn-primary">Back to Home
+            <svg width="13" height="13" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M5 12h14M12 5l7 7-7 7" /></svg></a>
+          <a href="projects.html" class="btn btn-outline">See Our
+            Projects</a>
+        </div>
+      </div>
+
+    </div><!-- end donate-wrap -->
+
+      <footer class="dk-footer">
+      <div class="container">
+        <!-- Row 1: Brand Box (absolute) + Contact Info -->
+        <div class="footer-row">
+          <div class="footer-col footer-col-4">
+            <!-- Brand Box with floating effect -->
+            <div class="dk-footer-box-info">
+              <a href="index.html" class="footer-logo">
+                <img
+                  src="/logo.avif"
+                  alt="Aerosan logo"
+                  class="footer-logo-img"
+                />
+              </a>
+              <p class="footer-info-text">
+                Gender-friendly, menstrual hygiene-inclusive, environmentally
+                sustainable smart public toilet service — built for every person
+                in urban Nepal.
+              </p>
+              <div class="footer-social-link">
+                <h3>Follow us</h3>
+                <ul>
+                  <li>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- Award Badge (animated) -->
+            <div class="footer-awarad">
+              <img src="/logo.avif" alt="award" />
+              <p>🏆 Best Design 2026</p>
+            </div>
+          </div>
+
+          <!-- Right side: Contact + Links + Subscribe -->
+          <div class="footer-col footer-col-8">
+            <!-- Contact Row -->
+            <div class="footer-contact-row">
+              <div class="footer-contact-col">
+                <div class="contact-us">
+                  <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="contact-info">
+                    <h3>Kathmandu, Nepal</h3>
+                    <p>Baneshwor, 44600</p>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-contact-col">
+                <div class="contact-us contact-us-last">
+                  <div class="contact-icon">
+                    <i class="fas fa-phone-alt"></i>
+                  </div>
+                  <div class="contact-info">
+                    <h3>+977 1 5353 711</h3>
+                    <p>Give us a call</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Links & Subscribe Row -->
+            <div class="footer-links-row">
+              <div class="footer-links-col">
+                <div class="footer-widget footer-left-widget">
+                  <div class="section-heading">
+                    <h3>Useful Links</h3>
+                    <span class="animate-border"></span>
+                  </div>
+                  <div class="footer-links-list">
+                    <ul>
+                      <li><a href="#">About us</a></li>
+                      <li><a href="#">Services</a></li>
+                      <li><a href="#">Projects</a></li>
+                      <li><a href="#">Our Team</a></li>
+                    </ul>
+                    <ul>
+                      <li><a href="#">Contact us</a></li>
+                      <li><a href="#">Blog</a></li>
+                      <li><a href="#">Testimonials</a></li>
+                      <li><a href="#">FAQ</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="footer-links-col">
+                <div class="footer-widget">
+                  <div class="section-heading">
+                    <h3>Subscribe</h3>
+                    <span class="animate-border"></span>
+                  </div>
+                  <p>
+                    Stay updated with our latest news and innovations in smart
+                    sanitation.
+                  </p>
+                  <form action="#" class="dk-footer-form">
+                    <input type="email" placeholder="Email Address" required />
+                    <button type="submit">
+                      <i class="fas fa-paper-plane"></i>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright Bar -->
+      <div class="copyright">
+        <div class="container">
+          <div class="copyright-row">
+            <div class="copyright-col">
+              <span>© 2025 Aerosan. All rights reserved.</span>
+            </div>
+            <div class="copyright-col copyright-menu">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to Top Button -->
+      <div class="back-to-top">
+        <button class="btn-top" title="Back to Top">
+          <i class="fas fa-chevron-up"></i>
+        </button>
+      </div>
+    </footer>
+
+    <script>
+  // Nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 30), { passive: true });
+  const ham = document.getElementById('ham'), mob = document.getElementById('mob');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mob.classList.toggle('open'); });
+
+  // State
+  let selectedAmt = 2000;
+  let selectedFreq = 'One-time';
+  let selectedPayment = 'Bank Transfer';
+  let currentStep = 1;
+
+  // Amount
+  function setAmt(val, btn) {
+    selectedAmt = val;
+    document.querySelectorAll('.amt-pill').forEach(b => b.classList.remove('on'));
+    if (btn) btn.classList.add('on');
+    document.getElementById('c-amt').value = '';
+  }
+  function onCustomAmt(inp) {
+    const v = parseInt(inp.value);
+    if (v > 0) {
+      selectedAmt = v;
+      document.querySelectorAll('.amt-pill').forEach(b => b.classList.remove('on'));
+    }
+  }
+
+  // Frequency
+  function setFreq(btn, label) {
+    selectedFreq = label;
+    document.querySelectorAll('.freq-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+  }
+
+  // Payment
+  function setPayment(btn, name, sub) {
+    selectedPayment = name;
+    document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    const bb = document.getElementById('bank-box');
+    if (name === 'Bank Transfer') bb.classList.add('show');
+    else bb.classList.remove('show');
+  }
+
+  // Copy
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const btns = document.querySelectorAll('.copy-btn');
+      btns.forEach(b => { if (b.onclick && b.onclick.toString().includes(text.slice(0,8))) { b.textContent = 'Copied!'; setTimeout(() => b.textContent = 'Copy', 1500); } });
+    });
+  }
+
+  // File upload
+  function onFileSelect(inp) {
+    const file = inp.files[0];
+    if (!file) return;
+    const zone = document.getElementById('upload-zone');
+    const display = document.getElementById('file-name-display');
+    zone.classList.add('has-file');
+    display.textContent = '✓ ' + file.name;
+    display.classList.add('show');
+  }
+
+  // Step navigation
+  function goStep(n) {
+    const steps = [1, 2, 3, 4];
+    steps.forEach(s => {
+      const el = document.getElementById('step-' + s);
+      if (el) el.style.display = 'none';
+    });
+    const el = document.getElementById('step-' + n);
+    if (el) { el.style.display = 'block'; el.style.animation = 'none'; el.offsetHeight; el.style.animation = ''; }
+
+    // Update progress
+    for (let i = 1; i <= 4; i++) {
+      const ps = document.getElementById('ps-' + i);
+      ps.classList.remove('active', 'done');
+      if (i < n) ps.classList.add('done');
+      if (i === n) ps.classList.add('active');
+    }
+    for (let i = 1; i <= 3; i++) {
+      const pc = document.getElementById('pc-' + i);
+      pc.classList.toggle('done', i < n);
+    }
+
+    currentStep = n;
+
+    // If going to step 3, populate review
+    if (n === 3) populateReview();
+    if (n === 4) populateStep4();
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function validateStep2() {
+    const first = document.getElementById('d-first');
+    const last = document.getElementById('d-last');
+    const email = document.getElementById('d-email');
+    let ok = true;
+    [first, last, email].forEach(el => {
+      if (!el.value.trim()) {
+        ok = false;
+        el.classList.add('err');
+        el.style.borderColor = '#E05555';
+        el.style.boxShadow = '0 0 0 3px rgba(224,85,85,0.1)';
+        el.addEventListener('input', () => { el.classList.remove('err'); el.style.borderColor = ''; el.style.boxShadow = ''; }, { once: true });
+      }
+    });
+    if (ok) goStep(3);
+  }
+
+  function populateReview() {
+    const fmt = n => n.toLocaleString('en-NP');
+    document.getElementById('rv-amount').textContent = fmt(selectedAmt);
+    document.getElementById('rv-freq').textContent = selectedFreq + ' donation';
+    document.getElementById('rv-name').textContent = (document.getElementById('d-first').value + ' ' + document.getElementById('d-last').value).trim() || '—';
+    document.getElementById('rv-email').textContent = document.getElementById('d-email').value || '—';
+    document.getElementById('rv-phone').textContent = document.getElementById('d-phone').value || '—';
+    document.getElementById('rv-city').textContent = document.getElementById('d-city').value || '—';
+    document.getElementById('rv-org').textContent = document.getElementById('d-org').value || '—';
+    document.getElementById('rv-anon').textContent = document.getElementById('d-anon').checked ? 'Yes' : 'No';
+    document.getElementById('rv-purpose').textContent = document.getElementById('d-purpose').value;
+    document.getElementById('rv-payment').textContent = selectedPayment;
+  }
+
+  function populateStep4() {
+    const fmt = n => n.toLocaleString('en-NP');
+    document.getElementById('step4-amount').textContent = fmt(selectedAmt);
+    document.getElementById('step4-freq').textContent = selectedFreq;
+    document.getElementById('step4-payment').textContent = selectedPayment;
+    document.getElementById('conf-amount').textContent = 'Rs.' + fmt(selectedAmt);
+  }
+
+  function submitDonation() {
+    const txid = document.getElementById('d-txid').value.trim();
+    const confirmed = document.getElementById('confirm-check').checked;
+    const txEl = document.getElementById('d-txid');
+
+    if (!txid) {
+      txEl.style.borderColor = '#E05555';
+      txEl.style.boxShadow = '0 0 0 3px rgba(224,85,85,0.1)';
+      txEl.focus();
+      txEl.addEventListener('input', () => { txEl.style.borderColor = ''; txEl.style.boxShadow = ''; }, { once: true });
+      return;
+    }
+    if (!confirmed) {
+      document.getElementById('confirm-check').style.outline = '2px solid #E05555';
+      setTimeout(() => document.getElementById('confirm-check').style.outline = '', 2000);
+      return;
+    }
+
+    const btn = document.getElementById('final-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="animation:spin 0.8s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Submitting&#8230;';
+
+    setTimeout(() => {
+      // Hide step 4, show success
+      document.getElementById('step-4').style.display = 'none';
+      // Update progress — all done
+      for (let i = 1; i <= 4; i++) {
+        const ps = document.getElementById('ps-' + i);
+        ps.classList.remove('active');
+        ps.classList.add('done');
+      }
+      for (let i = 1; i <= 3; i++) document.getElementById('pc-' + i).classList.add('done');
+
+      // Populate success summary
+      const fmt = n => n.toLocaleString('en-NP');
+      const ref = 'AERO-' + Date.now().toString().slice(-6);
+      document.getElementById('success-ref').textContent = 'Reference: ' + ref;
+      document.getElementById('ss-name').textContent = (document.getElementById('d-first').value + ' ' + document.getElementById('d-last').value).trim();
+      document.getElementById('ss-amount').textContent = 'Rs.' + fmt(selectedAmt);
+      document.getElementById('ss-freq').textContent = selectedFreq;
+      document.getElementById('ss-purpose').textContent = document.getElementById('d-purpose').value;
+      document.getElementById('ss-payment').textContent = selectedPayment;
+      document.getElementById('ss-txid').textContent = txid;
+
+      const s = document.getElementById('step-success');
+      s.style.display = 'block';
+      s.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 1800);
+  }
+</script>
+  <script>
+        // =============================================
+// BACK TO TOP BUTTON - Smooth Scrolling
+// =============================================
+
+const backToTopBtn = document.querySelector('.btn-top');
+
+// Show/hide button based on scroll position
+window.addEventListener('scroll', function() {
+    if (window.pageYOffset > 300) {
+        backToTopBtn.style.display = 'flex';
+        backToTopBtn.style.opacity = '1';
+    } else {
+        backToTopBtn.style.opacity = '0';
+        setTimeout(() => {
+            if (window.pageYOffset <= 300) {
+                backToTopBtn.style.display = 'none';
+            }
+        }, 300);
+    }
+});
+
+// Smooth scroll to top when clicked
+backToTopBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+    </script>
+  </body>
+</html>

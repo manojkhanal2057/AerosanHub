@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Aerosan — Journal</title>
     <link rel="stylesheet" href="style.css" />
-       <link
+    <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <style>
         /* BLOG-ONLY */
         .feat-art {
@@ -397,7 +396,7 @@
     display: block;
 }
     </style>
-        <style>
+    <style>
       /* ----- Reset & Base ----- */
 
       /* ----- Container ----- */
@@ -999,226 +998,298 @@
         }
       }
     </style>
-        <style>
+    <style>
       /* Add to your existing styles */
 .btn-top {
     display: none; /* Hidden by default */
     /* ... rest of your styles ... */
 }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    <!-- NAV -->
     <nav id="nav">
-        <div class="nav-inner">
-           <a href="index.html" class="nav-logo">
-                <img src="/logo.avif"  alt="">
-            </a>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="model.html">Model</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="nav-right"><a href="contact.html" class="btn btn-primary">Get Started <svg width="13"
-                        height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg></a></div>
-            <div class="hamburger" id="ham"><span></span><span></span><span></span></div>
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <img src="/logo.avif" alt="">
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li><li><a
+              href="model.html">Model</a></li>
+          <li><a href="services.html">Services</a></li><li><a
+              href="projects.html">Projects</a></li>
+          <li><a href="team.html">Team</a></li><li><a
+              href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-right">
+          <a href="donate.html" class="btn btn-primary"
+            style="background:linear-gradient(135deg,#E05555,var(--blue));">
+            <svg width="13" height="13" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              stroke-width="2.5"><path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+            Donate Now
+          </a>
         </div>
+        <div class="hamburger"
+          id="ham"><span></span><span></span><span></span></div>
+      </div>
     </nav>
-    <div class="mob-menu" id="mob"><a href="index.html">Home</a><a href="model.html">Model</a><a
-            href="services.html">Services</a><a href="projects.html">Projects</a><a href="team.html">Team</a><a
-            href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="contact.html"
-            class="btn btn-primary">Get Started</a></div>
+    <div class="mob-menu" id="mob">
+      <a href="index.html">Home</a><a href="model.html">Model</a><a
+        href="services.html">Services</a>
+      <a href="projects.html">Projects</a><a href="team.html">Team</a><a
+        href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="donate.html" class="btn btn-primary"
+        style="justify-content:center;background:linear-gradient(135deg,#E05555,var(--blue));">&#10084;
+        Donate Now</a>
+    </div>
 
     <section class="page-hero">
-        <div class="orb orb-blue" style="width:400px;height:400px;right:-60px;top:-80px;"></div>
-        <div class="orb orb-teal" style="width:280px;height:280px;left:5%;bottom:-60px;"></div>
-        <div class="wrap" style="position:relative;z-index:2;">
-            <div class="eyebrow">The Aerosan Journal</div>
-            <h1>Research, field insights,<br />and analysis.</h1>
-            <p class="lead">Perspectives on the future of sustainable urban sanitation, MHM access, gender equity, and
-                circular economy — from practitioners building it on the ground in Nepal.</p>
-        </div>
+      <div class="orb orb-blue"
+        style="width:400px;height:400px;right:-60px;top:-80px;"></div>
+      <div class="orb orb-teal"
+        style="width:280px;height:280px;left:5%;bottom:-60px;"></div>
+      <div class="wrap" style="position:relative;z-index:2;">
+        <div class="eyebrow">The Aerosan Journal</div>
+        <h1>Research, field insights,<br />and analysis.</h1>
+        <p class="lead">Perspectives on the future of sustainable urban
+          sanitation, MHM access, gender equity, and
+          circular economy — from practitioners building it on the ground in
+          Nepal.</p>
+      </div>
     </section>
 
     <section class="section">
-        <div class="wrap">
-            <!-- Filters -->
-            <div class="topic-filters" data-r>
-                <button class="t-btn active">All Topics</button>
-                <button class="t-btn">Urban Planning</button>
-                <button class="t-btn">MHM & Gender</button>
-                <button class="t-btn">Circular Economy</button>
-                <button class="t-btn">IoT & Technology</button>
-                <button class="t-btn">Public Health</button>
-                <button class="t-btn">Finance & Investment</button>
-            </div>
-
-            <!-- Featured -->
-            <div class="feat-art" data-r>
-                <div class="feat-art-img">
-                    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=85"
-                        alt="Urban Sanitation" />
-                    <div class="feat-art-tint"></div>
-                    <div class="feat-art-badge">📌 Featured Article</div>
-                </div>
-                <div class="feat-art-body">
-                    <div class="art-cat"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                        </svg>Urban Planning</div>
-                    <div class="feat-art-title">The Future of Urban Sanitation Infrastructure in Nepal</div>
-                    <p class="feat-art-excerpt">How rapid urbanisation is outpacing sanitation capacity — and why cities
-                        like Kathmandu need systems-level solutions that integrate MHM access, gender equity, and
-                        circular economics, not stopgap repairs.</p>
-                    <div class="art-meta">
-                        <div class="art-author">
-                            <div class="art-av">👤</div><span class="art-author-name">Ramesh Shrestha</span>
-                        </div>
-                        <div class="art-dot"></div><span class="art-date">14 May 2025</span>
-                        <div class="art-dot"></div><span class="art-read">8 min read</span>
-                    </div>
-                    <a href="#" class="btn btn-primary" style="width:fit-content;">Read Article <svg width="13"
-                            height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                            <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg></a>
-                </div>
-            </div>
-
-            <!-- Blog grid -->
-            <div class="sec-head" data-r>
-                <div class="eyebrow">Recent Articles</div>
-                <h2 class="display d-md">From the journal</h2>
-            </div>
-            <div class="blog-grid">
-                <div class="blog-card" data-r data-d="1">
-                    <div class="blog-card-img"><img
-                            src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80" alt="" />
-                        <div class="blog-card-tint"></div><span class="blog-card-cat-tag">Circular Economy</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <div class="blog-title">Waste-to-Energy: Infrastructure That Pays for Itself</div>
-                        <div class="blog-excerpt">A technical and economic analysis of anaerobic digestion in public
-                            sanitation — biogas yields to fertilizer market pricing in Nepal.</div>
-                        <div class="blog-footer"><span class="blog-by">Bikash Karki · 6 min</span><a href="#"
-                                class="blog-read-link">Read <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2.5">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg></a></div>
-                    </div>
-                </div>
-                <div class="blog-card" data-r data-d="2">
-                    <div class="blog-card-img"><img
-                            src="https://images.unsplash.com/photo-1573497161079-f3fd25cc6b90?w=600&q=80" alt="" />
-                        <div class="blog-card-tint"></div><span class="blog-card-cat-tag">MHM & Gender</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <div class="blog-title">Designing Sanitation for Women: Beyond the Obvious</div>
-                        <div class="blog-excerpt">Why gender-inclusive sanitation requires more than a separate door —
-                            MHM facilities, safety lighting, and spatial design all matter.</div>
-                        <div class="blog-footer"><span class="blog-by">Anita Tamang · 5 min</span><a href="#"
-                                class="blog-read-link">Read <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2.5">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg></a></div>
-                    </div>
-                </div>
-                <div class="blog-card" data-r data-d="3">
-                    <div class="blog-card-img"><img
-                            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" alt="" />
-                        <div class="blog-card-tint"></div><span class="blog-card-cat-tag">IoT & Technology</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <div class="blog-title">How IoT Monitoring Transforms Public Facility Management</div>
-                        <div class="blog-excerpt">Moving from reactive cleaning to predictive maintenance — how
-                            real-time sensor data changes the economics of public toilet operations.</div>
-                        <div class="blog-footer"><span class="blog-by">Bikash Karki · 7 min</span><a href="#"
-                                class="blog-read-link">Read <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2.5">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg></a></div>
-                    </div>
-                </div>
-                <div class="blog-card" data-r data-d="4">
-                    <div class="blog-card-img"><img
-                            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80" alt="" />
-                        <div class="blog-card-tint"></div><span class="blog-card-cat-tag">Public Health</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <div class="blog-title">The Health Cost of Missing Sanitation in Urban Nepal</div>
-                        <div class="blog-excerpt">Quantifying the disease burden and healthcare costs attributable to
-                            inadequate public sanitation in Kathmandu.</div>
-                        <div class="blog-footer"><span class="blog-by">Sunita Gurung · 6 min</span><a href="#"
-                                class="blog-read-link">Read <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2.5">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg></a></div>
-                    </div>
-                </div>
-                <div class="blog-card" data-r data-d="5">
-                    <div class="blog-card-img"><img
-                            src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80" alt="" />
-                        <div class="blog-card-tint"></div><span class="blog-card-cat-tag">Finance & Investment</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <div class="blog-title">Why Impact Investors Should Look at Urban Sanitation</div>
-                        <div class="blog-excerpt">The case for sanitation as an asset class — measurable social returns,
-                            predictable revenue, and enormous unmet need across South Asia.</div>
-                        <div class="blog-footer"><span class="blog-by">Dev Pandey · 9 min</span><a href="#"
-                                class="blog-read-link">Read <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2.5">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg></a></div>
-                    </div>
-                </div>
-                <div class="blog-card" data-r data-d="6">
-                    <div class="blog-card-img"><img
-                            src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="" />
-                        <div class="blog-card-tint"></div><span class="blog-card-cat-tag">Urban Planning</span>
-                    </div>
-                    <div class="blog-card-body">
-                        <div class="blog-title">The Bagmati River Crisis Is a Sanitation Problem</div>
-                        <div class="blog-excerpt">Tracing the direct line from missing urban sanitation infrastructure
-                            to the ongoing pollution of Nepal's most sacred river.</div>
-                        <div class="blog-footer"><span class="blog-by">Ramesh Shrestha · 8 min</span><a href="#"
-                                class="blog-read-link">Read <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-                                    stroke="currentColor" stroke-width="2.5">
-                                    <path d="M5 12h14M12 5l7 7-7 7" />
-                                </svg></a></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Newsletter -->
-            <div style="margin-top:64px;" data-r>
-                <div class="nl-box">
-                    <div class="nl-orb"></div>
-                    <div style="position:relative;z-index:1;">
-                        <div class="eyebrow" style="color:rgba(255,255,255,0.65);"><span
-                                style="background:rgba(255,255,255,0.35)"></span>Stay Updated</div>
-                        <div class="nl-title">The Aerosan Dispatch</div>
-                        <p class="nl-sub">Research notes, field updates, and analysis from the frontlines of urban
-                            sanitation in Nepal. Once a month, no noise.</p>
-                    </div>
-                    <div style="position:relative;z-index:1;">
-                        <div class="nl-form">
-                            <input class="nl-input" type="email" placeholder="your@email.com" />
-                            <button class="btn btn-white">Subscribe</button>
-                        </div>
-                        <p class="nl-note">No spam. Unsubscribe anytime. Read by municipal planners, investors, and
-                            public health practitioners across South Asia.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="wrap">
+        <!-- Filters -->
+        <div class="topic-filters" data-r>
+          <button class="t-btn active">All Topics</button>
+          <button class="t-btn">Urban Planning</button>
+          <button class="t-btn">MHM & Gender</button>
+          <button class="t-btn">Circular Economy</button>
+          <button class="t-btn">IoT & Technology</button>
+          <button class="t-btn">Public Health</button>
+          <button class="t-btn">Finance & Investment</button>
         </div>
+
+        <!-- Featured -->
+        <div class="feat-art" data-r>
+          <div class="feat-art-img">
+            <img
+              src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=900&q=85"
+              alt="Urban Sanitation" />
+            <div class="feat-art-tint"></div>
+            <div class="feat-art-badge">📌 Featured Article</div>
+          </div>
+          <div class="feat-art-body">
+            <div class="art-cat"><svg width="10" height="10" viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor" stroke-width="2">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              </svg>Urban Planning</div>
+            <div class="feat-art-title">The Future of Urban Sanitation
+              Infrastructure in Nepal</div>
+            <p class="feat-art-excerpt">How rapid urbanisation is outpacing
+              sanitation capacity — and why cities
+              like Kathmandu need systems-level solutions that integrate MHM
+              access, gender equity, and
+              circular economics, not stopgap repairs.</p>
+            <div class="art-meta">
+              <div class="art-author">
+                <div class="art-av">👤</div><span class="art-author-name">Ramesh
+                  Shrestha</span>
+              </div>
+              <div class="art-dot"></div><span class="art-date">14 May
+                2025</span>
+              <div class="art-dot"></div><span class="art-read">8 min
+                read</span>
+            </div>
+            <a href="#" class="btn btn-primary" style="width:fit-content;">Read
+              Article <svg width="13"
+                height="13" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg></a>
+          </div>
+        </div>
+
+        <!-- Blog grid -->
+        <div class="sec-head" data-r>
+          <div class="eyebrow">Recent Articles</div>
+          <h2 class="display d-md">From the journal</h2>
+        </div>
+        <div class="blog-grid">
+          <div class="blog-card" data-r data-d="1">
+            <div class="blog-card-img"><img
+                src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80"
+                alt />
+              <div class="blog-card-tint"></div><span
+                class="blog-card-cat-tag">Circular Economy</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-title">Waste-to-Energy: Infrastructure That Pays
+                for Itself</div>
+              <div class="blog-excerpt">A technical and economic analysis of
+                anaerobic digestion in public
+                sanitation — biogas yields to fertilizer market pricing in
+                Nepal.</div>
+              <div class="blog-footer"><span class="blog-by">Bikash Karki · 6
+                  min</span><a href="#"
+                  class="blog-read-link">Read <svg width="10" height="10"
+                    viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-r data-d="2">
+            <div class="blog-card-img"><img
+                src="https://images.unsplash.com/photo-1573497161079-f3fd25cc6b90?w=600&q=80"
+                alt />
+              <div class="blog-card-tint"></div><span
+                class="blog-card-cat-tag">MHM & Gender</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-title">Designing Sanitation for Women: Beyond the
+                Obvious</div>
+              <div class="blog-excerpt">Why gender-inclusive sanitation requires
+                more than a separate door —
+                MHM facilities, safety lighting, and spatial design all
+                matter.</div>
+              <div class="blog-footer"><span class="blog-by">Anita Tamang · 5
+                  min</span><a href="#"
+                  class="blog-read-link">Read <svg width="10" height="10"
+                    viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-r data-d="3">
+            <div class="blog-card-img"><img
+                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80"
+                alt />
+              <div class="blog-card-tint"></div><span
+                class="blog-card-cat-tag">IoT & Technology</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-title">How IoT Monitoring Transforms Public
+                Facility Management</div>
+              <div class="blog-excerpt">Moving from reactive cleaning to
+                predictive maintenance — how
+                real-time sensor data changes the economics of public toilet
+                operations.</div>
+              <div class="blog-footer"><span class="blog-by">Bikash Karki · 7
+                  min</span><a href="#"
+                  class="blog-read-link">Read <svg width="10" height="10"
+                    viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-r data-d="4">
+            <div class="blog-card-img"><img
+                src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80"
+                alt />
+              <div class="blog-card-tint"></div><span
+                class="blog-card-cat-tag">Public Health</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-title">The Health Cost of Missing Sanitation in
+                Urban Nepal</div>
+              <div class="blog-excerpt">Quantifying the disease burden and
+                healthcare costs attributable to
+                inadequate public sanitation in Kathmandu.</div>
+              <div class="blog-footer"><span class="blog-by">Sunita Gurung · 6
+                  min</span><a href="#"
+                  class="blog-read-link">Read <svg width="10" height="10"
+                    viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-r data-d="5">
+            <div class="blog-card-img"><img
+                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80"
+                alt />
+              <div class="blog-card-tint"></div><span
+                class="blog-card-cat-tag">Finance & Investment</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-title">Why Impact Investors Should Look at Urban
+                Sanitation</div>
+              <div class="blog-excerpt">The case for sanitation as an asset
+                class — measurable social returns,
+                predictable revenue, and enormous unmet need across South
+                Asia.</div>
+              <div class="blog-footer"><span class="blog-by">Dev Pandey · 9
+                  min</span><a href="#"
+                  class="blog-read-link">Read <svg width="10" height="10"
+                    viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg></a></div>
+            </div>
+          </div>
+          <div class="blog-card" data-r data-d="6">
+            <div class="blog-card-img"><img
+                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80"
+                alt />
+              <div class="blog-card-tint"></div><span
+                class="blog-card-cat-tag">Urban Planning</span>
+            </div>
+            <div class="blog-card-body">
+              <div class="blog-title">The Bagmati River Crisis Is a Sanitation
+                Problem</div>
+              <div class="blog-excerpt">Tracing the direct line from missing
+                urban sanitation infrastructure
+                to the ongoing pollution of Nepal's most sacred river.</div>
+              <div class="blog-footer"><span class="blog-by">Ramesh Shrestha · 8
+                  min</span><a href="#"
+                  class="blog-read-link">Read <svg width="10" height="10"
+                    viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg></a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div style="margin-top:64px;" data-r>
+          <div class="nl-box">
+            <div class="nl-orb"></div>
+            <div style="position:relative;z-index:1;">
+              <div class="eyebrow" style="color:rgba(255,255,255,0.65);"><span
+                  style="background:rgba(255,255,255,0.35)"></span>Stay
+                Updated</div>
+              <div class="nl-title">The Aerosan Dispatch</div>
+              <p class="nl-sub">Research notes, field updates, and analysis from
+                the frontlines of urban
+                sanitation in Nepal. Once a month, no noise.</p>
+            </div>
+            <div style="position:relative;z-index:1;">
+              <div class="nl-form">
+                <input class="nl-input" type="email"
+                  placeholder="your@email.com" />
+                <button class="btn btn-white">Subscribe</button>
+              </div>
+              <p class="nl-note">No spam. Unsubscribe anytime. Read by municipal
+                planners, investors, and
+                public health practitioners across South Asia.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-      <footer class="dk-footer">
+    <footer class="dk-footer">
       <div class="container">
         <!-- Row 1: Brand Box (absolute) + Contact Info -->
         <div class="footer-row">
@@ -1229,8 +1300,7 @@
                 <img
                   src="/logo.avif"
                   alt="Aerosan logo"
-                  class="footer-logo-img"
-                />
+                  class="footer-logo-img" />
               </a>
               <p class="footer-info-text">
                 Gender-friendly, menstrual hygiene-inclusive, environmentally
@@ -1373,7 +1443,7 @@
         const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('on'); ro.unobserve(x.target); } }), { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
     </script>
-        <script>
+    <script>
         // =============================================
 // BACK TO TOP BUTTON - Smooth Scrolling
 // =============================================
@@ -1404,6 +1474,6 @@ backToTopBtn.addEventListener('click', function(e) {
     });
 });
     </script>
-</body>
+  </body>
 
 </html>
